@@ -3,6 +3,10 @@ import axios from 'axios';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import './main-view.scss'
+import Navbar from '../nav-bar/nav-bar';
 export default class MainView extends React.Component {
 
   constructor(){
@@ -48,6 +52,8 @@ export default class MainView extends React.Component {
   }
      
   render() {
+
+
     const { movies, selectedMovie, user } = this.state;
   
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
@@ -56,18 +62,31 @@ export default class MainView extends React.Component {
     if (movies.length === 0) return <div className="main-view" />;
   
     return (
+      <>
+      {/* <div className="nav-bar">< Navbar /></div> */}
       <div className="main-view">
+         <div className="nav-bar"><Navbar /></div>
         {selectedMovie
-          ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => 
-            { this.setSelectedMovie(newSelectedMovie); }}/>
-          : movies.map(movie => (
-            <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => 
-              { this.setSelectedMovie(newSelectedMovie); }} />
-          ))
+          ? (
+            <Row className="justify-content-md-center">
+              <Col md={8}>
+                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+              </Col>
+            </Row>
+          )
+          : (
+            <Row className="justify-content-md-center">
+              {movies.map(movie => (
+                <Col md={4}>
+                  <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }}/>
+                </Col>
+              ))}
+            </Row>
+          )
         }
       </div>
+      </>
     );
-  }
 };
 
-//new branch
+}
