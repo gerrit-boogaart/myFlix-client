@@ -21476,7 +21476,7 @@ class MainView extends _reactDefault.default.Component {
                     md: 6
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
                     onLoggedIn: (user)=>this.onLoggedIn(user)
-                }), ";");
+                }));
                 if (movies.length === 0) return;
                 /*#__PURE__*/ _reactDefault.default.createElement("div", {
                     className: "main-view"
@@ -26621,7 +26621,7 @@ var _toggleButtonGroupDefault = parcelHelpers.interopDefault(_toggleButtonGroup)
 var _tooltip = require("./Tooltip");
 var _tooltipDefault = parcelHelpers.interopDefault(_tooltip);
 
-},{"./Accordion":false,"./AccordionContext":false,"./AccordionCollapse":false,"./AccordionButton":false,"./Alert":false,"./Anchor":false,"./Badge":false,"./Breadcrumb":false,"./BreadcrumbItem":false,"./Button":false,"./ButtonGroup":false,"./ButtonToolbar":false,"./Card":"lAynp","./CardImg":"1reTi","./CardGroup":"2j3Ij","./Carousel":false,"./CarouselItem":false,"./CloseButton":"1wmVl","./Col":"2L2I6","./Collapse":"acuzI","./Dropdown":false,"./DropdownButton":false,"./Fade":"aH18S","./Form":false,"./FormControl":"iynMc","./FormCheck":"idkr0","./FormFloating":"aj346","./FloatingLabel":"coYzo","./FormGroup":"1qBHH","./FormLabel":"66epi","./FormText":"ffeC7","./FormSelect":"hHWyB","./Container":"hEdsw","./Image":false,"./Figure":false,"./InputGroup":false,"./ListGroup":false,"./ListGroupItem":false,"./Modal":false,"./ModalBody":false,"./ModalDialog":false,"./ModalHeader":false,"./ModalFooter":false,"./ModalTitle":false,"./Nav":"cXyL2","./Navbar":"1mHjo","./NavbarBrand":"iOo4v","./NavDropdown":false,"./NavItem":"ew05W","./NavLink":"7geL8","./Offcanvas":"eC3RS","./OffcanvasHeader":"a6xAh","./OffcanvasTitle":"77qdX","./OffcanvasBody":"fX7Bo","./Overlay":false,"./OverlayTrigger":false,"./PageItem":false,"./Pagination":false,"./Placeholder":false,"./PlaceholderButton":false,"./Popover":false,"./PopoverHeader":false,"./PopoverBody":false,"./ProgressBar":false,"./Ratio":false,"./Row":"cMC39","./Spinner":false,"./SplitButton":false,"./SSRProvider":false,"./Stack":false,"./Tab":false,"./TabContainer":false,"./TabContent":false,"./Table":false,"./TabPane":false,"./Tabs":false,"./ThemeProvider":"dVixI","./Toast":false,"./ToastBody":false,"./ToastHeader":false,"./ToastContainer":false,"./ToggleButton":false,"./ToggleButtonGroup":false,"./Tooltip":false,"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lAynp":[function(require,module,exports) {
+},{"./Accordion":false,"./AccordionContext":false,"./AccordionCollapse":false,"./AccordionButton":false,"./Alert":false,"./Anchor":false,"./Badge":false,"./Breadcrumb":false,"./BreadcrumbItem":false,"./Button":"aPzUt","./ButtonGroup":false,"./ButtonToolbar":false,"./Card":"lAynp","./CardImg":"1reTi","./CardGroup":"2j3Ij","./Carousel":false,"./CarouselItem":false,"./CloseButton":"1wmVl","./Col":"2L2I6","./Collapse":"acuzI","./Dropdown":false,"./DropdownButton":false,"./Fade":"aH18S","./Form":"iBZ80","./FormControl":"iynMc","./FormCheck":"idkr0","./FormFloating":"aj346","./FloatingLabel":"coYzo","./FormGroup":"1qBHH","./FormLabel":"66epi","./FormText":"ffeC7","./FormSelect":"hHWyB","./Container":"hEdsw","./Image":false,"./Figure":false,"./InputGroup":false,"./ListGroup":false,"./ListGroupItem":false,"./Modal":false,"./ModalBody":false,"./ModalDialog":false,"./ModalHeader":false,"./ModalFooter":false,"./ModalTitle":false,"./Nav":"cXyL2","./Navbar":"1mHjo","./NavbarBrand":"iOo4v","./NavDropdown":false,"./NavItem":"ew05W","./NavLink":"7geL8","./Offcanvas":"eC3RS","./OffcanvasHeader":"a6xAh","./OffcanvasTitle":"77qdX","./OffcanvasBody":"fX7Bo","./Overlay":false,"./OverlayTrigger":false,"./PageItem":false,"./Pagination":false,"./Placeholder":false,"./PlaceholderButton":false,"./Popover":false,"./PopoverHeader":false,"./PopoverBody":false,"./ProgressBar":false,"./Ratio":false,"./Row":"cMC39","./Spinner":false,"./SplitButton":false,"./SSRProvider":false,"./Stack":false,"./Tab":false,"./TabContainer":false,"./TabContent":false,"./Table":false,"./TabPane":false,"./Tabs":false,"./ThemeProvider":"dVixI","./Toast":false,"./ToastBody":false,"./ToastHeader":false,"./ToastContainer":false,"./ToggleButton":false,"./ToggleButtonGroup":false,"./Tooltip":false,"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lAynp":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -33004,114 +33004,282 @@ $parcel$ReactRefreshHelpers$789c.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+// import './registration-view.scss';
 parcelHelpers.export(exports, "RegistrationView", ()=>RegistrationView
 ) // RegistrationView.propTypes = {
- //     onRegistration: PropTypes.func.isRequired,
- //   };
+ //   register: PropTypes.shape({
+ //     Username: PropTypes.string.isRequired, 
+ //     Password: PropTypes.string.isRequired,
+ //     Email: PropTypes.string.isRequired
+ //   }),
+ // };
 ;
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _reactBootstrap = require("react-bootstrap");
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _reactRouterDom = require("react-router-dom");
+var _reactRouterDomDefault = parcelHelpers.interopDefault(_reactRouterDom);
 function RegistrationView(props) {
     const [username, setUsername] = _react.useState('');
     const [password, setPassword] = _react.useState('');
     const [email, setEmail] = _react.useState('');
     const [birthdate, setBirthdate] = _react.useState('');
-    const handleSubmit = (e)=>{
-        e.preventDefault(); /*prevents the default refresh of the page from a button with type submit */ 
-        console.log(username, password, email, birthdate);
-        /* Send a request to the server for authentication */ /* then call props.onLoggedIn(username) */ props.onRegistration(username);
+    //Declare hook for each input
+    const [usernameErr, setUsernameErr] = _react.useState('');
+    const [passwordErr, setPasswordErr] = _react.useState('');
+    const [emailErr, setEmailErr] = _react.useState('');
+    const validate = ()=>{
+        let isReq = true;
+        if (!username) {
+            setUsernameErr('Username Required');
+            isReq = false;
+        } else if (username.length < 5) {
+            setUsernameErr('Username must be 5 characters long.');
+            isReq = false;
+        }
+        if (!password) {
+            setPasswordErr('Password Required');
+            isReq = false;
+        } else if (password.length < 6) {
+            setPasswordErr('Password must be 6 characters long');
+            isReq = false;
+        }
+        if (!email) {
+            setEmailErr('Email is required');
+            isReq = false;
+        } else if (email.indexOf('@') === -1) {
+            setEmailErr('Please enter a valid email');
+            isReq = false;
+        }
+        return isReq;
     };
-    return /*#__PURE__*/ _reactDefault.default.createElement("form", {
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        isReq = validate();
+        console.log(username, password, email, birthdate);
+        if (isReq) /* Send a request to the server for authentication */ _axiosDefault.default.post('https://fredsflix.herokuapp.com/users', {
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthday
+        }).then((response)=>{
+            const data = response.data;
+            console.log(data);
+            alert('Registration successful, please login!');
+            window.open('/', '_self');
+        }).catch((response)=>{
+            console.error(response);
+            alert('unable to register');
+        });
+        /* then call props.Registration(username) */ props.onRegistration(username);
+    };
+    return /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
+        className: "mt-5",
         __source: {
             fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 18,
+            lineNumber: 76,
             columnNumber: 5
         },
         __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement("label", {
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
+        md: 12,
         __source: {
             fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 19,
+            lineNumber: 77,
             columnNumber: 7
         },
         __self: this
-    }, "Username:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form, {
+        __source: {
+            fileName: "src/components/registration-view/registration-view.jsx",
+            lineNumber: 78,
+            columnNumber: 9
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement("h3", {
+        __source: {
+            fileName: "src/components/registration-view/registration-view.jsx",
+            lineNumber: 79,
+            columnNumber: 11
+        },
+        __self: this
+    }, "Sign Up"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
+        __source: {
+            fileName: "src/components/registration-view/registration-view.jsx",
+            lineNumber: 80,
+            columnNumber: 11
+        },
+        __self: this
+    }), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "formUsername",
+        className: "reg-form-inputs",
+        __source: {
+            fileName: "src/components/registration-view/registration-view.jsx",
+            lineNumber: 81,
+            columnNumber: 11
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, {
+        __source: {
+            fileName: "src/components/registration-view/registration-view.jsx",
+            lineNumber: 82,
+            columnNumber: 13
+        },
+        __self: this
+    }, "Username:"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "text",
         value: username,
         onChange: (e)=>setUsername(e.target.value)
         ,
         __source: {
             fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 21,
-            columnNumber: 9
+            lineNumber: 83,
+            columnNumber: 13
         },
         __self: this
-    })), /*#__PURE__*/ _reactDefault.default.createElement("label", {
+    }), usernameErr && /*#__PURE__*/ _reactDefault.default.createElement("p", {
+        style: {
+            color: "red"
+        },
+        className: "font-italic",
         __source: {
             fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 23,
-            columnNumber: 7
+            lineNumber: 84,
+            columnNumber: 29
         },
         __self: this
-    }, "Password:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
+    }, usernameErr)), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "formPassword",
+        className: "reg-form-inputs",
+        __source: {
+            fileName: "src/components/registration-view/registration-view.jsx",
+            lineNumber: 87,
+            columnNumber: 10
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, {
+        __source: {
+            fileName: "src/components/registration-view/registration-view.jsx",
+            lineNumber: 88,
+            columnNumber: 13
+        },
+        __self: this
+    }, "Password:"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "password",
         value: password,
         onChange: (e)=>setPassword(e.target.value)
         ,
         __source: {
             fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 25,
-            columnNumber: 9
+            lineNumber: 89,
+            columnNumber: 13
         },
         __self: this
-    })), /*#__PURE__*/ _reactDefault.default.createElement("label", {
+    }), passwordErr && /*#__PURE__*/ _reactDefault.default.createElement("p", {
+        style: {
+            color: "red"
+        },
+        className: "font-italic",
         __source: {
             fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 27,
-            columnNumber: 7
+            lineNumber: 90,
+            columnNumber: 29
         },
         __self: this
-    }, "Email:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
+    }, passwordErr)), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "Email",
+        className: "reg-form-inputs",
+        __source: {
+            fileName: "src/components/registration-view/registration-view.jsx",
+            lineNumber: 93,
+            columnNumber: 10
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, {
+        __source: {
+            fileName: "src/components/registration-view/registration-view.jsx",
+            lineNumber: 94,
+            columnNumber: 13
+        },
+        __self: this
+    }, "Email:"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "email",
         value: email,
         onChange: (e)=>setEmail(e.target.value)
         ,
         __source: {
             fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 29,
-            columnNumber: 9
+            lineNumber: 95,
+            columnNumber: 13
         },
         __self: this
-    })), /*#__PURE__*/ _reactDefault.default.createElement("label", {
+    }), emailErr && /*#__PURE__*/ _reactDefault.default.createElement("p", {
+        style: {
+            color: "red"
+        },
+        className: "font-italic",
         __source: {
             fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 31,
-            columnNumber: 7
+            lineNumber: 96,
+            columnNumber: 26
         },
         __self: this
-    }, "Birthdate:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
+    }, emailErr)), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "formBirthday",
+        className: "reg-form-inputs",
+        __source: {
+            fileName: "src/components/registration-view/registration-view.jsx",
+            lineNumber: 99,
+            columnNumber: 10
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, {
+        __source: {
+            fileName: "src/components/registration-view/registration-view.jsx",
+            lineNumber: 100,
+            columnNumber: 13
+        },
+        __self: this
+    }, "Birthday:"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "date",
-        value: birthdate,
-        onChange: (e)=>setBirthdate(e.target.value)
+        name: "birthday",
+        onChange: (e)=>setBirthday(e.target.value)
         ,
         __source: {
             fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 33,
-            columnNumber: 9
+            lineNumber: 101,
+            columnNumber: 13
         },
         __self: this
-    })), /*#__PURE__*/ _reactDefault.default.createElement("button", {
+    }), usernameErr && /*#__PURE__*/ _reactDefault.default.createElement("p", {
+        __source: {
+            fileName: "src/components/registration-view/registration-view.jsx",
+            lineNumber: 102,
+            columnNumber: 29
+        },
+        __self: this
+    }, usernameErr)), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+        variant: "primary",
         type: "submit",
         onClick: handleSubmit,
         __source: {
             fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 35,
-            columnNumber: 7
+            lineNumber: 104,
+            columnNumber: 11
         },
         __self: this
-    }, "Submit"));
+    }, "Submit"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
+        __source: {
+            fileName: "src/components/registration-view/registration-view.jsx",
+            lineNumber: 105,
+            columnNumber: 11
+        },
+        __self: this
+    }))));
 }
 
   $parcel$ReactRefreshHelpers$789c.postlude(module);
@@ -33119,7 +33287,7 @@ function RegistrationView(props) {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9tpci":[function(require,module,exports) {
+},{"react":"21dqq","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A","axios":"jo6P5","react-router-dom":"cHIiW"}],"9tpci":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ad4a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
