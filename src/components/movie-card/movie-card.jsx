@@ -1,14 +1,5 @@
 import React from 'react';
-<<<<<<< Updated upstream
-import propTypes from 'prop-types';
-
-export class MovieCard extends React.Component {
-    render() {
-        const { movie, onMovieClick } = this.props;
-        return <div className="movie-card" onClick={() => { onMovieClick(movie); }}>{movie.Title}</div>;   
-     }
-=======
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import './movie-card.scss';
@@ -33,7 +24,6 @@ export class MovieCard extends React.Component {
       </Card>
     );
   }
->>>>>>> Stashed changes
 }
 MovieCard.propTypes = {
     movie: PropTypes.shape({

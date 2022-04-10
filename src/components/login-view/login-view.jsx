@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-<<<<<<< Updated upstream
-=======
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import {Card, Container, CardGroup, Col, Row } from 'react-bootstrap';
@@ -8,7 +6,6 @@ import './login-view.scss'
 import axios from 'axios';
 
 
->>>>>>> Stashed changes
 
 export function LoginView(props) {
   const [ username, setUsername ] = useState('');
@@ -35,31 +32,6 @@ const validate = () => {
     isReq = false;
   }
 
-<<<<<<< Updated upstream
-  const handleSubmit = (e) => {
-    e.preventDefault(); /*prevents the default refresh of the page from a button with type submit */
-    console.log(username, password);
-    /* Send a request to the server for authentication */
-    /* then call props.onLoggedIn(username) */
-    props.onLoggedIn(username);
-  };
-
-  return (
-    <form>
-      <label>
-        Username:
-        <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-      </label>
-      <label>
-        Password:
-        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      </label>
-      <button type="submit" onClick={handleSubmit}>Submit</button>
-      <button type="submit" >Register as a New User</button>   
-    </form>
-  );
-}
-=======
   return isReq;
 }
  
@@ -123,4 +95,3 @@ const handleSubmit = (e) => {
 </>
   )
 };
->>>>>>> Stashed changes

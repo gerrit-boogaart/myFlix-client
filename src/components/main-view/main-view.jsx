@@ -6,15 +6,12 @@ import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
-<<<<<<< Updated upstream
-=======
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './main-view.scss'
 import Navbar from '../nav-bar/nav-bar';
->>>>>>> Stashed changes
 export default class MainView extends React.Component {
 
   constructor(){
@@ -67,29 +64,6 @@ export default class MainView extends React.Component {
 
      
   render() {
-<<<<<<< Updated upstream
-    const { movies, selectedMovie, user } = this.state;
-  
-    /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
-    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-    /* before the movies have been loaded */
-    if (movies.length === 0) return <div className="main-view" />;
-  
-    return (
-      <div className="main-view">
-        {selectedMovie
-          ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => 
-            { this.setSelectedMovie(newSelectedMovie); }}/>
-          : movies.map(movie => (
-            <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => 
-              { this.setSelectedMovie(newSelectedMovie); }} />
-          ))
-        }
-      </div>
-    );
-  }
-};
-=======
     const { movies, user } = this.state;
     return (   
       <Router>
@@ -143,6 +117,4 @@ export default class MainView extends React.Component {
      
     );
   }
->>>>>>> Stashed changes
-
-//new branch
+}
