@@ -23,7 +23,7 @@ export class GenreView extends React.Component {
                  <Col>  <h2>{genre.Name}</h2>
                  <p>{genre.Description}</p>
                     
-                    <Button className="button" onClick={() => { onBackClick(); }}>Back</Button>
+                    <Button className="button" variant="info" onClick={() => { onBackClick(); }}>Back</Button>
                 </Col>
                
             </Row>             

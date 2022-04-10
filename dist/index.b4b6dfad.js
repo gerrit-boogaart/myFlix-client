@@ -21400,6 +21400,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _navBar = require("../nav-bar/nav-bar");
 var _reactRouterDom = require("react-router-dom");
 var _loginView = require("../login-view/login-view");
 var _registrationView = require("../registration-view/registration-view");
@@ -21456,15 +21457,23 @@ class MainView extends _reactDefault.default.Component {
         return /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 68,
+                lineNumber: 70,
                 columnNumber: 7
             },
             __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_navBar.Menubar, {
+            user: user1,
+            __source: {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 71,
+                columnNumber: 8
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             className: "main-view justify-content-md-center",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 70,
+                lineNumber: 72,
                 columnNumber: 9
             },
             __self: this
@@ -21472,15 +21481,11 @@ class MainView extends _reactDefault.default.Component {
             exact: true,
             path: "/",
             render: ()=>{
-                /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/ if (!user1) return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+                /* If there is no user, the LoginView is rendered.*/ if (!user1) return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
                     md: 6
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
                     onLoggedIn: (user)=>this.onLoggedIn(user)
                 }));
-                if (movies.length === 0) return;
-                /*#__PURE__*/ _reactDefault.default.createElement("div", {
-                    className: "main-view"
-                });
                 return movies.map((m)=>/*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
                         md: 4,
                         key: m._id
@@ -21491,7 +21496,24 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 71,
+                lineNumber: 74,
+                columnNumber: 10
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
+            path: "/register",
+            render: ()=>{
+                if (user1) return /*#__PURE__*/ _reactDefault.default.createElement(Redirect, {
+                    to: "/"
+                });
+                return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+                    lg: 8,
+                    md: 8
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_registrationView.RegistrationView, null));
+            },
+            __source: {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 88,
                 columnNumber: 11
             },
             __self: this
@@ -21499,6 +21521,11 @@ class MainView extends _reactDefault.default.Component {
             exact: true,
             path: "/movies/:movieId",
             render: ({ match , history  })=>{
+                if (!user1) return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+                    md: 6
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
+                    onLoggedIn: (user)=>this.onLoggedIn(user)
+                }));
                 return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
                     md: 8
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_movieView.MovieView, {
@@ -21509,7 +21536,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 91,
+                lineNumber: 95,
                 columnNumber: 11
             },
             __self: this
@@ -21517,9 +21544,11 @@ class MainView extends _reactDefault.default.Component {
             exact: true,
             path: "/directors/:name",
             render: ({ match , history  })=>{
-                if (movies.length === 0) return /*#__PURE__*/ _reactDefault.default.createElement("div", {
-                    className: "main-view"
-                });
+                if (!user1) return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+                    md: 6
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
+                    onLoggedIn: (user)=>this.onLoggedIn(user)
+                }));
                 return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
                     md: 8
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_directorView.DirectorView, {
@@ -21530,7 +21559,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 96,
+                lineNumber: 105,
                 columnNumber: 11
             },
             __self: this
@@ -21538,9 +21567,11 @@ class MainView extends _reactDefault.default.Component {
             exact: true,
             path: "/genres/:name",
             render: ({ match , history  })=>{
-                if (movies.length === 0) return /*#__PURE__*/ _reactDefault.default.createElement("div", {
-                    className: "main-view"
-                });
+                if (!user1) return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+                    md: 6
+                }, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
+                    onLoggedIn: (user)=>this.onLoggedIn(user)
+                }));
                 return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
                     md: 8
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_genreView.GenreView, {
@@ -21551,7 +21582,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 105,
+                lineNumber: 119,
                 columnNumber: 9
             },
             __self: this
@@ -21565,7 +21596,7 @@ exports.default = MainView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","axios":"jo6P5","../login-view/login-view":"9YtA0","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","./main-view.scss":"eBaMl","react-router-dom":"cHIiW","../registration-view/registration-view":"3U8r7","../director-view/director-view":"9tpci","../genre-view/genre-view":"4tuA0"}],"jo6P5":[function(require,module,exports) {
+},{"react":"21dqq","axios":"jo6P5","../login-view/login-view":"9YtA0","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","./main-view.scss":"eBaMl","react-router-dom":"cHIiW","../registration-view/registration-view":"3U8r7","../director-view/director-view":"9tpci","../genre-view/genre-view":"4tuA0","../nav-bar/nav-bar":"04Psr"}],"jo6P5":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"63MyY"}],"63MyY":[function(require,module,exports) {
@@ -23306,7 +23337,7 @@ function LoginView(props) {
         __self: this
     }, passwordErr)), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
         className: "button",
-        variant: "primary",
+        variant: "info",
         type: "submit",
         onClick: handleSubmit,
         __source: {
@@ -32970,6 +33001,7 @@ class MovieView extends _reactDefault.default.Component {
             __self: this
         }, movie.Description)), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
             className: "button",
+            variant: "info",
             onClick: ()=>{
                 onBackClick();
             },
@@ -33065,7 +33097,7 @@ function RegistrationView(props) {
             Username: username,
             Password: password,
             Email: email,
-            Birthday: birthday
+            Birthdate: birthdate
         }).then((response)=>{
             const data = response.data;
             console.log(data);
@@ -33247,7 +33279,7 @@ function RegistrationView(props) {
     }, "Birthday:"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "date",
         name: "birthday",
-        onChange: (e)=>setBirthday(e.target.value)
+        onChange: (e)=>setBirthdate(e.target.value)
         ,
         __source: {
             fileName: "src/components/registration-view/registration-view.jsx",
@@ -33255,27 +33287,20 @@ function RegistrationView(props) {
             columnNumber: 13
         },
         __self: this
-    }), usernameErr && /*#__PURE__*/ _reactDefault.default.createElement("p", {
-        __source: {
-            fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 102,
-            columnNumber: 29
-        },
-        __self: this
-    }, usernameErr)), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "primary",
+    })), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+        variant: "info",
         type: "submit",
         onClick: handleSubmit,
         __source: {
             fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 104,
+            lineNumber: 103,
             columnNumber: 11
         },
         __self: this
     }, "Submit"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
         __source: {
             fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 105,
+            lineNumber: 104,
             columnNumber: 11
         },
         __self: this
@@ -33398,6 +33423,7 @@ class DirectorView extends _reactDefault.default.Component {
             __self: this
         }, director.Bio), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
             className: "button",
+            variant: "info",
             onClick: ()=>{
                 onBackClick();
             },
@@ -33556,6 +33582,7 @@ class GenreView extends _reactDefault.default.Component {
             __self: this
         }, genre.Description), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
             className: "button",
+            variant: "info",
             onClick: ()=>{
                 onBackClick();
             },
@@ -33577,6 +33604,126 @@ class GenreView extends _reactDefault.default.Component {
 },{"react":"21dqq","prop-types":"7wKI2","./genre-view.scss":"bk3gk","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","react-bootstrap/Button":"aPzUt","react-router-dom":"cHIiW","./masks.png":"c9Z77","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bk3gk":[function() {},{}],"c9Z77":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('byUka') + "masks.bdabc058.png" + "?" + Date.now();
 
-},{"./helpers/bundle-url":"lgJ39"}],"lJZlQ":[function() {},{}]},["1SYPb","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"./helpers/bundle-url":"lgJ39"}],"04Psr":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$9119 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$9119.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Menubar", ()=>Menubar
+);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _navBarScss = require("./nav-bar.scss");
+var _reactBootstrap = require("react-bootstrap");
+function Menubar({ user  }) {
+    function onLoggedOut() {
+        localStorage.clear();
+        window.open("/", "_self");
+    }
+    const isAuth = ()=>{
+        if (typeof window == "undefined") return false;
+        if (localStorage.getItem('token')) return localStorage.getItem('token');
+        else return false;
+    };
+    return /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar, {
+        className: "main-nav",
+        sticky: "top",
+        bg: "dark",
+        expand: "lg",
+        variant: "dark",
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 26,
+            columnNumber: 5
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Container, {
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 27,
+            columnNumber: 7
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
+        className: "navbar-logo",
+        href: "/",
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 28,
+            columnNumber: 9
+        },
+        __self: this
+    }, "fredsFlix"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Toggle, {
+        "aria-controls": "responsive-navbar-nav",
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 30,
+            columnNumber: 9
+        },
+        __self: this
+    }), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Collapse, {
+        id: "responsive-navbar-nav",
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 31,
+            columnNumber: 9
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav, {
+        className: "ml-auto",
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 32,
+            columnNumber: 11
+        },
+        __self: this
+    }, isAuth() && /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
+        href: `/users/${user}`,
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 34,
+            columnNumber: 15
+        },
+        __self: this
+    }, user), isAuth() && /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+        variant: "link",
+        onClick: ()=>{
+            onLoggedOut();
+        },
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 37,
+            columnNumber: 15
+        },
+        __self: this
+    }, "Logout"), !isAuth() && /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
+        href: "/",
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 39,
+            columnNumber: 28
+        },
+        __self: this
+    }, "Sign-in"), !isAuth() && /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
+        href: "/register",
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 40,
+            columnNumber: 28
+        },
+        __self: this
+    }, "Sign-Up")))));
+}
+
+  $parcel$ReactRefreshHelpers$9119.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"21dqq","./nav-bar.scss":"aUy9V","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"aUy9V":[function() {},{}],"lJZlQ":[function() {},{}]},["1SYPb","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

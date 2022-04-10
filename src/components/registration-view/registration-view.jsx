@@ -14,7 +14,7 @@ export function RegistrationView(props) {
     const [ usernameErr, setUsernameErr ] = useState('');
     const [ passwordErr, setPasswordErr ] = useState('');
     const [ emailErr, setEmailErr ] = useState('');
-    
+   
   
 
     const validate = () => {
@@ -53,7 +53,7 @@ export function RegistrationView(props) {
         Username: username, 
         Password: password, 
         Email: email, 
-        Birthday: birthday
+        Birthdate: birthdate
       })
       .then(response => {
         const data = response.data;
@@ -98,10 +98,9 @@ export function RegistrationView(props) {
          
          <Form.Group controlId="formBirthday" className="reg-form-inputs">
             <Form.Label>Birthday:</Form.Label>
-            <Form.Control type="date" name="birthday" onChange={e => setBirthday(e.target.value)} />
-            {usernameErr && <p>{usernameErr}</p>}
+            <Form.Control type="date" name="birthday" onChange={e => setBirthdate(e.target.value)} />
          </Form.Group>
-          <Button variant="primary" type="submit" onClick={handleSubmit}>Submit</Button>
+          <Button variant="info" type="submit" onClick={handleSubmit}>Submit</Button>
           <p></p>
       </Form>
      </Col>

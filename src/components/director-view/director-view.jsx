@@ -24,7 +24,7 @@ export class DirectorView extends React.Component {
                  <Col>  <h2>{director.Name}</h2>
                  <p>Born in {director.Birth}</p>
                     <p className='title'>{director.Bio}</p>
-                    <Button className="button" onClick={() => { onBackClick(); }}>Back</Button>
+                    <Button className="button" variant="info" onClick={() => { onBackClick(); }}>Back</Button>
                 </Col>
                
             </Row> 

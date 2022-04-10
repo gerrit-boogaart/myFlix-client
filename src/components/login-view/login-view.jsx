@@ -82,7 +82,7 @@ const handleSubmit = (e) => {
                 placeholder="password"/>
                 {passwordErr && <p style={{color: "red"}} className="font-italic">{passwordErr}</p>}
               </Form.Group>
-              <Button className="button" variant="primary" type="submit" onClick={handleSubmit}>
+              <Button className="button" variant="info" type="submit" onClick={handleSubmit}>
                 Submit
               </Button>
             </Form>
