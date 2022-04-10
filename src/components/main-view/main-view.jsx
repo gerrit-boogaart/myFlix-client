@@ -11,7 +11,6 @@ import { GenreView } from '../genre-view/genre-view';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './main-view.scss'
-import Navbar from '../nav-bar/nav-bar';
 export default class MainView extends React.Component {
 
   constructor(){
