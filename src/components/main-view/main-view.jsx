@@ -8,6 +8,7 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
+import ProfileView from '../user-view/user-view';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './main-view.scss'
@@ -18,7 +19,7 @@ export default class MainView extends React.Component {
     
     this.state = {
       movies: [],
-      user: null
+      user: null,
     };
   }
 
@@ -38,6 +39,7 @@ export default class MainView extends React.Component {
     });
   }
 
+
   onLoggedIn(authData) {
     this.setState({
       user: authData.user.Username
@@ -56,6 +58,7 @@ export default class MainView extends React.Component {
         user: localStorage.getItem('user')
       });
       this.getMovies(accessToken);
+     
     }
   }
   
@@ -65,7 +68,7 @@ export default class MainView extends React.Component {
 
      
   render() {
-    const { movies, user } = this.state;
+    const { movies, user, Username, Password, Birthday, Email, FavoriteMovies } = this.state;
     return (   
       <Router>
        <Menubar user={user} />
@@ -128,6 +131,15 @@ export default class MainView extends React.Component {
                      </Col>
           }
           } />
+
+        <Route path={`/users/${user}`} render={({match, history}) => {
+        if (!user) return <Redirect to="/" />
+        
+        return <Col>
+        <ProfileView user={user} onBackClick={() => history.goBack()}/>
+        </Col>
+        }} />
+        
         </Row>
       </Router>
      

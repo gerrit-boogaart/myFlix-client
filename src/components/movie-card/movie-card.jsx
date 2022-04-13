@@ -10,6 +10,7 @@ export class MovieCard extends React.Component {
 
   render() {
     const { movie } = this.props;
+   
 
     return (
       <Card className= 'card'>

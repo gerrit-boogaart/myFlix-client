@@ -3,13 +3,13 @@ import propTypes from 'prop-types';
 import {Row, Col, Button, Container, Form, Card, CardGroup} from 'react-bootstrap';
 import axios from 'axios';
 import Link from 'react-router-dom';
-import './registration-view.scss';
+import './update-user.scss';
 
-export function RegistrationView(props) {
+export function UpdateUser(props) {
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ email, setEmail ] = useState('');
-    const [ birthday, setBirthday ] = useState('');
+    const [ birthdate, setBirthdate ] = useState('');
     //Declare hook for each input
     const [ usernameErr, setUsernameErr ] = useState('');
     const [ passwordErr, setPasswordErr ] = useState('');
@@ -46,15 +46,16 @@ export function RegistrationView(props) {
     const handleSubmit = (e) => {
     e.preventDefault(); 
     isReq = validate();
-    console.log(username, password, email, birthday);
+    console.log(username, password, email, birthdate);
     if(isReq) {
       /* Send a request to the server for authentication */
-      axios.post('https://fredsflix.herokuapp.com/users', {
-        Username: username, 
-        Password: password, 
-        Email: email, 
-        Birthday: birthday
-      })
+    //  NEED TO GET ENDPOINT FOR UPDATING USER INFO
+    //   axios.post('https://fredsflix.herokuapp.com/users', {
+    //     Username: username, 
+    //     Password: password, 
+    //     Email: email, 
+    //     Birthdate: birthdate
+    //   })
       .then(response => {
         const data = response.data;
         console.log(data);
@@ -102,7 +103,7 @@ export function RegistrationView(props) {
          
          <Form.Group controlId="formBirthday" className="reg-form-inputs">
             <Form.Label>Birthday:</Form.Label>
-            <Form.Control type="date" name="birthday" onChange={e => setBirthday(e.target.value)} />
+            <Form.Control type="date" name="birthday" onChange={e => setBirthdate(e.target.value)} />
          </Form.Group>
           <Button variant="info" type="submit" onClick={handleSubmit}>Submit</Button>
           <p></p>

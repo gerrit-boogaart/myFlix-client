@@ -1,6 +1,7 @@
 import React from  'react';
 import './nav-bar.scss'
-import { Navbar, Nav, Container, Button} from 'react-bootstrap'
+import { Navbar, Nav, Container, Button } from 'react-bootstrap'
+
 
 import React, { Component } from 'react'
 
@@ -31,13 +32,13 @@ export function Menubar({user}) {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ml-auto">
             {isAuth() && (
-              <Nav.Link href={`/users/${user}`}>{user}</Nav.Link>
+              <Nav.Link className="user" href={`/users/${user}`}>{user}</Nav.Link>
             )}
             {isAuth() && (
               <Button variant="link" onClick={() => { onLoggedOut() }}>Logout</Button>
             )}
-            {!isAuth() && (<Nav.Link href="/">Sign-in</Nav.Link>)}
-            {!isAuth() && (<Nav.Link href="/register">Sign-Up</Nav.Link>)}
+            {!isAuth() && (<Nav.Link href="/">Sign In</Nav.Link>)}
+            {!isAuth() && (<Nav.Link href="/register">Register</Nav.Link>)}
           </Nav>
         </Navbar.Collapse>
       </Container>
