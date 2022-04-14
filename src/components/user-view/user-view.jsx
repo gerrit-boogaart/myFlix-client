@@ -4,14 +4,16 @@ import axios from 'axios';
 import { Form, Button, Container, Row, Col, Card, CardGroup, Navbar, FormGroup} from 'react-bootstrap';
 import './user-view.scss';
 import Button from 'react-bootstrap';
-
-
+import { MovieCard } from '../movie-card/movie-card';
+import { Link } from 'react-router-dom';
+import { UserUpdate } from './update-user';
 export default class ProfileView extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = 
      {
+       
       Username: null,
       Password: null,
       Email: null,
@@ -68,6 +70,7 @@ getUser = (token) => {
   render() {
    
   return (
+   
     <Container>
         <Row className="profile-view mt-7 mb-7"
            style={{ minWidth: '400px' }}>
@@ -88,6 +91,9 @@ getUser = (token) => {
                          <span className="label">Birthday: </span>
                          <span className="value">{this.state.Birthday}</span>
                        </div>
+                       {/* <Link to={`/users/user`}>
+            <Button variant="link">Update User Setting?</Button>
+          </Link> */}
                      </div>
                      
                 </Card>
@@ -96,21 +102,17 @@ getUser = (token) => {
         </Row>
         <Row>
             <Col>
-              <CardGroup>
-                <Card bg='light' key="" text ='info' className="user-profile mb-2" border='info'>
+           
+                
                   <div className="favorite-movies">
                     <h2>My Favorite Movies</h2>
-                      <ul>
-                      <li>Movie Title</li>
-                      <li>Movie Title</li>
-                      <li>Movie Title</li>
-                      <li>Movie Title</li>
-                      </ul>
+                    
+  
                 </div>
-                </Card>
-              </CardGroup>
+              
             </Col>
         </Row>
+        < UserUpdate user={this.state} />
     </Container>
  
   )

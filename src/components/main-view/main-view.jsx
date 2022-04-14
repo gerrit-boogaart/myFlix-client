@@ -110,11 +110,13 @@ export default class MainView extends React.Component {
                 <Col md={6}>
                   <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                 </Col>
+
                )
                
               return <Col md={8}>
                         <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director}
                         onBackClick={() => history.goBack()} />
+                       
                      </Col>
           }
           } />
@@ -136,10 +138,19 @@ export default class MainView extends React.Component {
         if (!user) return <Redirect to="/" />
         
         return <Col>
-        <ProfileView user={user} onBackClick={() => history.goBack()}/>
+        <ProfileView movies={movies} user={user} onBackClick={() => history.goBack()
+        }/>
         </Col>
+
         }} />
-        
+
+        <Route path={`/user-update/${user}`} render={({match, history}) => {
+          if (!user) return <Redirect to="/" />
+          return <Col>
+          <UserUpdate user={user} onBackClick={() => history.goBack()}/>
+          </Col>
+          
+        }} />
         </Row>
       </Router>
      

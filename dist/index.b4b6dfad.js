@@ -21584,7 +21584,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 122,
+                lineNumber: 124,
                 columnNumber: 9
             },
             __self: this
@@ -21595,13 +21595,31 @@ class MainView extends _reactDefault.default.Component {
                     to: "/"
                 });
                 return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, null, /*#__PURE__*/ _reactDefault.default.createElement(_userViewDefault.default, {
+                    movies: movies,
                     user: user1,
                     onBackClick: ()=>history.goBack()
                 }));
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 135,
+                lineNumber: 137,
+                columnNumber: 9
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
+            path: `/user-update/${user1}`,
+            render: ({ match , history  })=>{
+                if (!user1) return /*#__PURE__*/ _reactDefault.default.createElement(Redirect, {
+                    to: "/"
+                });
+                return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, null, /*#__PURE__*/ _reactDefault.default.createElement(UserUpdate, {
+                    user: user1,
+                    onBackClick: ()=>history.goBack()
+                }));
+            },
+            __source: {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 147,
                 columnNumber: 9
             },
             __self: this
@@ -33389,14 +33407,14 @@ class DirectorView extends _reactDefault.default.Component {
         return /*#__PURE__*/ _reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 18,
+                lineNumber: 19,
                 columnNumber: 5
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 19,
+                lineNumber: 20,
                 columnNumber: 9
             },
             __self: this
@@ -33404,28 +33422,28 @@ class DirectorView extends _reactDefault.default.Component {
             className: "page_title",
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 19,
+                lineNumber: 20,
                 columnNumber: 14
             },
             __self: this
         }, "Director Info"))), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 22,
+                lineNumber: 23,
                 columnNumber: 13
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 23,
+                lineNumber: 24,
                 columnNumber: 18
             },
             __self: this
         }, " ", /*#__PURE__*/ _reactDefault.default.createElement("div", {
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 23,
+                lineNumber: 24,
                 columnNumber: 24
             },
             __self: this
@@ -33434,28 +33452,28 @@ class DirectorView extends _reactDefault.default.Component {
             src: _movieIcon15138PngDefault.default,
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 23,
+                lineNumber: 24,
                 columnNumber: 29
             },
             __self: this
         }))), /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 24,
+                lineNumber: 25,
                 columnNumber: 18
             },
             __self: this
         }, "  ", /*#__PURE__*/ _reactDefault.default.createElement("h2", {
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 24,
+                lineNumber: 25,
                 columnNumber: 25
             },
             __self: this
         }, director.Name), /*#__PURE__*/ _reactDefault.default.createElement("p", {
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 25,
+                lineNumber: 26,
                 columnNumber: 18
             },
             __self: this
@@ -33463,7 +33481,7 @@ class DirectorView extends _reactDefault.default.Component {
             className: "title",
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 26,
+                lineNumber: 27,
                 columnNumber: 21
             },
             __self: this
@@ -33475,7 +33493,7 @@ class DirectorView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 27,
+                lineNumber: 28,
                 columnNumber: 21
             },
             __self: this
@@ -33789,9 +33807,12 @@ var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactBootstrap = require("react-bootstrap");
 var _userViewScss = require("./user-view.scss");
 var _reactBootstrapDefault = parcelHelpers.interopDefault(_reactBootstrap);
+var _movieCard = require("../movie-card/movie-card");
+var _reactRouterDom = require("react-router-dom");
+var _updateUser = require("./update-user");
 class ProfileView extends _reactDefault.default.Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             Username: null,
             Password: null,
@@ -33844,7 +33865,7 @@ class ProfileView extends _reactDefault.default.Component {
         return /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Container, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 71,
+                lineNumber: 74,
                 columnNumber: 5
             },
             __self: this
@@ -33855,21 +33876,21 @@ class ProfileView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 72,
+                lineNumber: 75,
                 columnNumber: 9
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 74,
+                lineNumber: 77,
                 columnNumber: 13
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.CardGroup, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 75,
+                lineNumber: 78,
                 columnNumber: 14
             },
             __self: this
@@ -33881,7 +33902,7 @@ class ProfileView extends _reactDefault.default.Component {
             border: "info",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 76,
+                lineNumber: 79,
                 columnNumber: 17
             },
             __self: this
@@ -33889,7 +33910,7 @@ class ProfileView extends _reactDefault.default.Component {
             as: "h2",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 77,
+                lineNumber: 80,
                 columnNumber: 20
             },
             __self: this
@@ -33897,7 +33918,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "user-info",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 78,
+                lineNumber: 81,
                 columnNumber: 23
             },
             __self: this
@@ -33905,7 +33926,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "user-name",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 79,
+                lineNumber: 82,
                 columnNumber: 25
             },
             __self: this
@@ -33913,7 +33934,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "label",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 80,
+                lineNumber: 83,
                 columnNumber: 27
             },
             __self: this
@@ -33921,7 +33942,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "value",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 81,
+                lineNumber: 84,
                 columnNumber: 27
             },
             __self: this
@@ -33929,7 +33950,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "user-email",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 83,
+                lineNumber: 86,
                 columnNumber: 25
             },
             __self: this
@@ -33937,7 +33958,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "label",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 84,
+                lineNumber: 87,
                 columnNumber: 27
             },
             __self: this
@@ -33945,7 +33966,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "value",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 85,
+                lineNumber: 88,
                 columnNumber: 27
             },
             __self: this
@@ -33953,7 +33974,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "user-birthday",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 87,
+                lineNumber: 90,
                 columnNumber: 25
             },
             __self: this
@@ -33961,7 +33982,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "label",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 88,
+                lineNumber: 91,
                 columnNumber: 26
             },
             __self: this
@@ -33969,94 +33990,48 @@ class ProfileView extends _reactDefault.default.Component {
             className: "value",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 89,
+                lineNumber: 92,
                 columnNumber: 26
             },
             __self: this
         }, this.state.Birthday))))))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 97,
+                lineNumber: 103,
                 columnNumber: 9
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 98,
+                lineNumber: 104,
                 columnNumber: 13
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.CardGroup, {
-            __source: {
-                fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 99,
-                columnNumber: 15
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card, {
-            bg: "light",
-            key: "",
-            text: "info",
-            className: "user-profile mb-2",
-            border: "info",
-            __source: {
-                fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 100,
-                columnNumber: 17
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "favorite-movies",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 101,
+                lineNumber: 107,
                 columnNumber: 19
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("h2", {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 102,
+                lineNumber: 108,
                 columnNumber: 21
             },
             __self: this
-        }, "My Favorite Movies"), /*#__PURE__*/ _reactDefault.default.createElement("ul", {
+        }, "My Favorite Movies")))), /*#__PURE__*/ _reactDefault.default.createElement(_updateUser.UserUpdate, {
+            user: this.state,
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 103,
-                columnNumber: 23
+                lineNumber: 115,
+                columnNumber: 9
             },
             __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement("li", {
-            __source: {
-                fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 104,
-                columnNumber: 23
-            },
-            __self: this
-        }, "Movie Title"), /*#__PURE__*/ _reactDefault.default.createElement("li", {
-            __source: {
-                fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 105,
-                columnNumber: 23
-            },
-            __self: this
-        }, "Movie Title"), /*#__PURE__*/ _reactDefault.default.createElement("li", {
-            __source: {
-                fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 106,
-                columnNumber: 23
-            },
-            __self: this
-        }, "Movie Title"), /*#__PURE__*/ _reactDefault.default.createElement("li", {
-            __source: {
-                fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 107,
-                columnNumber: 23
-            },
-            __self: this
-        }, "Movie Title"))))))));
+        }));
     }
 }
 exports.default = ProfileView;
@@ -34066,6 +34041,284 @@ exports.default = ProfileView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","prop-types":"7wKI2","axios":"jo6P5","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./user-view.scss":"88N05"}],"88N05":[function() {},{}],"lJZlQ":[function() {},{}]},["1SYPb","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"react":"21dqq","prop-types":"7wKI2","./user-view.scss":"88N05","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","axios":"jo6P5","react-bootstrap":"3AD9A","../movie-card/movie-card":"bwuIu","react-router-dom":"cHIiW","./update-user":"5Idrw"}],"88N05":[function() {},{}],"5Idrw":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$a7e8 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$a7e8.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "UserUpdate", ()=>UserUpdate
+) // RegistrationView.propTypes = {
+ //   register: PropTypes.shape({
+ //     Username: PropTypes.string.isRequired, 
+ //     Password: PropTypes.string.isRequired,
+ //     Email: PropTypes.string.isRequired
+ //   }),
+ // };
+;
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _reactBootstrap = require("react-bootstrap");
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _reactRouterDom = require("react-router-dom");
+var _reactRouterDomDefault = parcelHelpers.interopDefault(_reactRouterDom);
+var _updateUserScss = require("./update-user.scss");
+function UserUpdate({ user  }) {
+    const [username, setUsername] = _react.useState('');
+    const [email, setEmail] = _react.useState('');
+    const [birthday, setBirthday] = _react.useState('');
+    //Declare hook for each input
+    const [usernameErr, setUsernameErr] = _react.useState('');
+    const [emailErr, setEmailErr] = _react.useState('');
+    _react.useEffect(()=>{
+        if (user) {
+            setUsername(user.Username);
+            setEmail(user.Email);
+            setBirthday(user.Birthday);
+        }
+    }, [
+        user
+    ]);
+    const validate = ()=>{
+        let isReq = true;
+        if (!username) {
+            setUsernameErr('Username Required');
+            isReq = false;
+        } else if (username.length < 5) {
+            setUsernameErr('Username must be 5 characters long.');
+            isReq = false;
+        }
+        if (!email) {
+            setEmailErr('Email is required');
+            isReq = false;
+        } else if (email.indexOf('@') === -1) {
+            setEmailErr('Please enter a valid email');
+            isReq = false;
+        }
+        return isReq;
+    };
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        isReq = validate();
+        const token = localStorage.getItem('token');
+        console.log('UPDATING', username, email, birthday, isReq, token);
+        if (isReq) _axiosDefault.default.put(`https://fredsflix.herokuapp.com/users/${username}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }, {
+            Username: username,
+            Email: email,
+            Birthday: birthday
+        }).then((response)=>{
+            const data = response.data;
+            console.log(data);
+            alert('User info successfully updated');
+            window.open('/', '_self');
+        }).catch((response)=>{
+            console.error(response);
+            alert('unable to UPDATE');
+        });
+    };
+    console.log(user, 'update');
+    return /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
+        className: "mt-5",
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 76,
+            columnNumber: 5
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
+        md: 12,
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 78,
+            columnNumber: 7
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.CardGroup, {
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 79,
+            columnNumber: 7
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card, {
+        Card: true,
+        border: "light",
+        style: {
+            width: '18rem'
+        },
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 80,
+            columnNumber: 9
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Body, {
+        className: "register_container",
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 81,
+            columnNumber: 7
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form, {
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 82,
+            columnNumber: 9
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement("h3", {
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 83,
+            columnNumber: 11
+        },
+        __self: this
+    }, "Update User Information"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 84,
+            columnNumber: 11
+        },
+        __self: this
+    }), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "formUsername",
+        className: "reg-form-inputs",
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 85,
+            columnNumber: 11
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, {
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 86,
+            columnNumber: 13
+        },
+        __self: this
+    }, "Username:"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        type: "text",
+        value: username,
+        onChange: (e)=>setUsername(e.target.value)
+        ,
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 87,
+            columnNumber: 13
+        },
+        __self: this
+    }), usernameErr && /*#__PURE__*/ _reactDefault.default.createElement("p", {
+        style: {
+            color: "red"
+        },
+        className: "font-italic",
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 88,
+            columnNumber: 29
+        },
+        __self: this
+    }, usernameErr)), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "Email",
+        className: "reg-form-inputs",
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 91,
+            columnNumber: 10
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, {
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 92,
+            columnNumber: 13
+        },
+        __self: this
+    }, "Email:"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        type: "email",
+        value: email,
+        onChange: (e)=>setEmail(e.target.value)
+        ,
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 93,
+            columnNumber: 13
+        },
+        __self: this
+    }), emailErr && /*#__PURE__*/ _reactDefault.default.createElement("p", {
+        style: {
+            color: "red"
+        },
+        className: "font-italic",
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 94,
+            columnNumber: 26
+        },
+        __self: this
+    }, emailErr)), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "formBirthday",
+        className: "reg-form-inputs",
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 97,
+            columnNumber: 10
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, {
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 98,
+            columnNumber: 13
+        },
+        __self: this
+    }, "Birthday:"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        type: "date",
+        name: "birthday",
+        onChange: (e)=>setBirthday(e.target.value)
+        ,
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 99,
+            columnNumber: 13
+        },
+        __self: this
+    })), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+        variant: "info",
+        type: "submit",
+        onClick: handleSubmit,
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 101,
+            columnNumber: 11
+        },
+        __self: this
+    }, "Submit"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 102,
+            columnNumber: 11
+        },
+        __self: this
+    })))))));
+}
+
+  $parcel$ReactRefreshHelpers$a7e8.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","axios":"jo6P5","react-router-dom":"cHIiW","./update-user.scss":"96Dba","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"96Dba":[function() {},{}],"lJZlQ":[function() {},{}]},["1SYPb","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

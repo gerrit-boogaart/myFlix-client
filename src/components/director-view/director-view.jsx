@@ -5,7 +5,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import { Link } from "react-router-dom";
-import icon from './movie-icon-15138.png'
+import icon from './movie-icon-15138.png';
+
 
 export class DirectorView extends React.Component {
 
@@ -27,11 +28,7 @@ export class DirectorView extends React.Component {
                     <Button className="button" variant="info" onClick={() => { onBackClick(); }}>Back</Button>
                 </Col>
                
-            </Row> 
-                    
-           
-              
-                
+            </Row>      
                   
                 
              

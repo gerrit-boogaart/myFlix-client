@@ -1,20 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import {Row, Col, Button, Container, Form, Card, CardGroup} from 'react-bootstrap';
 import axios from 'axios';
 import Link from 'react-router-dom';
 import './update-user.scss';
 
-export function UpdateUser(props) {
+export function UserUpdate({user}) {
     const [ username, setUsername ] = useState('');
-    const [ password, setPassword ] = useState('');
     const [ email, setEmail ] = useState('');
-    const [ birthdate, setBirthdate ] = useState('');
+    const [ birthday, setBirthday ] = useState('');
     //Declare hook for each input
     const [ usernameErr, setUsernameErr ] = useState('');
-    const [ passwordErr, setPasswordErr ] = useState('');
     const [ emailErr, setEmailErr ] = useState('');
    
+    useEffect(() => {
+      if (user) {
+       setUsername(user.Username)
+       setEmail(user.Email)
+       setBirthday(user.Birthday)
+      }
+    }, [user])
   
 
     const validate = () => {
@@ -24,12 +29,6 @@ export function UpdateUser(props) {
           isReq = false;
         } else if(username.length < 5) {
           setUsernameErr('Username must be 5 characters long.'); 
-          isReq = false;
-        } if(!password){
-          setPasswordErr('Password Required');
-          isReq = false;
-        } else if(password.length < 6){
-          setPasswordErr('Password must be 6 characters long');
           isReq = false;
         }
         if(!email) {
@@ -46,33 +45,33 @@ export function UpdateUser(props) {
     const handleSubmit = (e) => {
     e.preventDefault(); 
     isReq = validate();
-    console.log(username, password, email, birthdate);
+    const token = localStorage.getItem('token');
+    
+    console.log('UPDATING', username, email, birthday, isReq, token);
     if(isReq) {
-      /* Send a request to the server for authentication */
-    //  NEED TO GET ENDPOINT FOR UPDATING USER INFO
-    //   axios.post('https://fredsflix.herokuapp.com/users', {
-    //     Username: username, 
-    //     Password: password, 
-    //     Email: email, 
-    //     Birthdate: birthdate
-    //   })
+      axios.put(`https://fredsflix.herokuapp.com/users/${username}`, {
+        headers: { Authorization: `Bearer ${token}` }},
+      {
+        Username: username, 
+        Email: email, 
+        Birthday: birthday
+      })
       .then(response => {
         const data = response.data;
         console.log(data);
-        alert('Registration successful, please login!');
+        alert('User info successfully updated');
         window.open('/', '_self'); 
       })
       .catch(response => {
         console.error(response);
-        alert('unable to register');
+        alert('unable to UPDATE');
       });
     };
 
     
-    /* then call props.Registration(username) */
-    props.onRegistration(username);
+  
   };
-
+console.log(user, 'update');
   return (
     <Row className="mt-5">
      
@@ -81,18 +80,12 @@ export function UpdateUser(props) {
         <Card Card border="light" style={{ width: '18rem' }}> 
       <Card.Body className="register_container">
         <Form>
-          <h3>Sign Up</h3>
+          <h3>Update User Information</h3>
           <p></p>
           <Form.Group controlId="formUsername" className="reg-form-inputs">
             <Form.Label>Username:</Form.Label>
             <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} />
             {usernameErr && <p style={{color: "red"}} className="font-italic">{usernameErr}</p>}
-         </Form.Group>
-
-         <Form.Group controlId="formPassword" className="reg-form-inputs">
-            <Form.Label>Password:</Form.Label>
-            <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} />
-            {passwordErr && <p style={{color: "red"}} className="font-italic">{passwordErr}</p>}
          </Form.Group>
         
          <Form.Group controlId="Email" className="reg-form-inputs">
@@ -103,7 +96,7 @@ export function UpdateUser(props) {
          
          <Form.Group controlId="formBirthday" className="reg-form-inputs">
             <Form.Label>Birthday:</Form.Label>
-            <Form.Control type="date" name="birthday" onChange={e => setBirthdate(e.target.value)} />
+            <Form.Control type="date" name="birthday" onChange={e => setBirthday(e.target.value)} />
          </Form.Group>
           <Button variant="info" type="submit" onClick={handleSubmit}>Submit</Button>
           <p></p>
