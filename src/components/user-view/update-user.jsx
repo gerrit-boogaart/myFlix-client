@@ -46,30 +46,16 @@ export function UserUpdate({user}) {
     e.preventDefault(); 
     isReq = validate();
     const token = localStorage.getItem('token');
-<<<<<<< Updated upstream
     
-    console.log('UPDATING', username, email, birthday, isReq, token);
+
     if(isReq) {
       axios.put(`https://fredsflix.herokuapp.com/users/${username}`, {
         headers: { Authorization: `Bearer ${token}` }},
       {
-=======
-    const Username = localStorage.getItem('user');
-    
-    if(isReq) {
-      axios.put(`https://fredsflix.herokuapp.com/users/${Username}`, {
-        headers: { Authorization: `Bearer ${token}` }},
-      { 
->>>>>>> Stashed changes
         Username: username, 
         Email: email, 
         Birthday: birthday
       })
-<<<<<<< Updated upstream
-      .then(response => {
-        const data = response.data;
-        console.log(data);
-=======
      
       .then(response => {
         this.setState({
@@ -78,15 +64,11 @@ export function UserUpdate({user}) {
           Email: response.data.Email,
           Birthday: response.data.Birthday
       });
->>>>>>> Stashed changes
         alert('User info successfully updated');
         window.open('/', '_self'); 
       })
       .catch(response => {
-<<<<<<< Updated upstream
-=======
         console.log(username);
->>>>>>> Stashed changes
         console.error(response);
         alert('unable to UPDATE');
       });
@@ -95,11 +77,6 @@ export function UserUpdate({user}) {
     
   
   };
-<<<<<<< Updated upstream
-console.log(user, 'update');
-=======
-
->>>>>>> Stashed changes
   return (
     <Row className="mt-5">
      
@@ -126,11 +103,7 @@ console.log(user, 'update');
             <Form.Label>Birthday:</Form.Label>
             <Form.Control type="date" name="birthday" onChange={e => setBirthday(e.target.value)} />
          </Form.Group>
-<<<<<<< Updated upstream
-          <Button variant="info" type="submit" onClick={handleSubmit}>Submit</Button>
-=======
           <Button variant="info" type="submit" onClick={handleSubmit}>Upate User Info</Button>
->>>>>>> Stashed changes
           <p></p>
       </Form>
       </Card.Body>

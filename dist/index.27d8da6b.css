@@ -45,9 +45,8 @@ button:hover {
   box-shadow: 0 5px 10px #0a09093d;
 }
 
-.main-view {
-  background-color: #f1f0f0;
-  font-family: Montserrat, sans-serif;
+.user {
+  margin-top: 10px;
 }
 
 .btn {
@@ -67,19 +66,13 @@ button:hover {
 .page_title {
   text-align: center;
   color: 0;
-<<<<<<< Updated upstream
-  text-decoration: underline;
-=======
   font-weight: 500;
->>>>>>> Stashed changes
 }
 
 p.title {
   font-size: medium;
 }
 
-<<<<<<< Updated upstream
-=======
 .favorite-movie {
   max-width: 250px;
 }
@@ -89,16 +82,16 @@ p.title {
   justify-content: center;
 }
 
->>>>>>> Stashed changes
 
 
-.user {
-  margin-top: 10px;
+
+
+
+
+.main-view {
+  background-color: #f1f0f0;
+  font-family: Montserrat, sans-serif;
 }
-
-
-
-
 
 body {
   padding-top: 60px;
