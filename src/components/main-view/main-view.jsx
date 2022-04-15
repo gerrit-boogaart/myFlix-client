@@ -68,7 +68,31 @@ export default class MainView extends React.Component {
 
      
   render() {
+<<<<<<< Updated upstream
     const { movies, user, Username, Password, Birthday, Email, FavoriteMovies } = this.state;
+=======
+<<<<<<< Updated upstream
+    const { movies, selectedMovie, user } = this.state;
+  
+    /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
+    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+    /* before the movies have been loaded */
+    if (movies.length === 0) return <div className="main-view" />;
+  
+    return (
+      <div className="main-view">
+        {selectedMovie
+          ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => 
+            { this.setSelectedMovie(newSelectedMovie); }}/>
+          : movies.map(movie => (
+            <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => 
+              { this.setSelectedMovie(newSelectedMovie); }} />
+          ))
+        }
+      </div>
+=======
+    const { movies, user } = this.state;
+>>>>>>> Stashed changes
     return (   
       <Router>
        <Menubar user={user} />
@@ -114,9 +138,14 @@ export default class MainView extends React.Component {
                )
                
               return <Col md={8}>
+<<<<<<< Updated upstream
                         <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director}
                         onBackClick={() => history.goBack()} />
                        
+=======
+                        <DirectorView movies={movies.filter(m => m.Director.Name === match.params.name)} director={movies.find(m => m.Director.Name === match.params.name).Director}
+                        onBackClick={() => history.goBack()} />
+>>>>>>> Stashed changes
                      </Col>
           }
           } />
@@ -154,6 +183,10 @@ export default class MainView extends React.Component {
         </Row>
       </Router>
      
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     );
   }
 }

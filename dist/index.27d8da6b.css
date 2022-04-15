@@ -67,13 +67,29 @@ button:hover {
 .page_title {
   text-align: center;
   color: 0;
+<<<<<<< Updated upstream
   text-decoration: underline;
+=======
+  font-weight: 500;
+>>>>>>> Stashed changes
 }
 
 p.title {
   font-size: medium;
 }
 
+<<<<<<< Updated upstream
+=======
+.favorite-movie {
+  max-width: 250px;
+}
+
+.button {
+  background-color: #fff;
+  justify-content: center;
+}
+
+>>>>>>> Stashed changes
 
 
 .user {

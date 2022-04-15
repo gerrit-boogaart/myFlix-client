@@ -57,6 +57,7 @@ export class MovieView extends React.Component {
   }
 }
 
+<<<<<<< Updated upstream
 MovieView.propTypes = {
     ImagePath: propTypes.string.isRequired,
     Title: propTypes.string.isRequired,
@@ -64,3 +65,12 @@ MovieView.propTypes = {
     Genre: propTypes.string.isRequired,
     Director: propTypes.string.isRequired
 }
+=======
+// MovieView.propTypes = {
+//     ImagePath: propTypes.string.isRequired,
+//     Title: propTypes.string.isRequired,
+//     Description: propTypes.string.isRequired,
+//     Genre: propTypes.string.isRequired,
+//     Director: propTypes.string.isRequired
+// }
+>>>>>>> Stashed changes
