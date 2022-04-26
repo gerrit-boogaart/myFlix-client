@@ -23197,6 +23197,7 @@ var _reactBootstrap = require("react-bootstrap");
 var _loginViewScss = require("./login-view.scss");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _reactRouterDom = require("react-router-dom");
 function LoginView(props) {
     const [username, setUsername] = _react.useState('');
     const [password, setPassword] = _react.useState('');
@@ -23293,7 +23294,15 @@ function LoginView(props) {
             columnNumber: 11
         },
         __self: this
-    }, "Please Login"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default, {
+    }, "Please Login or ", /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+        to: `/register`,
+        __source: {
+            fileName: "src/components/login-view/login-view.jsx",
+            lineNumber: 70,
+            columnNumber: 39
+        },
+        __self: this
+    }, "Register ")), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
             lineNumber: 71,
@@ -23393,7 +23402,7 @@ function LoginView(props) {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt","react-bootstrap":"3AD9A","./login-view.scss":"e57ax","axios":"jo6P5"}],"gkKU3":[function(require,module,exports) {
+},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt","react-bootstrap":"3AD9A","./login-view.scss":"e57ax","axios":"jo6P5","react-router-dom":"cHIiW"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -30471,100 +30480,7 @@ as: Component = 'div' , ...props }, ref)=>{
 Row.displayName = 'Row';
 exports.default = Row;
 
-},{"classnames":"jocGM","react":"21dqq","./ThemeProvider":"dVixI","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"e57ax":[function() {},{}],"bwuIu":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$67b2.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "MovieCard", ()=>MovieCard
-);
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _button = require("react-bootstrap/Button");
-var _buttonDefault = parcelHelpers.interopDefault(_button);
-var _card = require("react-bootstrap/Card");
-var _cardDefault = parcelHelpers.interopDefault(_card);
-var _movieCardScss = require("./movie-card.scss");
-var _reactRouterDom = require("react-router-dom");
-class MovieCard extends _reactDefault.default.Component {
-    render() {
-        const { movie  } = this.props;
-        return /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default, {
-            className: "card",
-            __source: {
-                fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 16,
-                columnNumber: 7
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Img, {
-            variant: "top",
-            src: movie.ImagePath,
-            __source: {
-                fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 17,
-                columnNumber: 9
-            },
-            __self: this
-        }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
-            __source: {
-                fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 18,
-                columnNumber: 9
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Title, {
-            className: "card_title",
-            __source: {
-                fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 19,
-                columnNumber: 11
-            },
-            __self: this
-        }, movie.Title), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
-            __source: {
-                fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 20,
-                columnNumber: 11
-            },
-            __self: this
-        }, movie.Description), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
-            to: `/movies/${movie._id}`,
-            __source: {
-                fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 21,
-                columnNumber: 11
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
-            variant: "link",
-            __source: {
-                fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 22,
-                columnNumber: 13
-            },
-            __self: this
-        }, "OPEN"))));
-    }
-}
-MovieCard.propTypes = {
-    movie: _propTypesDefault.default.shape({
-        Title: _propTypesDefault.default.string
-    }).isRequired
-};
-
-  $parcel$ReactRefreshHelpers$67b2.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2","react-bootstrap/Button":"aPzUt","react-bootstrap/Card":"lAynp","./movie-card.scss":"d6HH4","react-router-dom":"cHIiW"}],"d6HH4":[function() {},{}],"cHIiW":[function(require,module,exports) {
+},{"classnames":"jocGM","react":"21dqq","./ThemeProvider":"dVixI","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"e57ax":[function() {},{}],"cHIiW":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MemoryRouter", ()=>_reactRouter.MemoryRouter
@@ -32817,7 +32733,100 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 }
 module.exports = hoistNonReactStatics;
 
-},{"react-is":"7EuwB"}],"ggaUx":[function(require,module,exports) {
+},{"react-is":"7EuwB"}],"bwuIu":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$67b2.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MovieCard", ()=>MovieCard
+);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _card = require("react-bootstrap/Card");
+var _cardDefault = parcelHelpers.interopDefault(_card);
+var _movieCardScss = require("./movie-card.scss");
+var _reactRouterDom = require("react-router-dom");
+class MovieCard extends _reactDefault.default.Component {
+    render() {
+        const { movie  } = this.props;
+        return /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default, {
+            className: "card",
+            __source: {
+                fileName: "src/components/movie-card/movie-card.jsx",
+                lineNumber: 16,
+                columnNumber: 7
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Img, {
+            variant: "top",
+            src: movie.ImagePath,
+            __source: {
+                fileName: "src/components/movie-card/movie-card.jsx",
+                lineNumber: 17,
+                columnNumber: 9
+            },
+            __self: this
+        }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
+            __source: {
+                fileName: "src/components/movie-card/movie-card.jsx",
+                lineNumber: 18,
+                columnNumber: 9
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Title, {
+            className: "card_title",
+            __source: {
+                fileName: "src/components/movie-card/movie-card.jsx",
+                lineNumber: 19,
+                columnNumber: 11
+            },
+            __self: this
+        }, movie.Title), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
+            __source: {
+                fileName: "src/components/movie-card/movie-card.jsx",
+                lineNumber: 20,
+                columnNumber: 11
+            },
+            __self: this
+        }, movie.Description), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+            to: `/movies/${movie._id}`,
+            __source: {
+                fileName: "src/components/movie-card/movie-card.jsx",
+                lineNumber: 21,
+                columnNumber: 11
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+            variant: "link",
+            __source: {
+                fileName: "src/components/movie-card/movie-card.jsx",
+                lineNumber: 22,
+                columnNumber: 13
+            },
+            __self: this
+        }, "OPEN"))));
+    }
+}
+MovieCard.propTypes = {
+    movie: _propTypesDefault.default.shape({
+        Title: _propTypesDefault.default.string
+    }).isRequired
+};
+
+  $parcel$ReactRefreshHelpers$67b2.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2","react-bootstrap/Button":"aPzUt","react-bootstrap/Card":"lAynp","./movie-card.scss":"d6HH4","react-router-dom":"cHIiW"}],"d6HH4":[function() {},{}],"ggaUx":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$e9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -33658,7 +33667,7 @@ class DirectorView extends _reactDefault.default.Component {
                 },
                 __source: {
                     fileName: "src/components/director-view/director-view.jsx",
-                    lineNumber: 42,
+                    lineNumber: 43,
                     columnNumber: 33
                 },
                 __self: this
@@ -33666,7 +33675,7 @@ class DirectorView extends _reactDefault.default.Component {
                 className: "movie_title",
                 __source: {
                     fileName: "src/components/director-view/director-view.jsx",
-                    lineNumber: 43,
+                    lineNumber: 44,
                     columnNumber: 37
                 },
                 __self: this
@@ -33674,7 +33683,7 @@ class DirectorView extends _reactDefault.default.Component {
                 to: `/movies/${movie._id}`,
                 __source: {
                     fileName: "src/components/director-view/director-view.jsx",
-                    lineNumber: 46,
+                    lineNumber: 47,
                     columnNumber: 41
                 },
                 __self: this
@@ -33683,7 +33692,7 @@ class DirectorView extends _reactDefault.default.Component {
                 variant: "link",
                 __source: {
                     fileName: "src/components/director-view/director-view.jsx",
-                    lineNumber: 47,
+                    lineNumber: 48,
                     columnNumber: 45
                 },
                 __self: this
@@ -33692,7 +33701,7 @@ class DirectorView extends _reactDefault.default.Component {
             className: "button",
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 55,
+                lineNumber: 56,
                 columnNumber: 5
             },
             __self: this
@@ -33703,7 +33712,7 @@ class DirectorView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 56,
+                lineNumber: 57,
                 columnNumber: 5
             },
             __self: this
@@ -33958,7 +33967,7 @@ class ProfileView extends _reactDefault.default.Component {
         }).then((response)=>{
             console.log(response);
             alert("Movie removed");
-        // this.componentDidMount();
+            this.componentDidMount();
         }).catch(function(error) {
             console.log(error);
         });
@@ -34245,14 +34254,7 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "UserUpdate", ()=>UserUpdate
-) // RegistrationView.propTypes = {
- //   register: PropTypes.shape({
- //     Username: PropTypes.string.isRequired, 
- //     Password: PropTypes.string.isRequired,
- //     Email: PropTypes.string.isRequired
- //   }),
- // };
-;
+);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
@@ -34263,21 +34265,22 @@ var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactRouterDom = require("react-router-dom");
 var _reactRouterDomDefault = parcelHelpers.interopDefault(_reactRouterDom);
 var _updateUserScss = require("./update-user.scss");
-function UserUpdate({ user  }) {
+function UserUpdate({ user: user1  }) {
     const [username, setUsername] = _react.useState('');
     const [email, setEmail] = _react.useState('');
     const [birthday, setBirthday] = _react.useState('');
+    const [password, setPassword] = _react.useState('');
     //Declare hook for each input
     const [usernameErr, setUsernameErr] = _react.useState('');
     const [emailErr, setEmailErr] = _react.useState('');
     _react.useEffect(()=>{
-        if (user) {
-            setUsername(user.Username);
-            setEmail(user.Email);
-            setBirthday(user.Birthday);
+        if (user1) {
+            setUsername(user1.Username);
+            setEmail(user1.Email);
+            setBirthday(user1.Birthday);
         }
     }, [
-        user
+        user1
     ]);
     const validate = ()=>{
         let isReq = true;
@@ -34301,34 +34304,53 @@ function UserUpdate({ user  }) {
         e.preventDefault();
         isReq = validate();
         const token = localStorage.getItem('token');
-        if (isReq) _axiosDefault.default.put(`https://fredsflix.herokuapp.com/users/${username}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }, {
+        const user = localStorage.getItem('user');
+        if (isReq) _axiosDefault.default.put(`https://fredsflix.herokuapp.com/users/${user}`, {
             Username: username,
             Email: email,
             Birthday: birthday
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         }).then((response)=>{
-            this.setState({
+            console.log({
                 Username: response.data.Username,
                 Password: response.data.Password,
                 Email: response.data.Email,
                 Birthday: response.data.Birthday
             });
-            alert('User info successfully updated');
+            alert('User info successfully updated, please log back in');
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
             window.open('/', '_self');
         }).catch((response)=>{
-            console.log(username);
-            console.error(response);
             alert('unable to UPDATE');
+        });
+    };
+    const handleRemoveUser = (e)=>{
+        e.preventDefault();
+        const token = localStorage.getItem('token');
+        const user = localStorage.getItem('user');
+        alert('Are you sure you want to remove your account?');
+        _axiosDefault.default.delete(`https://fredsflix.herokuapp.com/users/${user}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            alert("Your account has been removed, please register to use FredsFlix again");
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            window.open('/', '_self');
+        }).catch((response)=>{
+            alert('unable to remove user');
         });
     };
     return /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
         className: "mt-5",
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 81,
+            lineNumber: 106,
             columnNumber: 5
         },
         __self: this
@@ -34336,14 +34358,14 @@ function UserUpdate({ user  }) {
         md: 12,
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 83,
+            lineNumber: 108,
             columnNumber: 7
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.CardGroup, {
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 84,
+            lineNumber: 109,
             columnNumber: 7
         },
         __self: this
@@ -34355,7 +34377,7 @@ function UserUpdate({ user  }) {
         },
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 85,
+            lineNumber: 110,
             columnNumber: 9
         },
         __self: this
@@ -34363,28 +34385,28 @@ function UserUpdate({ user  }) {
         className: "register_container",
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 86,
+            lineNumber: 111,
             columnNumber: 7
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form, {
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 87,
+            lineNumber: 112,
             columnNumber: 9
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement("h3", {
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 88,
+            lineNumber: 113,
             columnNumber: 11
         },
         __self: this
     }, "Update User Information"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 89,
+            lineNumber: 114,
             columnNumber: 11
         },
         __self: this
@@ -34393,14 +34415,14 @@ function UserUpdate({ user  }) {
         className: "reg-form-inputs",
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 90,
+            lineNumber: 115,
             columnNumber: 11
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, {
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 91,
+            lineNumber: 116,
             columnNumber: 13
         },
         __self: this
@@ -34411,7 +34433,7 @@ function UserUpdate({ user  }) {
         ,
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 92,
+            lineNumber: 117,
             columnNumber: 13
         },
         __self: this
@@ -34422,7 +34444,7 @@ function UserUpdate({ user  }) {
         className: "font-italic",
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 93,
+            lineNumber: 118,
             columnNumber: 29
         },
         __self: this
@@ -34431,14 +34453,14 @@ function UserUpdate({ user  }) {
         className: "reg-form-inputs",
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 96,
+            lineNumber: 121,
             columnNumber: 10
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, {
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 97,
+            lineNumber: 122,
             columnNumber: 13
         },
         __self: this
@@ -34449,7 +34471,7 @@ function UserUpdate({ user  }) {
         ,
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 98,
+            lineNumber: 123,
             columnNumber: 13
         },
         __self: this
@@ -34460,7 +34482,7 @@ function UserUpdate({ user  }) {
         className: "font-italic",
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 99,
+            lineNumber: 124,
             columnNumber: 26
         },
         __self: this
@@ -34469,14 +34491,14 @@ function UserUpdate({ user  }) {
         className: "reg-form-inputs",
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 102,
+            lineNumber: 127,
             columnNumber: 10
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, {
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 103,
+            lineNumber: 128,
             columnNumber: 13
         },
         __self: this
@@ -34487,7 +34509,7 @@ function UserUpdate({ user  }) {
         ,
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 104,
+            lineNumber: 129,
             columnNumber: 13
         },
         __self: this
@@ -34497,14 +34519,24 @@ function UserUpdate({ user  }) {
         onClick: handleSubmit,
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 106,
+            lineNumber: 131,
             columnNumber: 11
         },
         __self: this
-    }, "Upate User Info"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
+    }, "Upate User Info"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+        variant: "info",
+        type: "submit",
+        onClick: handleRemoveUser,
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
-            lineNumber: 107,
+            lineNumber: 132,
+            columnNumber: 11
+        },
+        __self: this
+    }, "Remove Your Account"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 133,
             columnNumber: 11
         },
         __self: this

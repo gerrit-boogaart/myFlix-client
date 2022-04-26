@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types';
+import propTypes, { string } from 'prop-types';
 import './director-view.scss'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -39,6 +39,7 @@ export class DirectorView extends React.Component {
                                 className="fav-poster"
                                 variant="top"
                                 src={movie.ImagePath} />
+                            
                                 <Card.Body style={{ backgroundColor: "white" }}>
                                     <Card.Title className="movie_title">
                                         {movie.Title}
@@ -58,5 +59,7 @@ export class DirectorView extends React.Component {
     </>
         )
     }
+
+
 }
-    
+  

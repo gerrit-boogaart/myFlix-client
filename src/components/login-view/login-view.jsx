@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import {Card, Container, CardGroup, Col, Row } from 'react-bootstrap';
 import './login-view.scss'
 import axios from 'axios';
-
+import { Link } from 'react-router-dom';
 
 
 export function LoginView(props) {
@@ -67,7 +67,7 @@ const handleSubmit = (e) => {
       <CardGroup>
         <Card Card border="light" style={{ width: '18rem' }}> 
           <Card.Body className="login_container">
-          <Card.Title>Please Login</Card.Title>
+          <Card.Title>Please Login or <Link to={`/register`}>Register </Link></Card.Title>
             <Form>
               <Form.Group controlId="formUsername">
                 <Form.Label>Username:</Form.Label>

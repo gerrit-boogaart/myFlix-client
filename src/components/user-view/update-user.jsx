@@ -9,6 +9,7 @@ export function UserUpdate({user}) {
     const [ username, setUsername ] = useState('');
     const [ email, setEmail ] = useState('');
     const [ birthday, setBirthday ] = useState('');
+    const [ password, setPassword ] = useState('');
     //Declare hook for each input
     const [ usernameErr, setUsernameErr ] = useState('');
     const [ emailErr, setEmailErr ] = useState('');
@@ -19,7 +20,7 @@ export function UserUpdate({user}) {
        setEmail(user.Email)
        setBirthday(user.Birthday)
       }
-    }, [user])
+    }, [user]);
   
 
     const validate = () => {
@@ -46,37 +47,61 @@ export function UserUpdate({user}) {
     e.preventDefault(); 
     isReq = validate();
     const token = localStorage.getItem('token');
-    
-
-    if(isReq) {
-      axios.put(`https://fredsflix.herokuapp.com/users/${username}`, {
-        headers: { Authorization: `Bearer ${token}` }},
-      {
-        Username: username, 
-        Email: email, 
-        Birthday: birthday
-      })
+      const user = localStorage.getItem('user');
      
-      .then(response => {
-        this.setState({
-          Username: response.data.Username,
-          Password: response.data.Password,
-          Email: response.data.Email,
-          Birthday: response.data.Birthday
-      });
-        alert('User info successfully updated');
-        window.open('/', '_self'); 
-      })
-      .catch(response => {
-        console.log(username);
-        console.error(response);
-        alert('unable to UPDATE');
-      });
+      if(isReq) {
+        axios.put(`https://fredsflix.herokuapp.com/users/${user}`,  {
+          Username: username, 
+          Email: email, 
+          Birthday: birthday
+        },{
+          headers: { Authorization: `Bearer ${token}`}
+      }
+       )
+        
+        .then(response => {
+          console.log({
+            Username: response.data.Username,
+            Password: response.data.Password,
+            Email: response.data.Email,
+            Birthday: response.data.Birthday,
+          
+        });
+          alert('User info successfully updated, please log back in');
+          localStorage.removeItem('user');
+          localStorage.removeItem('token');
+          window.open('/', '_self'); 
+        })
+        .catch(response => {
+          alert('unable to UPDATE');
+        });
+      };
     };
 
-    
+    const handleRemoveUser = (e) => {
+      e.preventDefault();
+      const token = localStorage.getItem('token');
+      const user = localStorage.getItem('user');
+      alert('Are you sure you want to remove your account?')
+      
+      axios.delete(`https://fredsflix.herokuapp.com/users/${user}`, {
+      headers: { Authorization: `Bearer ${token}`}})
+
+      .then(response =>  { 
+        alert("Your account has been removed, please register to use FredsFlix again");
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+      window.open('/', '_self');
+    })
+      .catch(response => {
+        alert('unable to remove user');
+      });
+      };
   
-  };
+  
+  
+  
+  
   return (
     <Row className="mt-5">
      
@@ -104,6 +129,7 @@ export function UserUpdate({user}) {
             <Form.Control type="date" name="birthday" onChange={e => setBirthday(e.target.value)} />
          </Form.Group>
           <Button variant="info" type="submit" onClick={handleSubmit}>Upate User Info</Button>
+          <Button variant="info" type="submit" onClick={handleRemoveUser}>Remove Your Account</Button>
           <p></p>
       </Form>
       </Card.Body>
@@ -112,7 +138,7 @@ export function UserUpdate({user}) {
      </Col>
     </Row>
   );
-}
+};
 
 // RegistrationView.propTypes = {
 //   register: PropTypes.shape({
