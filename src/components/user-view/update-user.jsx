@@ -128,8 +128,10 @@ export function UserUpdate({user}) {
             <Form.Label>Birthday:</Form.Label>
             <Form.Control type="date" name="birthday" onChange={e => setBirthday(e.target.value)} />
          </Form.Group>
+         <div className = "userInfoButtons">
           <Button variant="info" type="submit" onClick={handleSubmit}>Upate User Info</Button>
-          <Button variant="info" type="submit" onClick={handleRemoveUser}>Remove Your Account</Button>
+          <Button variant="info" className='removeUser' type="submit" onClick={handleRemoveUser}>Remove Your Account</Button>
+          </div>
           <p></p>
       </Form>
       </Card.Body>

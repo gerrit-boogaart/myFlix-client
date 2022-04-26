@@ -46,7 +46,7 @@ button:hover {
 }
 
 .user {
-  margin-top: 10px;
+  margin-top: 4px;
 }
 
 .btn {
@@ -84,9 +84,19 @@ p.title {
 
 
 
+.user-info {
+  padding: 10px;
+}
 
+.userInfoButtons {
+  justify-content: space-evenly;
+  padding: 5px;
+  display: flex;
+}
 
-
+.btn {
+  margin: 5px;
+}
 
 .main-view {
   background-color: #fff;

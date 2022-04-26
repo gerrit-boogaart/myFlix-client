@@ -34513,30 +34513,39 @@ function UserUpdate({ user: user1  }) {
             columnNumber: 13
         },
         __self: this
-    })), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "info",
-        type: "submit",
-        onClick: handleSubmit,
+    })), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+        className: "userInfoButtons",
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
             lineNumber: 131,
-            columnNumber: 11
+            columnNumber: 10
         },
         __self: this
-    }, "Upate User Info"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "info",
         type: "submit",
-        onClick: handleRemoveUser,
+        onClick: handleSubmit,
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
             lineNumber: 132,
             columnNumber: 11
         },
         __self: this
-    }, "Remove Your Account"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
+    }, "Upate User Info"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+        variant: "info",
+        className: "removeUser",
+        type: "submit",
+        onClick: handleRemoveUser,
         __source: {
             fileName: "src/components/user-view/update-user.jsx",
             lineNumber: 133,
+            columnNumber: 11
+        },
+        __self: this
+    }, "Remove Your Account")), /*#__PURE__*/ _reactDefault.default.createElement("p", {
+        __source: {
+            fileName: "src/components/user-view/update-user.jsx",
+            lineNumber: 135,
             columnNumber: 11
         },
         __self: this
