@@ -14,8 +14,8 @@ import Col from 'react-bootstrap/Col';
 import './main-view.scss'
 export default class MainView extends React.Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     
     this.state = {
       movies: [],

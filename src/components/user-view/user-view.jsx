@@ -10,8 +10,7 @@ export default class ProfileView extends React.Component {
     super(props);
 
     this.state = 
-     {
-       
+     { 
       Username: null,
       Password: null,
       Email: null,
@@ -24,8 +23,7 @@ export default class ProfileView extends React.Component {
 componentDidMount() {
   const accessToken = localStorage.getItem('token');
   this.getMovies(accessToken);
-  this.getUser(accessToken);
- 
+  this.getUser(accessToken); 
 }
 getMovies(token) {
   axios.get('https://fredsflix.herokuapp.com/movies', {
@@ -36,7 +34,6 @@ getMovies(token) {
     this.setState({
       movies: response.data
     });
-    console.log(this.state.movies);
   })
   .catch(function (error) {
     console.log(error);
@@ -54,10 +51,9 @@ getUser = (token) => {
           Username: response.data.Username,
           Password: response.data.Password,
           Email: response.data.Email,
-          Birthday: response.data.Birthday,
-          FavoriteMoviesIDs: response.data.FavoriteMovies
+          Birthday: response.data.Birthday, 
+          FavoriteMoviesIDs: response.data.FavoriteMovies 
         });
-       console.log(this.state.FavoriteMoviesIDs)
       })
       .catch(function (error) {
         console.log(error);
@@ -74,18 +70,16 @@ getUser = (token) => {
         }
     )
         .then((response) => {
-            console.log(response);
             alert("Movie removed");
-
-             this.componentDidMount();
+            this.componentDidMount();
         })
         .catch(function (error) {
             console.log(error);
         });
+
+
+ 
 }
-
-
-
 
 
   render() {
@@ -111,7 +105,7 @@ getUser = (token) => {
                         </div>
                         <div className="user-birthday">
                          <span className="label">Birthday: </span>
-                         <span className="value">{Birthday}</span>
+                         <span className="value"> {Birthday}</span>
                        </div>
                      </div>
                      

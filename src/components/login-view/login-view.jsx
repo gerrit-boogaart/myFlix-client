@@ -53,10 +53,10 @@ const handleSubmit = (e) => {
   })
   .catch(e => {
     console.log(e);
-    console.log('no such user')
+    alert('The provided username does not exist.');
   });
  }
-}; 
+};  
 
   return (
 <>
