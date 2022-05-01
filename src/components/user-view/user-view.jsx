@@ -69,7 +69,7 @@ getUser = (token) => {
             headers: { Authorization: `Bearer ${token}` }
         }
     )
-        .then((response) => {
+        .then(response => {
             alert("Movie removed");
             this.componentDidMount();
         })

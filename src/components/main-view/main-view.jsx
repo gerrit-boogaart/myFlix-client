@@ -112,7 +112,6 @@ export default class MainView extends React.Component {
                 <Col md={6}>
                   <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                 </Col>
-
                )
                
               return <Col md={8}>

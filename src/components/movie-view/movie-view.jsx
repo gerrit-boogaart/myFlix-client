@@ -8,28 +8,29 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 
 export class MovieView extends React.Component {
-
+    constructor() {
+        super();}
 
   AddFavorite = (e, id)  => {
         e.preventDefault();
         const Username = localStorage.getItem('user');
         const token = localStorage.getItem('token');
        
-        axios.post(`https://fredsflix.herokuapp.com/users/${Username}/movies/${id}`,
+        axios.post(`https://fredsflix.herokuapp.com/users/${Username}/movies/${id}`,{key: 'value'},
             {
-                headers: { Authorization: `Bearer ${token}` }
-                
+                headers: { Authorization: `Bearer ${token}` }   
             }
         )
-            .then((response) => {
+            .then(response => {
                 alert("Movie added to favorites");
-                
-            })
-            .catch(function (error) {
                 console.log(token);
                 console.log(Username);
-                console.log(error);
+                console.log(id);
                
+            
+                
+            })
+            .catch(function (error) { 
             });
     }
 
@@ -39,9 +40,9 @@ export class MovieView extends React.Component {
 
 
         
-       // TO BE USED LATER FOR FAVORITES:
-        // const selectHeart = '\♡';
-        // const favorite = '\💓';
+    //    TO BE USED LATER FOR FAVORITES:
+        const selectHeart = '\♡';
+        const favorite = '\💓';
        
         
         
