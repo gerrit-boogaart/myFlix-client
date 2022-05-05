@@ -1,25 +1,37 @@
 import React from 'react';
 import axios from 'axios';
+//changes to code 3.8
+import { connect } from 'react';
+//changes to code 3.8
 import { Menubar } from '../nav-bar/nav-bar';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
-import { MovieCard } from '../movie-card/movie-card';
+//changes to code 3.8
+// import { MovieCard } from '../movie-card/movie-card';
+//changes to code 3.8
+
+
 import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
+//changes to code 3.8
+import { setMovies } from '../../actions/actions';
+import MoviesList from '..movies-list/movies-list';
+//changes to code 3.8
 import ProfileView from '../user-view/user-view';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './main-view.scss'
-export default class MainView extends React.Component {
+//export default
+class MainView extends React.Component {
 
   constructor(props){
     super(props);
     
     this.state = {
-      movies: [],
-      user: null,
+      //movies: [],
+      user: null
     };
   }
 
@@ -30,10 +42,8 @@ export default class MainView extends React.Component {
     })
     .then(response => {
       // Assign the result to the state
-      this.setState({
-        movies: response.data
-      });
-    })
+      this.props.setMovies(response.data);
+      })
     .catch(function (error) {
       console.log(error);
     });
@@ -70,8 +80,10 @@ export default class MainView extends React.Component {
   render() {
 
 
-    const { movies, user } = this.state;
-    return (   
+   let { movies } = this.props;
+   let { user } = this.state;
+   //continue coding from here ----- 5.4.22 
+       return (   
       <Router>
        <Menubar user={user} />
         <Row className="main-view justify-content-md-center">

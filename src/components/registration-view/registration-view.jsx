@@ -66,10 +66,6 @@ export function RegistrationView(props) {
         alert('unable to register');
       });
     };
-
-    
-    /* then call props.Registration(username) */
-    props.onRegistration(username);
   };
 
   return (
