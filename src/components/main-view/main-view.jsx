@@ -26,15 +26,24 @@ import './main-view.scss'
 //export default
 class MainView extends React.Component {
 
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
     
     this.state = {
-      //movies: [],
       user: null
     };
   }
 
+  componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user')
+      });
+      this.getMovies(accessToken);
+     
+    }
+  }
 
   getMovies(token) {
     axios.get('https://fredsflix.herokuapp.com/movies', {
@@ -49,7 +58,6 @@ class MainView extends React.Component {
     });
   }
 
-
   onLoggedIn(authData) {
     this.setState({
       user: authData.user.Username
@@ -59,47 +67,25 @@ class MainView extends React.Component {
     localStorage.setItem('user', authData.user.Username);
     this.getMovies(authData.token);
   }
-
- 
-  componentDidMount() {
-    let accessToken = localStorage.getItem('token');
-    if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem('user')
-      });
-      this.getMovies(accessToken);
-     
-    }
-  }
   
-/* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
-
-
-
-     
   render() {
 
 
+    // #5 movies is extracted from this.props 
    let { movies } = this.props;
    let { user } = this.state;
-   //continue coding from here ----- 5.4.22 
+
        return (   
       <Router>
        <Menubar user={user} />
-        <Row className="main-view justify-content-md-center">
-            
-         <Route exact path="/" render={() => {
-   /* If there is no user, the LoginView is rendered.*/
-    if (!user) return (   
-      <Col md={6}>
-        <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-      </Col>
-    )
-            return movies.map(m => (
-              <Col md={4} key={m._id}>
-                <MovieCard movie={m} />
-              </Col>
-            ))
+       <Row className="main-view justify-content-md-center">
+          <Route exact path="/" render={() => {
+            if (!user) return <Col>
+              <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+            </Col>
+            if (movies.length === 0) return <div className="main-view" />;
+            // #6
+            return <MoviesList movies={movies}/>;
           }} />
 
           <Route path="/register" render={() => {
@@ -170,5 +156,13 @@ class MainView extends React.Component {
     );
   }
 }
+
+//#7
+let mapStateToProps = state => {
+  return { movies: state.movies }
+}
+//#8
+export default connect(mapStateToProps, { setMovies })(MainView);
+
 
 
