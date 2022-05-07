@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 //changes to code 3.8
-import { connect } from 'react';
+import { connect } from 'react-redux';
 //changes to code 3.8
 import { Menubar } from '../nav-bar/nav-bar';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
 //changes to code 3.8
@@ -17,7 +17,7 @@ import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 //changes to code 3.8
 import { setMovies } from '../../actions/actions';
-import MoviesList from '..movies-list/movies-list';
+import MoviesList from '../movies-list/movies-list';
 //changes to code 3.8
 import ProfileView from '../user-view/user-view';
 import Row from 'react-bootstrap/Row';
@@ -75,9 +75,12 @@ class MainView extends React.Component {
    let { movies } = this.props;
    let { user } = this.state;
 
-       return (   
-      <Router>
-       <Menubar user={user} />
+       return (  
+        
+        
+      <Router> <Routes>
+      {/* <Menubar user={user} />  */}
+         
        <Row className="main-view justify-content-md-center">
           <Route exact path="/" render={() => {
             if (!user) return <Col>
@@ -150,15 +153,16 @@ class MainView extends React.Component {
           
         }} />
         </Row>
+        </Routes> 
       </Router>
      
-
+    
     );
   }
 }
 
 //#7
-let mapStateToProps = state => {
+const mapStateToProps = state => {
   return { movies: state.movies }
 }
 //#8

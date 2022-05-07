@@ -10,7 +10,7 @@ import { devToolsEnhancer } from 'redux-devtools-extension';
 // Import statement to indicate that you need to bundle `./index.scss`
 import './index.scss';
 
-const store = createStore(moviesApp, devToolsEnhancer());
+const store = createStore(moviesApp);
 
 // Main component (will eventually use all the others)
 class MyFlixApplication extends React.Component {
