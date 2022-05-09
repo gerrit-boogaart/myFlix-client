@@ -131,7 +131,7 @@ getUser = (token) => {
                                         if (movie._id === FavoriteMoviesIDs.find((fav) => fav === movie._id)
                                         ) {
                                             return (
-                                                <Card className="favorite-movie" key={movie._id} >
+                                               <Col md = {4}><Card className="favorite-movie" key={movie._id} >
                                                     <Card.Img
                                                         className="favorite-movie-image"
                                                         variant="top"
@@ -141,9 +141,9 @@ getUser = (token) => {
                                                         <Card.Title className="movie-title">
                                                             {movie.Title}
                                                         </Card.Title>
-                                                        <Button value={movie._id} onClick={(e) => this.onRemoveFavorite(e, movie._id)}>Remove from List</Button>
+                                                        <Button value={movie._id} onClick={(e) => this.onRemoveFavorite(e, movie._id)}>Remove</Button>
                                                     </Card.Body>
-                                                </Card>
+                                                </Card></Col>
                                             );
                                         }
                                     })}
