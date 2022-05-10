@@ -75,7 +75,7 @@ export default class MainView extends React.Component {
       <Router>
        <Menubar user={user} />
         <Row className="main-view justify-content-md-center">
-            
+           
          <Route exact path="/" render={() => {
    /* If there is no user, the LoginView is rendered.*/
     if (!user) return (   
@@ -151,7 +151,8 @@ export default class MainView extends React.Component {
           </Col>
           
         }} />
-        </Row>
+         </Row>
+       
       </Router>
      
 
