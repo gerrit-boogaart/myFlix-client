@@ -36319,7 +36319,7 @@ function MoviesList(props) {
         },
         __self: this
     })), filteredMovies.map((m)=>/*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
-            md: 3,
+            md: 4,
             key: m._id,
             __source: {
                 fileName: "src/components/movies-list/movies-list.jsx",
