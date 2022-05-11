@@ -34,20 +34,18 @@ export class DirectorView extends React.Component {
          <Col md={12}>
                 <CardGroup>
                     {movies.map(movie => (
-                        <Card className="favorite-movie card-content" key={movie._id} >
+                        <Card md={4} className="favorite-movie card-content" key={movie._id} >
                             <Card.Img
                                 className="fav-poster"
                                 variant="top"
                                 src={movie.ImagePath} />
                             
-                                <Card.Body style={{ backgroundColor: "white" }}>
+                              <Card.Body style={{ backgroundColor: "white" }}>
                                     <Card.Title className="movie_title">
                                         {movie.Title}
                                     </Card.Title>
-                                        <Link to={`/movies/${movie._id}`}>
-                                            <Button id="card-button" variant="link">Show more</Button>
-                                        </Link>
-                                </Card.Body>
+                                       
+                              </Card.Body> 
                         </Card>
                             ))}
                 </CardGroup>
