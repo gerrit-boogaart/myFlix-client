@@ -50,6 +50,7 @@ const handleSubmit = (e) => {
   .then(response => {
     const data = response.data;
     props.onLoggedIn(data);
+    this.props.setUser(data);
   })
   .catch(e => {
     console.log(e);

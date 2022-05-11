@@ -21464,13 +21464,25 @@ class MainView extends _reactDefault.default.Component {
             console.log(error);
         });
     }
+    getUser(token) {
+        const username = localStorage.getItem("user");
+        _axiosDefault.default.get(`https://fredsflix.herokuapp.com/users/${username}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            console.log(response.data);
+            this.props.setUserData(response.data);
+        }).catch(function(error) {
+            console.log(error);
+        });
+    }
     onLoggedIn(authData) {
         this.setState({
             user: authData.user.Username
         });
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
-        this.getMovies(authData.token);
     }
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
@@ -21479,15 +21491,16 @@ class MainView extends _reactDefault.default.Component {
                 user: localStorage.getItem('user')
             });
             this.getMovies(accessToken);
+            this.getUser(accessToken);
         }
     }
     /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/ render() {
-        let { movies  } = this.props;
+        let { movies , userData  } = this.props;
         const { user: user1  } = this.state;
         return /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 77,
+                lineNumber: 94,
                 columnNumber: 7
             },
             __self: this
@@ -21495,7 +21508,7 @@ class MainView extends _reactDefault.default.Component {
             user: user1,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 78,
+                lineNumber: 95,
                 columnNumber: 8
             },
             __self: this
@@ -21503,7 +21516,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view justify-content-md-center",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 79,
+                lineNumber: 96,
                 columnNumber: 9
             },
             __self: this
@@ -21522,7 +21535,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 81,
+                lineNumber: 98,
                 columnNumber: 10
             },
             __self: this
@@ -21539,7 +21552,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 91,
+                lineNumber: 108,
                 columnNumber: 11
             },
             __self: this
@@ -21562,7 +21575,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 98,
+                lineNumber: 115,
                 columnNumber: 11
             },
             __self: this
@@ -21587,7 +21600,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 108,
+                lineNumber: 125,
                 columnNumber: 11
             },
             __self: this
@@ -21610,7 +21623,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 122,
+                lineNumber: 139,
                 columnNumber: 9
             },
             __self: this
@@ -21628,7 +21641,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 135,
+                lineNumber: 152,
                 columnNumber: 9
             },
             __self: this
@@ -21645,7 +21658,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 145,
+                lineNumber: 162,
                 columnNumber: 9
             },
             __self: this
@@ -21654,11 +21667,13 @@ class MainView extends _reactDefault.default.Component {
 }
 let mapStateToProps = (state)=>{
     return {
-        movies: state.movies
+        movies: state.movies,
+        UserData: state.UserData
     };
 };
 exports.default = _reactRedux.connect(mapStateToProps, {
-    setMovies: _actions.setMovies
+    setMovies: _actions.setMovies,
+    setUserData: _actions.setUserData
 })(MainView);
 
   $parcel$ReactRefreshHelpers$f7a6.postlude(module);
@@ -32896,6 +32911,7 @@ function LoginView(props) {
         }).then((response)=>{
             const data = response.data;
             props.onLoggedIn(data);
+            this.props.setUser(data);
         }).catch((e)=>{
             console.log(e);
             alert('The provided username does not exist.');
@@ -32904,14 +32920,14 @@ function LoginView(props) {
     return /*#__PURE__*/ _reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Container, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 64,
+            lineNumber: 65,
             columnNumber: 1
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 65,
+            lineNumber: 66,
             columnNumber: 3
         },
         __self: this
@@ -32919,14 +32935,14 @@ function LoginView(props) {
         lg: 8,
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 66,
+            lineNumber: 67,
             columnNumber: 5
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.CardGroup, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 67,
+            lineNumber: 68,
             columnNumber: 7
         },
         __self: this
@@ -32938,7 +32954,7 @@ function LoginView(props) {
         },
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 68,
+            lineNumber: 69,
             columnNumber: 9
         },
         __self: this
@@ -32946,14 +32962,14 @@ function LoginView(props) {
         className: "login_container",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 69,
+            lineNumber: 70,
             columnNumber: 11
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Title, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 70,
+            lineNumber: 71,
             columnNumber: 11
         },
         __self: this
@@ -32961,14 +32977,14 @@ function LoginView(props) {
         to: `/register`,
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 70,
+            lineNumber: 71,
             columnNumber: 39
         },
         __self: this
     }, "Register ")), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 71,
+            lineNumber: 72,
             columnNumber: 13
         },
         __self: this
@@ -32976,14 +32992,14 @@ function LoginView(props) {
         controlId: "formUsername",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 72,
+            lineNumber: 73,
             columnNumber: 15
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 73,
+            lineNumber: 74,
             columnNumber: 17
         },
         __self: this
@@ -32994,7 +33010,7 @@ function LoginView(props) {
         placeholder: "Enter a username",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 74,
+            lineNumber: 75,
             columnNumber: 17
         },
         __self: this
@@ -33005,7 +33021,7 @@ function LoginView(props) {
         className: "font-italic",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 76,
+            lineNumber: 77,
             columnNumber: 34
         },
         __self: this
@@ -33013,14 +33029,14 @@ function LoginView(props) {
         controlId: "formPassword",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 79,
+            lineNumber: 80,
             columnNumber: 15
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 80,
+            lineNumber: 81,
             columnNumber: 17
         },
         __self: this
@@ -33031,7 +33047,7 @@ function LoginView(props) {
         placeholder: "password",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 81,
+            lineNumber: 82,
             columnNumber: 17
         },
         __self: this
@@ -33042,7 +33058,7 @@ function LoginView(props) {
         className: "font-italic",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 83,
+            lineNumber: 84,
             columnNumber: 33
         },
         __self: this
@@ -33053,7 +33069,7 @@ function LoginView(props) {
         onClick: handleSubmit,
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 85,
+            lineNumber: 86,
             columnNumber: 15
         },
         __self: this
@@ -36227,12 +36243,17 @@ parcelHelpers.export(exports, "SET_MOVIES", ()=>SET_MOVIES
 );
 parcelHelpers.export(exports, "SET_FILTER", ()=>SET_FILTER
 );
+parcelHelpers.export(exports, "SET_USER_DATA", ()=>SET_USER_DATA
+);
 parcelHelpers.export(exports, "setMovies", ()=>setMovies
 );
 parcelHelpers.export(exports, "setFilter", ()=>setFilter
 );
+parcelHelpers.export(exports, "setUserData", ()=>setUserData
+);
 const SET_MOVIES = 'SET_MOVIES';
 const SET_FILTER = 'SET_FILTER';
+const SET_USER_DATA = 'SET_USER_DATA';
 function setMovies(value) {
     return {
         type: SET_MOVIES,
@@ -36242,6 +36263,12 @@ function setMovies(value) {
 function setFilter(value) {
     return {
         type: SET_FILTER,
+        value
+    };
+}
+function setUserData(value) {
+    return {
+        type: SET_USER_DATA,
         value
     };
 }
@@ -37049,9 +37076,18 @@ function movies(state = [], action) {
             return state;
     }
 }
+function setUserData(state = {}, action) {
+    switch(action.type){
+        case _actions.SET_USER_DATA:
+            return action.value;
+        default:
+            return state;
+    }
+}
 const moviesApp = _redux.combineReducers({
     visibilityFilter,
-    movies
+    movies,
+    setUserData
 });
 exports.default = moviesApp;
 

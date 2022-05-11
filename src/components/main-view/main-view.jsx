@@ -13,7 +13,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './main-view.scss'
 //#0
-import { setMovies } from '../../actions/actions';
+import { setMovies, setUserData } from '../../actions/actions';
+
 
 // we haven't wrtten this one yet
 import MoviesList from '../movies-list/movies-list';
@@ -41,6 +42,21 @@ import MoviesList from '../movies-list/movies-list';
     });
   }
 
+  getUser(token) {
+    const username = localStorage.getItem("user");
+  
+    axios
+      .get(`https://fredsflix.herokuapp.com/users/${username}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        console.log(response.data)
+        this.props.setUserData(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   onLoggedIn(authData) {
     this.setState({
@@ -48,8 +64,7 @@ import MoviesList from '../movies-list/movies-list';
     });
   
     localStorage.setItem('token', authData.token);
-    localStorage.setItem('user', authData.user.Username);
-    this.getMovies(authData.token);
+    localStorage.setItem('user', authData.user.Username); 
   }
 
  
@@ -60,6 +75,8 @@ import MoviesList from '../movies-list/movies-list';
         user: localStorage.getItem('user')
       });
       this.getMovies(accessToken);
+      this.getUser(accessToken);
+      
      
     }
   }
@@ -71,8 +88,8 @@ import MoviesList from '../movies-list/movies-list';
      
   render() {
 
-    let { movies } = this.props;
-    const { user } = this.state;
+    let { movies, userData } = this.props;
+   const { user } = this.state;
     return (   
       <Router>
        <Menubar user={user} />
@@ -159,7 +176,7 @@ import MoviesList from '../movies-list/movies-list';
 }
 
 let mapStateToProps = state => {
-  return { movies: state.movies }
+  return { movies: state.movies, UserData: state.UserData }
 }
 
-export default connect(mapStateToProps, { setMovies })(MainView);
+export default connect(mapStateToProps, { setMovies, setUserData })(MainView);
