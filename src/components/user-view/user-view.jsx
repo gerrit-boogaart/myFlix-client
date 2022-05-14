@@ -83,7 +83,7 @@ getUser = (token) => {
 
 
   render() {
-    const { Username, Email, Birthday, movies, FavoriteMoviesIDs } = this.state;
+    const { Username, Email, Birthday, movies, FavoriteMoviesIDs, onBackClick } = this.state;
    
   return (
    

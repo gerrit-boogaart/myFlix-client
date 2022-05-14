@@ -7,10 +7,11 @@ import { MovieCard } from '../movie-card/movie-card';
 const mapStateToProps = state => {
   const { visibilityFilter } = state;
   return { visibilityFilter };
+
 };
 
 function MoviesList(props) {
-  const { movies, visibilityFilter } = props;
+  const { movies, visibilityFilter} = props;
   let filteredMovies = movies;
 
   if (visibilityFilter !== '') {

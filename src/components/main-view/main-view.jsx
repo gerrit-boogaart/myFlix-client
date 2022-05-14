@@ -12,11 +12,7 @@ import ProfileView from '../user-view/user-view';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './main-view.scss'
-//#0
 import { setMovies, setUserData } from '../../actions/actions';
-
-
-// we haven't wrtten this one yet
 import MoviesList from '../movies-list/movies-list';
 
  class MainView extends React.Component {
@@ -50,7 +46,6 @@ import MoviesList from '../movies-list/movies-list';
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        console.log(response.data)
         this.props.setUserData(response.data);
       })
       .catch(function (error) {
@@ -67,7 +62,6 @@ import MoviesList from '../movies-list/movies-list';
     localStorage.setItem('user', authData.user.Username); 
   }
 
- 
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
@@ -81,10 +75,6 @@ import MoviesList from '../movies-list/movies-list';
     }
   }
   
-/* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
-
-
-
      
   render() {
 
@@ -102,7 +92,7 @@ import MoviesList from '../movies-list/movies-list';
         <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
       </Col>
     )
-           return <MoviesList movies={movies}/>;
+           return <MoviesList movies={movies} userData={userData}/>;
           }} />
 
           <Route path="/register" render={() => {
@@ -153,7 +143,7 @@ import MoviesList from '../movies-list/movies-list';
         if (!user) return <Redirect to="/" />
         
         return <Col>
-        <ProfileView movies={movies} user={user} onBackClick={() => history.goBack()
+        <ProfileView movies={movies} user={user} userData={userData} onBackClick={() => history.goBack()
         }/>
         </Col>
 

@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button'
 import { Link } from "react-router-dom";
 import axios from 'axios';
 
+
 export class MovieView extends React.Component {
     constructor() {
         super();}
@@ -22,19 +23,13 @@ export class MovieView extends React.Component {
             }
         )
             .then(response => {
-                alert("Movie added to favorites");
-                console.log(token);
-                console.log(Username);
-                console.log(id);
-               
-            
-                
+                alert("Movie added to favorites");  
             })
             .catch(function (error) { 
             });
     }
 
-    
+  
     render() {
         const { movie, onBackClick } = this.props;
 
@@ -44,16 +39,13 @@ export class MovieView extends React.Component {
         const selectHeart = '\♡';
         const favorite = '\💓';
        
-        
-        
-        
+      
     return (
     <div className="movie-view">
 
 <Row> 
         <Col><h1 className='page_title'>Movie Info</h1></Col>
-        
-    </Row>
+ </Row>
         <Row>
             <Col> 
                  <div className="movie-poster"><img src={movie.ImagePath}  /></div>
@@ -75,23 +67,25 @@ export class MovieView extends React.Component {
                      <span className="value">
                          <Link to={`/genres/${movie.Genre.Name}`}>{movie.Genre.Name}</Link></span>
                  </div>
-                    
-
-
             </div>
                  </Col>
             
         </Row>
+
         <Row className="justify-content-center">
         <div className="movie-description">
             <span className="label">Description: </span>
             <span className="value">{movie.Description}</span>
-        </div><Button className="button" variant="info" onClick={() => { onBackClick(); }}>Back</Button></Row>
+        </div><Button className="button" variant="info" onClick={() => { onBackClick(); }}>Back</Button>
+        </Row>
+
         <Button value={movie._id} onClick={(e) => this.AddFavorite(e, movie._id)}>Add To Favorites</Button>
     </div>
     );
   }
 }
+
+
 
 // MovieView.propTypes = {
 //     ImagePath: propTypes.string.isRequired,
