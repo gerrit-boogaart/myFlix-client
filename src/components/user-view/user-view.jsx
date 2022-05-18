@@ -118,7 +118,7 @@ getUser = (token) => {
            
                 
                   <div className="favorite-movies">
-                    <h2>My Favorite Movies</h2>
+                    <h2>My Favorite Movies (Click to remove)</h2>
                     <Row>
                     <Col>
                         <Card>
@@ -131,18 +131,14 @@ getUser = (token) => {
                                         if (movie._id === FavoriteMoviesIDs.find((fav) => fav === movie._id)
                                         ) {
                                             return (
-                                               <Col md = {4}><Card className="favorite-movie" key={movie._id} >
+                                               <Col md = {2}><Card className="favorite-movie" key={movie._id} >
+                                                    <Button variant="light" value={movie._id} onClick={(e) => this.onRemoveFavorite(e, movie._id)}>
                                                     <Card.Img
                                                         className="favorite-movie-image"
                                                         variant="top"
                                                         src={movie.ImagePath}
-                                                    />
-                                                    <Card.Body>
-                                                        <Card.Title className="movie-title">
-                                                            {movie.Title}
-                                                        </Card.Title>
-                                                        <Button value={movie._id} onClick={(e) => this.onRemoveFavorite(e, movie._id)}>Remove</Button>
-                                                    </Card.Body>
+                                                    /></Button>
+                                
                                                 </Card></Col>
                                             );
                                         }

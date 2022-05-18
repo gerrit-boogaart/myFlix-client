@@ -38,7 +38,6 @@ const validate = () => {
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  console.log(username + password);
   const isReq = validate();
   if(isReq){
   /* Send a request to the server for authentication */
@@ -50,7 +49,7 @@ const handleSubmit = (e) => {
   .then(response => {
     const data = response.data;
     props.onLoggedIn(data);
-    this.props.setUser(data);
+    
   })
   .catch(e => {
     console.log(e);

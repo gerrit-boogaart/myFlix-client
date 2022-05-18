@@ -21445,11 +21445,8 @@ var _actions = require("../../actions/actions");
 var _moviesList = require("../movies-list/movies-list");
 var _moviesListDefault = parcelHelpers.interopDefault(_moviesList);
 class MainView extends _reactDefault.default.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            user: null
-        };
+    constructor(){
+        super();
     }
     getMovies(token) {
         _axiosDefault.default.get('https://fredsflix.herokuapp.com/movies', {
@@ -21475,29 +21472,25 @@ class MainView extends _reactDefault.default.Component {
         });
     }
     onLoggedIn(authData) {
-        this.setState({
-            user: authData.user.Username
-        });
+        this.props.setUser(authData.user.Username);
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
     }
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
-            this.setState({
-                user: localStorage.getItem('user')
-            });
+            this.props.setUser(localStorage.getItem('user'));
             this.getMovies(accessToken);
             this.getUser(accessToken);
         }
     }
     render() {
-        let { movies , userData  } = this.props;
-        const { user: user1  } = this.state;
+        let { movies , userData , user: user1  } = this.props;
+        //  const { user } = this.state;
         return /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 84,
+                lineNumber: 82,
                 columnNumber: 7
             },
             __self: this
@@ -21505,7 +21498,7 @@ class MainView extends _reactDefault.default.Component {
             user: user1,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 85,
+                lineNumber: 83,
                 columnNumber: 8
             },
             __self: this
@@ -21513,7 +21506,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view justify-content-md-center",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 86,
+                lineNumber: 84,
                 columnNumber: 9
             },
             __self: this
@@ -21533,7 +21526,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 88,
+                lineNumber: 86,
                 columnNumber: 10
             },
             __self: this
@@ -21550,7 +21543,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 98,
+                lineNumber: 96,
                 columnNumber: 11
             },
             __self: this
@@ -21563,17 +21556,18 @@ class MainView extends _reactDefault.default.Component {
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
                     onLoggedIn: (user)=>this.onLoggedIn(user)
                 }));
-                return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+                if (movies.length > 0) return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
                     md: 8
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_movieView.MovieView, {
                     movie: movies.find((m)=>m._id === match.params.movieId
                     ),
                     onBackClick: ()=>history.goBack()
                 }));
+                else /*#__PURE__*/ _reactDefault.default.createElement("div", null, "Loading...");
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 105,
+                lineNumber: 103,
                 columnNumber: 11
             },
             __self: this
@@ -21586,7 +21580,7 @@ class MainView extends _reactDefault.default.Component {
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
                     onLoggedIn: (user)=>this.onLoggedIn(user)
                 }));
-                return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+                if (movies.length > 0) return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
                     md: 8
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_directorView.DirectorView, {
                     movies: movies.filter((m)=>m.Director.Name === match.params.name
@@ -21595,10 +21589,11 @@ class MainView extends _reactDefault.default.Component {
                     ).Director,
                     onBackClick: ()=>history.goBack()
                 }));
+                else /*#__PURE__*/ _reactDefault.default.createElement("div", null, "Loading...");
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 115,
+                lineNumber: 119,
                 columnNumber: 11
             },
             __self: this
@@ -21611,7 +21606,7 @@ class MainView extends _reactDefault.default.Component {
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
                     onLoggedIn: (user)=>this.onLoggedIn(user)
                 }));
-                return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+                if (movies.length > 0) return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
                     md: 8
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_genreView.GenreView, {
                     genre: movies.find((m)=>m.Genre.Name === match.params.name
@@ -21621,7 +21616,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 129,
+                lineNumber: 135,
                 columnNumber: 9
             },
             __self: this
@@ -21640,7 +21635,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 142,
+                lineNumber: 149,
                 columnNumber: 9
             },
             __self: this
@@ -21657,7 +21652,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 152,
+                lineNumber: 159,
                 columnNumber: 9
             },
             __self: this
@@ -21667,12 +21662,14 @@ class MainView extends _reactDefault.default.Component {
 let mapStateToProps = (state)=>{
     return {
         movies: state.movies,
-        UserData: state.UserData
+        UserData: state.UserData,
+        user: state.user
     };
 };
 exports.default = _reactRedux.connect(mapStateToProps, {
     setMovies: _actions.setMovies,
-    setUserData: _actions.setUserData
+    setUserData: _actions.setUserData,
+    setUser: _actions.setUser
 })(MainView);
 
   $parcel$ReactRefreshHelpers$f7a6.postlude(module);
@@ -32902,7 +32899,6 @@ function LoginView(props) {
     };
     const handleSubmit = (e1)=>{
         e1.preventDefault();
-        console.log(username + password);
         const isReq = validate();
         if (isReq) /* Send a request to the server for authentication */ _axiosDefault.default.post('https://fredsflix.herokuapp.com/login', {
             Username: username,
@@ -32910,7 +32906,6 @@ function LoginView(props) {
         }).then((response)=>{
             const data = response.data;
             props.onLoggedIn(data);
-            this.props.setUser(data);
         }).catch((e)=>{
             console.log(e);
             alert('The provided username does not exist.');
@@ -32919,14 +32914,14 @@ function LoginView(props) {
     return /*#__PURE__*/ _reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Container, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 65,
+            lineNumber: 64,
             columnNumber: 1
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 66,
+            lineNumber: 65,
             columnNumber: 3
         },
         __self: this
@@ -32934,14 +32929,14 @@ function LoginView(props) {
         lg: 8,
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 67,
+            lineNumber: 66,
             columnNumber: 5
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.CardGroup, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 68,
+            lineNumber: 67,
             columnNumber: 7
         },
         __self: this
@@ -32953,7 +32948,7 @@ function LoginView(props) {
         },
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 69,
+            lineNumber: 68,
             columnNumber: 9
         },
         __self: this
@@ -32961,14 +32956,14 @@ function LoginView(props) {
         className: "login_container",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 70,
+            lineNumber: 69,
             columnNumber: 11
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Title, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 71,
+            lineNumber: 70,
             columnNumber: 11
         },
         __self: this
@@ -32976,14 +32971,14 @@ function LoginView(props) {
         to: `/register`,
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 71,
+            lineNumber: 70,
             columnNumber: 39
         },
         __self: this
     }, "Register ")), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 72,
+            lineNumber: 71,
             columnNumber: 13
         },
         __self: this
@@ -32991,14 +32986,14 @@ function LoginView(props) {
         controlId: "formUsername",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 73,
+            lineNumber: 72,
             columnNumber: 15
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 74,
+            lineNumber: 73,
             columnNumber: 17
         },
         __self: this
@@ -33009,7 +33004,7 @@ function LoginView(props) {
         placeholder: "Enter a username",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 75,
+            lineNumber: 74,
             columnNumber: 17
         },
         __self: this
@@ -33020,7 +33015,7 @@ function LoginView(props) {
         className: "font-italic",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 77,
+            lineNumber: 76,
             columnNumber: 34
         },
         __self: this
@@ -33028,14 +33023,14 @@ function LoginView(props) {
         controlId: "formPassword",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 80,
+            lineNumber: 79,
             columnNumber: 15
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 81,
+            lineNumber: 80,
             columnNumber: 17
         },
         __self: this
@@ -33046,7 +33041,7 @@ function LoginView(props) {
         placeholder: "password",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 82,
+            lineNumber: 81,
             columnNumber: 17
         },
         __self: this
@@ -33057,7 +33052,7 @@ function LoginView(props) {
         className: "font-italic",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 84,
+            lineNumber: 83,
             columnNumber: 33
         },
         __self: this
@@ -33068,7 +33063,7 @@ function LoginView(props) {
         onClick: handleSubmit,
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 86,
+            lineNumber: 85,
             columnNumber: 15
         },
         __self: this
@@ -34281,7 +34276,7 @@ class ProfileView extends _reactDefault.default.Component {
                 columnNumber: 21
             },
             __self: this
-        }, "My Favorite Movies"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
+        }, "My Favorite Movies (Click to remove)"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
                 lineNumber: 122,
@@ -34328,7 +34323,7 @@ class ProfileView extends _reactDefault.default.Component {
         }, FavoriteMoviesIDs.length > 0 && movies.map((movie)=>{
             if (movie._id === FavoriteMoviesIDs.find((fav)=>fav === movie._id
             )) return /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
-                md: 4,
+                md: 2,
                 __source: {
                     fileName: "src/components/user-view/user-view.jsx",
                     lineNumber: 134,
@@ -34344,47 +34339,33 @@ class ProfileView extends _reactDefault.default.Component {
                     columnNumber: 62
                 },
                 __self: this
-            }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Img, {
-                className: "favorite-movie-image",
-                variant: "top",
-                src: movie.ImagePath,
+            }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+                variant: "light",
+                value: movie._id,
+                onClick: (e)=>this.onRemoveFavorite(e, movie._id)
+                ,
                 __source: {
                     fileName: "src/components/user-view/user-view.jsx",
                     lineNumber: 135,
                     columnNumber: 53
                 },
                 __self: this
-            }), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Body, {
+            }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Img, {
+                className: "favorite-movie-image",
+                variant: "top",
+                src: movie.ImagePath,
                 __source: {
                     fileName: "src/components/user-view/user-view.jsx",
-                    lineNumber: 140,
+                    lineNumber: 136,
                     columnNumber: 53
                 },
                 __self: this
-            }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Title, {
-                className: "movie-title",
-                __source: {
-                    fileName: "src/components/user-view/user-view.jsx",
-                    lineNumber: 141,
-                    columnNumber: 57
-                },
-                __self: this
-            }, movie.Title), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
-                value: movie._id,
-                onClick: (e)=>this.onRemoveFavorite(e, movie._id)
-                ,
-                __source: {
-                    fileName: "src/components/user-view/user-view.jsx",
-                    lineNumber: 144,
-                    columnNumber: 57
-                },
-                __self: this
-            }, "Remove"))));
+            }))));
         }))))))))), /*#__PURE__*/ _reactDefault.default.createElement(_updateUser.UserUpdate, {
             user: this.state,
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 160,
+                lineNumber: 156,
                 columnNumber: 9
             },
             __self: this
@@ -36241,15 +36222,29 @@ parcelHelpers.export(exports, "SET_FILTER", ()=>SET_FILTER
 );
 parcelHelpers.export(exports, "SET_USER_DATA", ()=>SET_USER_DATA
 );
+parcelHelpers.export(exports, "SET_USER", ()=>SET_USER
+);
+parcelHelpers.export(exports, "SET_FAVORITES", ()=>SET_FAVORITES
+);
+parcelHelpers.export(exports, "ADD_FAVORITE", ()=>ADD_FAVORITE
+);
+parcelHelpers.export(exports, "REMOVE_FAVORITE", ()=>REMOVE_FAVORITE
+);
 parcelHelpers.export(exports, "setMovies", ()=>setMovies
 );
 parcelHelpers.export(exports, "setFilter", ()=>setFilter
 );
 parcelHelpers.export(exports, "setUserData", ()=>setUserData
 );
+parcelHelpers.export(exports, "setUser", ()=>setUser
+);
 const SET_MOVIES = 'SET_MOVIES';
 const SET_FILTER = 'SET_FILTER';
 const SET_USER_DATA = 'SET_USER_DATA';
+const SET_USER = 'SET_USER';
+const SET_FAVORITES = 'SET_FAVORITES';
+const ADD_FAVORITE = 'ADD_FAVORITE';
+const REMOVE_FAVORITE = 'REMOVE_FAVORITE';
 function setMovies(value) {
     return {
         type: SET_MOVIES,
@@ -36265,6 +36260,12 @@ function setFilter(value) {
 function setUserData(value) {
     return {
         type: SET_USER_DATA,
+        value
+    };
+}
+function setUser(value) {
+    return {
+        type: SET_USER,
         value
     };
 }
@@ -36287,9 +36288,10 @@ var _visibilityFilterInput = require("../visibility-filter-input/visibility-filt
 var _visibilityFilterInputDefault = parcelHelpers.interopDefault(_visibilityFilterInput);
 var _movieCard = require("../movie-card/movie-card");
 const mapStateToProps = (state)=>{
-    const { visibilityFilter  } = state;
+    const { visibilityFilter , userData  } = state;
     return {
-        visibilityFilter
+        visibilityFilter,
+        userData
     };
 };
 function MoviesList(props) {
@@ -36301,7 +36303,7 @@ function MoviesList(props) {
         className: "main-view",
         __source: {
             fileName: "src/components/movies-list/movies-list.jsx",
-            lineNumber: 21,
+            lineNumber: 22,
             columnNumber: 23
         },
         __self: this
@@ -36313,7 +36315,7 @@ function MoviesList(props) {
         },
         __source: {
             fileName: "src/components/movies-list/movies-list.jsx",
-            lineNumber: 24,
+            lineNumber: 25,
             columnNumber: 3
         },
         __self: this
@@ -36321,7 +36323,7 @@ function MoviesList(props) {
         visibilityFilter: visibilityFilter,
         __source: {
             fileName: "src/components/movies-list/movies-list.jsx",
-            lineNumber: 25,
+            lineNumber: 26,
             columnNumber: 5
         },
         __self: this
@@ -36330,15 +36332,16 @@ function MoviesList(props) {
             key: m._id,
             __source: {
                 fileName: "src/components/movies-list/movies-list.jsx",
-                lineNumber: 28,
+                lineNumber: 29,
                 columnNumber: 5
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_movieCard.MovieCard, {
             movie: m,
+            favorites: props.userData.FavoriteMovies,
             __source: {
                 fileName: "src/components/movies-list/movies-list.jsx",
-                lineNumber: 29,
+                lineNumber: 30,
                 columnNumber: 7
             },
             __self: this
@@ -36403,22 +36406,79 @@ parcelHelpers.export(exports, "MovieCard", ()=>MovieCard
 );
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _movieCardScss = require("./movie-card.scss");
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _button = require("react-bootstrap/Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _card = require("react-bootstrap/Card");
 var _cardDefault = parcelHelpers.interopDefault(_card);
-var _movieCardScss = require("./movie-card.scss");
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactRouterDom = require("react-router-dom");
 class MovieCard extends _reactDefault.default.Component {
+    onRemoveFavorite = (e, id)=>{
+        const movie = this.props.movie;
+        const Username = localStorage.getItem('user');
+        const token = localStorage.getItem('token');
+        _axiosDefault.default.delete(`https:/fredsflix.herokuapp.com/users/${Username}/movies/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            alert(movie.Title + " was removed from favorites.");
+        }).catch(function(error) {
+            console.log(error);
+        });
+    };
+    AddFavorite = (e, id)=>{
+        const movie = this.props.movie;
+        const Username = localStorage.getItem('user');
+        const token = localStorage.getItem('token');
+        _axiosDefault.default.post(`https://fredsflix.herokuapp.com/users/${Username}/movies/${id}`, {
+            key: 'value'
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            alert(movie.Title + " was added to favorites.");
+        }).catch(function(error) {});
+    };
+    isFav(favorites, movie) {
+        if (favorites.includes(movie._id)) return /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+            variant: "outline-info",
+            value: movie._id,
+            onClick: (e)=>this.onRemoveFavorite(e, movie._id)
+            ,
+            __source: {
+                fileName: "src/components/movie-card/movie-card.jsx",
+                lineNumber: 49,
+                columnNumber: 16
+            },
+            __self: this
+        }, "\u2665");
+        else return /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+            variant: "outline-info",
+            value: movie._id,
+            onClick: (e)=>this.AddFavorite(e, movie._id)
+            ,
+            variant: "outline-info",
+            __source: {
+                fileName: "src/components/movie-card/movie-card.jsx",
+                lineNumber: 54,
+                columnNumber: 17
+            },
+            __self: this
+        }, "\u2661");
+    }
     render() {
-        const { movie  } = this.props;
-        return /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default, {
+        const { favorites , movie , user ,  } = this.props;
+        if (favorites) return /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default, {
             className: "card",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 16,
+                lineNumber: 68,
                 columnNumber: 7
             },
             __self: this
@@ -36427,14 +36487,14 @@ class MovieCard extends _reactDefault.default.Component {
             src: movie.ImagePath,
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 17,
+                lineNumber: 70,
                 columnNumber: 9
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 18,
+                lineNumber: 71,
                 columnNumber: 9
             },
             __self: this
@@ -36442,14 +36502,14 @@ class MovieCard extends _reactDefault.default.Component {
             className: "card_title",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 19,
+                lineNumber: 72,
                 columnNumber: 11
             },
             __self: this
         }, movie.Title), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 20,
+                lineNumber: 73,
                 columnNumber: 11
             },
             __self: this
@@ -36457,7 +36517,7 @@ class MovieCard extends _reactDefault.default.Component {
             to: `/movies/${movie._id}`,
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 21,
+                lineNumber: 76,
                 columnNumber: 11
             },
             __self: this
@@ -36465,11 +36525,19 @@ class MovieCard extends _reactDefault.default.Component {
             variant: "link",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 22,
+                lineNumber: 77,
                 columnNumber: 13
             },
             __self: this
-        }, "OPEN"))));
+        }, "OPEN")), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
+            __source: {
+                fileName: "src/components/movie-card/movie-card.jsx",
+                lineNumber: 80,
+                columnNumber: 11
+            },
+            __self: this
+        }, " ", this.isFav(favorites, movie), " ")));
+        else return 'Loading...';
     }
 }
 MovieCard.propTypes = {
@@ -36483,7 +36551,7 @@ MovieCard.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","prop-types":"7wKI2","react-bootstrap/Button":"aPzUt","react-bootstrap/Card":"lAynp","./movie-card.scss":"d6HH4","react-router-dom":"cHIiW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"d6HH4":[function() {},{}],"lJZlQ":[function() {},{}],"cDNB3":[function(require,module,exports) {
+},{"react":"21dqq","prop-types":"7wKI2","react-bootstrap/Button":"aPzUt","react-bootstrap/Card":"lAynp","./movie-card.scss":"d6HH4","react-router-dom":"cHIiW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","axios":"jo6P5"}],"d6HH4":[function() {},{}],"lJZlQ":[function() {},{}],"cDNB3":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes
@@ -37080,10 +37148,19 @@ function userData(state = {}, action) {
             return state;
     }
 }
+function user(state = " ", action) {
+    switch(action.type){
+        case _actions.SET_USER:
+            return action.value;
+        default:
+            return state;
+    }
+}
 const moviesApp = _redux.combineReducers({
     visibilityFilter,
     movies,
-    userData
+    userData,
+    user
 });
 exports.default = moviesApp;
 

@@ -5,8 +5,9 @@ import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-
 import { MovieCard } from '../movie-card/movie-card';
 
 const mapStateToProps = state => {
-  const { visibilityFilter } = state;
-  return { visibilityFilter };
+  const { visibilityFilter, userData } = state;
+  
+  return { visibilityFilter, userData };
 
 };
 
@@ -26,7 +27,8 @@ function MoviesList(props) {
   </Col>
   {filteredMovies.map(m => (
     <Col md={4} key={m._id}>
-      <MovieCard movie={m} />
+      <MovieCard movie={m} favorites={props.userData.FavoriteMovies}  /> 
+     
     </Col>
   ))}
 </>;
