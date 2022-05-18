@@ -57,9 +57,6 @@ export class MovieCard extends React.Component {
  };
 
 
-
-
-
   render() {
     const {  favorites, movie, user, } = this.props;
 

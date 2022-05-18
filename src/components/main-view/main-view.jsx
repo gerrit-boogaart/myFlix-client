@@ -20,9 +20,9 @@ import MoviesList from '../movies-list/movies-list';
   constructor(){
     super();
     
-    // this.state = {
-    //   user: null
-    // };
+    this.state = {
+      user: null
+    };
   }
 
   getMovies(token) {
@@ -55,8 +55,8 @@ import MoviesList from '../movies-list/movies-list';
   };
 
   onLoggedIn(authData) {
-    this.setUser(
-    authData.user.Username
+    this.setState(
+    {user: authData.user.Username}
     );
   
     localStorage.setItem('token', authData.token);
@@ -66,9 +66,7 @@ import MoviesList from '../movies-list/movies-list';
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
-      this.props.setUser(
-      localStorage.getItem('user')
-      );
+      this.setState({ user: localStorage.getItem('user') });
       this.getMovies(accessToken);
       this.getUser(accessToken);
     }
@@ -77,8 +75,8 @@ import MoviesList from '../movies-list/movies-list';
      
   render() {
 
-    let { movies, userData, user } = this.props;
-  //  const { user } = this.state;
+    let { movies, userData } = this.props;
+   const { user } = this.state;
   
     return (   
       <Router>

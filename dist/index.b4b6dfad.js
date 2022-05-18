@@ -21447,9 +21447,9 @@ var _moviesListDefault = parcelHelpers.interopDefault(_moviesList);
 class MainView extends _reactDefault.default.Component {
     constructor(){
         super();
-    // this.state = {
-    //   user: null
-    // };
+        this.state = {
+            user: null
+        };
     }
     getMovies(token) {
         _axiosDefault.default.get('https://fredsflix.herokuapp.com/movies', {
@@ -21475,25 +21475,29 @@ class MainView extends _reactDefault.default.Component {
         });
     }
     onLoggedIn(authData) {
-        this.setUser(authData.user.Username);
+        this.setState({
+            user: authData.user.Username
+        });
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
     }
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
-            this.props.setUser(localStorage.getItem('user'));
+            this.setState({
+                user: localStorage.getItem('user')
+            });
             this.getMovies(accessToken);
             this.getUser(accessToken);
         }
     }
     render() {
-        let { movies , userData , user: user1  } = this.props;
-        //  const { user } = this.state;
+        let { movies , userData  } = this.props;
+        const { user: user1  } = this.state;
         return /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 84,
+                lineNumber: 82,
                 columnNumber: 7
             },
             __self: this
@@ -21501,7 +21505,7 @@ class MainView extends _reactDefault.default.Component {
             user: user1,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 85,
+                lineNumber: 83,
                 columnNumber: 8
             },
             __self: this
@@ -21509,7 +21513,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view justify-content-md-center",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 86,
+                lineNumber: 84,
                 columnNumber: 9
             },
             __self: this
@@ -21529,7 +21533,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 88,
+                lineNumber: 86,
                 columnNumber: 10
             },
             __self: this
@@ -21546,7 +21550,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 98,
+                lineNumber: 96,
                 columnNumber: 11
             },
             __self: this
@@ -21570,7 +21574,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 105,
+                lineNumber: 103,
                 columnNumber: 11
             },
             __self: this
@@ -21596,7 +21600,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 121,
+                lineNumber: 119,
                 columnNumber: 11
             },
             __self: this
@@ -21619,7 +21623,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 137,
+                lineNumber: 135,
                 columnNumber: 9
             },
             __self: this
@@ -21638,7 +21642,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 151,
+                lineNumber: 149,
                 columnNumber: 9
             },
             __self: this
@@ -21655,7 +21659,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 161,
+                lineNumber: 159,
                 columnNumber: 9
             },
             __self: this
@@ -36481,7 +36485,7 @@ class MovieCard extends _reactDefault.default.Component {
             className: "card",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 68,
+                lineNumber: 65,
                 columnNumber: 7
             },
             __self: this
@@ -36490,14 +36494,14 @@ class MovieCard extends _reactDefault.default.Component {
             src: movie.ImagePath,
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 70,
+                lineNumber: 67,
                 columnNumber: 9
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 71,
+                lineNumber: 68,
                 columnNumber: 9
             },
             __self: this
@@ -36505,14 +36509,14 @@ class MovieCard extends _reactDefault.default.Component {
             className: "card_title",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 72,
+                lineNumber: 69,
                 columnNumber: 11
             },
             __self: this
         }, movie.Title), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 73,
+                lineNumber: 70,
                 columnNumber: 11
             },
             __self: this
@@ -36520,7 +36524,7 @@ class MovieCard extends _reactDefault.default.Component {
             to: `/movies/${movie._id}`,
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 76,
+                lineNumber: 73,
                 columnNumber: 11
             },
             __self: this
@@ -36528,14 +36532,14 @@ class MovieCard extends _reactDefault.default.Component {
             variant: "link",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 77,
+                lineNumber: 74,
                 columnNumber: 13
             },
             __self: this
         }, "OPEN")), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 80,
+                lineNumber: 77,
                 columnNumber: 11
             },
             __self: this
