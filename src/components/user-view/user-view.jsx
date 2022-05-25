@@ -1,14 +1,14 @@
 import React, { useState, setState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import { Form, Button, Container, Row, Col, Card, CardGroup, Navbar, FormGroup} from 'react-bootstrap';
 import './user-view.scss';
 import { Button }from 'react-bootstrap';
 import { UserUpdate } from './update-user';
-export default class ProfileView extends React.Component {
+class ProfileView extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = 
      { 
       Username: null,
@@ -19,11 +19,14 @@ export default class ProfileView extends React.Component {
       movies: []
     };
   }
-
 componentDidMount() {
+  console.log('profile view')
   const accessToken = localStorage.getItem('token');
   this.getMovies(accessToken);
   this.getUser(accessToken); 
+}
+componentDidUpdate() {
+  console.log('updating')
 }
 getMovies(token) {
   axios.get('https://fredsflix.herokuapp.com/movies', {
@@ -59,7 +62,6 @@ getUser = (token) => {
         console.log(error);
       });
   };
-
   onRemoveFavorite = (e, id) => {
     e.preventDefault();
     const Username = localStorage.getItem('user');
@@ -76,17 +78,17 @@ getUser = (token) => {
         .catch(function (error) {
             console.log(error);
         });
-
-
  
 }
-
-
   render() {
-    const { Username, Email, Birthday, movies, FavoriteMoviesIDs, onBackClick } = this.state;
+    const { movies, FavoriteMoviesIDs } = this.state;
    const {user} = this.props;
+   console.log('profile', user)
+   if (!user || !movies) {
+     return <p>No soup for you</p>
+   }
+  
   return (
-   
     <Container>
         <Row className="profile-view mt-7 mb-7"
            style={{ minWidth: '400px' }}>
@@ -97,15 +99,15 @@ getUser = (token) => {
                       <div className="user-info">
                         <div className="user-name">
                           <span className="label">Name: </span>
-                          <span className="value">{user}</span>
+                          <span className="value">{user?.Username}</span>
                         </div>
                         <div className="user-email">
                           <span className="label">Email: </span>
-                          <span className="value">{Email}</span>
+                          <span className="value">{user?.Email}</span>
                         </div>
                         <div className="user-birthday">
                          <span className="label">Birthday: </span>
-                         <span className="value"> {Birthday}</span>
+                         <span className="value"> dssdfdffsd{user?.Birthday}</span>
                        </div>
                      </div>
                      
@@ -123,20 +125,20 @@ getUser = (token) => {
                     <Col>
                         <Card>
                             <Card.Body>
-                                {FavoriteMoviesIDs.length === 0 && (
+                                {FavoriteMoviesIDs?.length === 0 && (
                                     <div className="text-center">No favorite movies</div>
                                 )}
                                 <Row className="favorite-movies-container">
-                                    {FavoriteMoviesIDs.length > 0 && movies.map((movie) => {
-                                        if (movie._id === FavoriteMoviesIDs.find((fav) => fav === movie._id)
+                                    {FavoriteMoviesIDs?.length > 0 && movies?.map((movie) => {
+                                        if (movie._id === FavoriteMoviesIDs?.find((fav) => fav === movie._id)
                                         ) {
                                             return (
                                                <Col md = {2}><Card className="favorite-movie" key={movie._id} >
-                                                    <Button variant="light" value={movie._id} onClick={(e) => this.onRemoveFavorite(e, movie._id)}>
+                                                    <Button variant="light" value={movie?._id} onClick={(e) => this.onRemoveFavorite(e, movie._id)}>
                                                     <Card.Img
                                                         className="favorite-movie-image"
                                                         variant="top"
-                                                        src={movie.ImagePath}
+                                                        src={movie?.ImagePath}
                                                     /></Button>
                                 
                                                 </Card></Col>
@@ -153,15 +155,38 @@ getUser = (token) => {
               
             </Col>
         </Row>
-        < UserUpdate user={this.state} />
+        <UserUpdate user={this.state} />
     </Container>
  
   )
   
   
   }
-
 }
+let mapStateToProps = state => {
+  return { movies: state.movies, UserData: state.UserData, user: state.user }
+}
+export default connect(mapStateToProps, null)(ProfileView);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

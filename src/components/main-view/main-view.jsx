@@ -44,7 +44,8 @@ import MoviesList from '../movies-list/movies-list';
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        this.props.setUserData(response.data);
+        console.log('setting userData')
+        this.props.setUser(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -57,13 +58,14 @@ import MoviesList from '../movies-list/movies-list';
     );
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username); 
-    console.log(this.props.setUser);
+    console.log('cdm', this.props.setUser);
     
 
   }
 
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
+    console.log(accessToken)
     if (accessToken !== null) {
       this.getMovies(accessToken);
       this.getUser(accessToken);
@@ -74,6 +76,7 @@ import MoviesList from '../movies-list/movies-list';
   render() {
 
     let { movies, userData, user } = this.props;
+    console.log('render', user, userData)
     return (   
       <Router>
        <Menubar user={user}  />
@@ -143,23 +146,22 @@ import MoviesList from '../movies-list/movies-list';
           }}
           } />
 
-        <Route path={`/users/${user}`} render={({ match, history }) => {
-        if (!user) return <Redirect to="/" />
-        
+        <Route path={`/users/:user`} render={({ match, history }) => {
+        // if (!user) return <Redirect to="/" />
+        console.log('router test')
         return <Col>
-            <ProfileView  user={this.props.user} movies={movies} userData={userData} onBackClick={() => history.goBack()
-            }/>
+            <ProfileView  movies={movies} onBackClick={() => history.goBack()}/>
         </Col>
 
         }} />
 
-        <Route path={`/user-update/${user}`} render={({match, history}) => {
-          if (!user) return <Redirect to="/" />
+        {/* <Route path={`/user-update/:user`} render={({match, history}) => {
+          // if (!user) return <Redirect to="/" />
           return <Col>
           <UserUpdate user={user} onBackClick={() => history.goBack()}/>
           </Col>
           
-        }} />
+        }} /> */}
          </Row>
        
       </Router>

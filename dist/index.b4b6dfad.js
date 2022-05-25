@@ -21466,7 +21466,8 @@ class MainView extends _reactDefault.default.Component {
                 Authorization: `Bearer ${token}`
             }
         }).then((response)=>{
-            this.props.setUserData(response.data);
+            console.log('setting userData');
+            this.props.setUser(response.data);
         }).catch(function(error) {
             console.log(error);
         });
@@ -21475,10 +21476,11 @@ class MainView extends _reactDefault.default.Component {
         this.props.setUser(authData.user.Username);
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
-        console.log(this.props.setUser);
+        console.log('cdm', this.props.setUser);
     }
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
+        console.log(accessToken);
         if (accessToken !== null) {
             this.getMovies(accessToken);
             this.getUser(accessToken);
@@ -21486,10 +21488,11 @@ class MainView extends _reactDefault.default.Component {
     }
     render() {
         let { movies , userData , user: user1  } = this.props;
+        console.log('render', user1, userData);
         return /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 78,
+                lineNumber: 81,
                 columnNumber: 7
             },
             __self: this
@@ -21497,7 +21500,7 @@ class MainView extends _reactDefault.default.Component {
             user: user1,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 79,
+                lineNumber: 82,
                 columnNumber: 8
             },
             __self: this
@@ -21505,7 +21508,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view justify-content-md-center",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 80,
+                lineNumber: 83,
                 columnNumber: 9
             },
             __self: this
@@ -21527,7 +21530,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 82,
+                lineNumber: 85,
                 columnNumber: 10
             },
             __self: this
@@ -21544,7 +21547,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 93,
+                lineNumber: 96,
                 columnNumber: 11
             },
             __self: this
@@ -21568,7 +21571,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 100,
+                lineNumber: 103,
                 columnNumber: 11
             },
             __self: this
@@ -21594,7 +21597,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 116,
+                lineNumber: 119,
                 columnNumber: 11
             },
             __self: this
@@ -21617,43 +21620,23 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 132,
+                lineNumber: 135,
                 columnNumber: 9
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
-            path: `/users/${user1}`,
+            path: `/users/:user`,
             render: ({ match , history  })=>{
-                if (!user1) return /*#__PURE__*/ _reactDefault.default.createElement(Redirect, {
-                    to: "/"
-                });
+                // if (!user) return <Redirect to="/" />
+                console.log('router test');
                 return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, null, /*#__PURE__*/ _reactDefault.default.createElement(_userViewDefault.default, {
-                    user: this.props.user,
                     movies: movies,
-                    userData: userData,
                     onBackClick: ()=>history.goBack()
                 }));
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 146,
-                columnNumber: 9
-            },
-            __self: this
-        }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
-            path: `/user-update/${user1}`,
-            render: ({ match , history  })=>{
-                if (!user1) return /*#__PURE__*/ _reactDefault.default.createElement(Redirect, {
-                    to: "/"
-                });
-                return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, null, /*#__PURE__*/ _reactDefault.default.createElement(UserUpdate, {
-                    user: user1,
-                    onBackClick: ()=>history.goBack()
-                }));
-            },
-            __source: {
-                fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 156,
+                lineNumber: 149,
                 columnNumber: 9
             },
             __self: this
@@ -23298,14 +23281,14 @@ function Menubar({ user  }) {
         __self: this
     }, isAuth() && /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Nav.Link, {
         className: "user",
-        href: `/users/${user}`,
+        href: `/users/${user?.Username}`,
         __source: {
             fileName: "src/components/nav-bar/nav-bar.jsx",
             lineNumber: 33,
             columnNumber: 15
         },
         __self: this
-    }, user), isAuth() && /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+    }, user?.Username), isAuth() && /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "link",
         onClick: ()=>{
             onLoggedOut();
@@ -34005,6 +33988,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _reactRedux = require("react-redux");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactBootstrap = require("react-bootstrap");
@@ -34023,9 +34007,13 @@ class ProfileView extends _reactDefault.default.Component {
         };
     }
     componentDidMount() {
+        console.log('profile view');
         const accessToken = localStorage.getItem('token');
         this.getMovies(accessToken);
         this.getUser(accessToken);
+    }
+    componentDidUpdate() {
+        console.log('updating');
     }
     getMovies(token) {
         _axiosDefault.default.get('https://fredsflix.herokuapp.com/movies', {
@@ -34075,12 +34063,21 @@ class ProfileView extends _reactDefault.default.Component {
         });
     };
     render() {
-        const { Username , Email , Birthday , movies , FavoriteMoviesIDs , onBackClick  } = this.state;
+        const { movies , FavoriteMoviesIDs  } = this.state;
         const { user  } = this.props;
+        console.log('profile', user);
+        if (!user || !movies) return /*#__PURE__*/ _reactDefault.default.createElement("p", {
+            __source: {
+                fileName: "src/components/user-view/user-view.jsx",
+                lineNumber: 88,
+                columnNumber: 13
+            },
+            __self: this
+        }, "No soup for you");
         return /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Container, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 90,
+                lineNumber: 92,
                 columnNumber: 5
             },
             __self: this
@@ -34091,21 +34088,21 @@ class ProfileView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 91,
+                lineNumber: 93,
                 columnNumber: 9
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 93,
+                lineNumber: 95,
                 columnNumber: 13
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.CardGroup, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 94,
+                lineNumber: 96,
                 columnNumber: 14
             },
             __self: this
@@ -34117,7 +34114,7 @@ class ProfileView extends _reactDefault.default.Component {
             border: "info",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 95,
+                lineNumber: 97,
                 columnNumber: 17
             },
             __self: this
@@ -34125,7 +34122,7 @@ class ProfileView extends _reactDefault.default.Component {
             as: "h2",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 96,
+                lineNumber: 98,
                 columnNumber: 20
             },
             __self: this
@@ -34133,7 +34130,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "user-info",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 97,
+                lineNumber: 99,
                 columnNumber: 23
             },
             __self: this
@@ -34141,7 +34138,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "user-name",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 98,
+                lineNumber: 100,
                 columnNumber: 25
             },
             __self: this
@@ -34149,7 +34146,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "label",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 99,
+                lineNumber: 101,
                 columnNumber: 27
             },
             __self: this
@@ -34157,15 +34154,15 @@ class ProfileView extends _reactDefault.default.Component {
             className: "value",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 100,
+                lineNumber: 102,
                 columnNumber: 27
             },
             __self: this
-        }, user)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+        }, user?.Username)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "user-email",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 102,
+                lineNumber: 104,
                 columnNumber: 25
             },
             __self: this
@@ -34173,7 +34170,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "label",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 103,
+                lineNumber: 105,
                 columnNumber: 27
             },
             __self: this
@@ -34181,15 +34178,15 @@ class ProfileView extends _reactDefault.default.Component {
             className: "value",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 104,
+                lineNumber: 106,
                 columnNumber: 27
             },
             __self: this
-        }, Email)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+        }, user?.Email)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "user-birthday",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 106,
+                lineNumber: 108,
                 columnNumber: 25
             },
             __self: this
@@ -34197,7 +34194,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "label",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 107,
+                lineNumber: 109,
                 columnNumber: 26
             },
             __self: this
@@ -34205,21 +34202,21 @@ class ProfileView extends _reactDefault.default.Component {
             className: "value",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 108,
+                lineNumber: 110,
                 columnNumber: 26
             },
             __self: this
-        }, " ", Birthday))))))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
+        }, " dssdfdffsd", user?.Birthday))))))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 116,
+                lineNumber: 118,
                 columnNumber: 9
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 117,
+                lineNumber: 119,
                 columnNumber: 13
             },
             __self: this
@@ -34227,50 +34224,50 @@ class ProfileView extends _reactDefault.default.Component {
             className: "favorite-movies",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 120,
+                lineNumber: 122,
                 columnNumber: 19
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("h2", {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 121,
+                lineNumber: 123,
                 columnNumber: 21
             },
             __self: this
         }, "My Favorite Movies (Click to remove)"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 122,
+                lineNumber: 124,
                 columnNumber: 21
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 123,
+                lineNumber: 125,
                 columnNumber: 21
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 124,
+                lineNumber: 126,
                 columnNumber: 25
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Body, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 125,
+                lineNumber: 127,
                 columnNumber: 29
             },
             __self: this
-        }, FavoriteMoviesIDs.length === 0 && /*#__PURE__*/ _reactDefault.default.createElement("div", {
+        }, FavoriteMoviesIDs?.length === 0 && /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "text-center",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 127,
+                lineNumber: 129,
                 columnNumber: 37
             },
             __self: this
@@ -34278,17 +34275,17 @@ class ProfileView extends _reactDefault.default.Component {
             className: "favorite-movies-container",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 129,
+                lineNumber: 131,
                 columnNumber: 33
             },
             __self: this
-        }, FavoriteMoviesIDs.length > 0 && movies.map((movie)=>{
-            if (movie._id === FavoriteMoviesIDs.find((fav)=>fav === movie._id
+        }, FavoriteMoviesIDs?.length > 0 && movies?.map((movie)=>{
+            if (movie._id === FavoriteMoviesIDs?.find((fav)=>fav === movie._id
             )) return /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
                 md: 2,
                 __source: {
                     fileName: "src/components/user-view/user-view.jsx",
-                    lineNumber: 134,
+                    lineNumber: 136,
                     columnNumber: 48
                 },
                 __self: this
@@ -34297,28 +34294,28 @@ class ProfileView extends _reactDefault.default.Component {
                 key: movie._id,
                 __source: {
                     fileName: "src/components/user-view/user-view.jsx",
-                    lineNumber: 134,
+                    lineNumber: 136,
                     columnNumber: 62
                 },
                 __self: this
             }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
                 variant: "light",
-                value: movie._id,
+                value: movie?._id,
                 onClick: (e)=>this.onRemoveFavorite(e, movie._id)
                 ,
                 __source: {
                     fileName: "src/components/user-view/user-view.jsx",
-                    lineNumber: 135,
+                    lineNumber: 137,
                     columnNumber: 53
                 },
                 __self: this
             }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Img, {
                 className: "favorite-movie-image",
                 variant: "top",
-                src: movie.ImagePath,
+                src: movie?.ImagePath,
                 __source: {
                     fileName: "src/components/user-view/user-view.jsx",
-                    lineNumber: 136,
+                    lineNumber: 138,
                     columnNumber: 53
                 },
                 __self: this
@@ -34327,21 +34324,28 @@ class ProfileView extends _reactDefault.default.Component {
             user: this.state,
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 156,
+                lineNumber: 158,
                 columnNumber: 9
             },
             __self: this
         }));
     }
 }
-exports.default = ProfileView;
+let mapStateToProps = (state)=>{
+    return {
+        movies: state.movies,
+        UserData: state.UserData,
+        user: state.user
+    };
+};
+exports.default = _reactRedux.connect(mapStateToProps, null)(ProfileView);
 
   $parcel$ReactRefreshHelpers$5968.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","prop-types":"7wKI2","axios":"jo6P5","react-bootstrap":"3AD9A","./user-view.scss":"88N05","./update-user":"5Idrw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"88N05":[function() {},{}],"5Idrw":[function(require,module,exports) {
+},{"react":"21dqq","prop-types":"7wKI2","axios":"jo6P5","react-bootstrap":"3AD9A","./user-view.scss":"88N05","./update-user":"5Idrw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-redux":"bdVon"}],"88N05":[function() {},{}],"5Idrw":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$a7e8 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -34654,7 +34658,7 @@ function UserUpdate({ user: user1  }) {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","axios":"jo6P5","react-router-dom":"cHIiW","./update-user.scss":"96Dba","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"96Dba":[function() {},{}],"eBaMl":[function() {},{}],"bdVon":[function(require,module,exports) {
+},{"react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","axios":"jo6P5","react-router-dom":"cHIiW","./update-user.scss":"96Dba","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"96Dba":[function() {},{}],"bdVon":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "batch", ()=>_reactBatchedUpdates.unstable_batchedUpdates
@@ -36175,7 +36179,7 @@ const useStore = /*#__PURE__*/ createStoreHook();
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"biFwH":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eBaMl":[function() {},{}],"biFwH":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "SET_MOVIES", ()=>SET_MOVIES
@@ -36381,7 +36385,7 @@ var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactRouterDom = require("react-router-dom");
 class MovieCard extends _reactDefault.default.Component {
     state = {
-        favs: this.props.favorites
+        favs: this.props.favorites || []
     };
     onRemoveFavorite = (e, id)=>{
         const movie = this.props.movie;
