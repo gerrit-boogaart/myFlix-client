@@ -53,18 +53,16 @@ import MoviesList from '../movies-list/movies-list';
 
   onLoggedIn(authData) {
     this.props.setUser(
-    authData.user.Username
-    );
+      authData.user.Username
+      );
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username); 
-    console.log('cdm', this.props.setUser);
-    
-
   }
 
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
+    
       this.getMovies(accessToken);
       this.getUser(accessToken);
     }
@@ -145,21 +143,12 @@ import MoviesList from '../movies-list/movies-list';
           } />
 
         <Route path={`/users/:user`} render={({ match, history }) => {
-        // if (!user) return <Redirect to="/" />
-        console.log('router test')
         return <Col>
             <ProfileView  movies={movies} onBackClick={() => history.goBack()}/>
         </Col>
 
         }} />
 
-        {/* <Route path={`/user-update/:user`} render={({match, history}) => {
-          // if (!user) return <Redirect to="/" />
-          return <Col>
-          <UserUpdate user={user} onBackClick={() => history.goBack()}/>
-          </Col>
-          
-        }} /> */}
          </Row>
        
       </Router>
