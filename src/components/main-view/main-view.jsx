@@ -44,7 +44,6 @@ import MoviesList from '../movies-list/movies-list';
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        console.log('setting userData')
         this.props.setUser(response.data);
       })
       .catch(function (error) {
@@ -65,7 +64,6 @@ import MoviesList from '../movies-list/movies-list';
 
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
-    console.log(accessToken)
     if (accessToken !== null) {
       this.getMovies(accessToken);
       this.getUser(accessToken);
@@ -75,8 +73,8 @@ import MoviesList from '../movies-list/movies-list';
      
   render() {
 
-    let { movies, userData, user } = this.props;
-    console.log('render', user, userData)
+    let { movies, user } = this.props;
+    
     return (   
       <Router>
        <Menubar user={user}  />
@@ -89,7 +87,7 @@ import MoviesList from '../movies-list/movies-list';
         <LoginView user={user} onLoggedIn={user => this.onLoggedIn(user)} />
       </Col>
     )
-           return <MoviesList setMovies={this.props?.setMovies} movies={movies} userData={userData}/>
+           return <MoviesList movies={movies} user={user}/>
            }}
           />
         

@@ -27,7 +27,7 @@ function MoviesList(props) {
   </Col>
   {filteredMovies.map(m => (
     <Col md={4} key={m._id}>
-      <MovieCard setMovies={this.props?.setMovies} movie={m} favorites={props.userData.FavoriteMovies}  /> 
+      <MovieCard setMovies={this.props?.setMovies} movie={m} favorites={props.user.FavoriteMovies}  /> 
      
     </Col>
   ))}

@@ -21466,7 +21466,6 @@ class MainView extends _reactDefault.default.Component {
                 Authorization: `Bearer ${token}`
             }
         }).then((response)=>{
-            console.log('setting userData');
             this.props.setUser(response.data);
         }).catch(function(error) {
             console.log(error);
@@ -21480,19 +21479,17 @@ class MainView extends _reactDefault.default.Component {
     }
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
-        console.log(accessToken);
         if (accessToken !== null) {
             this.getMovies(accessToken);
             this.getUser(accessToken);
         }
     }
     render() {
-        let { movies , userData , user: user1  } = this.props;
-        console.log('render', user1, userData);
+        let { movies , user: user1  } = this.props;
         return /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 81,
+                lineNumber: 79,
                 columnNumber: 7
             },
             __self: this
@@ -21500,7 +21497,7 @@ class MainView extends _reactDefault.default.Component {
             user: user1,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 82,
+                lineNumber: 80,
                 columnNumber: 8
             },
             __self: this
@@ -21508,7 +21505,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view justify-content-md-center",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 83,
+                lineNumber: 81,
                 columnNumber: 9
             },
             __self: this
@@ -21523,14 +21520,13 @@ class MainView extends _reactDefault.default.Component {
                     onLoggedIn: (user)=>this.onLoggedIn(user)
                 }));
                 return /*#__PURE__*/ _reactDefault.default.createElement(_moviesListDefault.default, {
-                    setMovies: this.props?.setMovies,
                     movies: movies,
-                    userData: userData
+                    user: user1
                 });
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 85,
+                lineNumber: 83,
                 columnNumber: 10
             },
             __self: this
@@ -21547,7 +21543,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 96,
+                lineNumber: 94,
                 columnNumber: 11
             },
             __self: this
@@ -21571,7 +21567,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 103,
+                lineNumber: 101,
                 columnNumber: 11
             },
             __self: this
@@ -21597,7 +21593,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 119,
+                lineNumber: 117,
                 columnNumber: 11
             },
             __self: this
@@ -21620,7 +21616,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 135,
+                lineNumber: 133,
                 columnNumber: 9
             },
             __self: this
@@ -21636,7 +21632,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 149,
+                lineNumber: 147,
                 columnNumber: 9
             },
             __self: this
@@ -36305,7 +36301,7 @@ function MoviesList(props) {
         }, /*#__PURE__*/ _reactDefault.default.createElement(_movieCard.MovieCard, {
             setMovies: this.props?.setMovies,
             movie: m,
-            favorites: props.userData.FavoriteMovies,
+            favorites: props.user.FavoriteMovies,
             __source: {
                 fileName: "src/components/movies-list/movies-list.jsx",
                 lineNumber: 30,
