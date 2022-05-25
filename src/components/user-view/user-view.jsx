@@ -84,7 +84,7 @@ getUser = (token) => {
 
   render() {
     const { Username, Email, Birthday, movies, FavoriteMoviesIDs, onBackClick } = this.state;
-   
+   const {user} = this.props;
   return (
    
     <Container>
@@ -97,7 +97,7 @@ getUser = (token) => {
                       <div className="user-info">
                         <div className="user-name">
                           <span className="label">Name: </span>
-                          <span className="value">{Username}</span>
+                          <span className="value">{user}</span>
                         </div>
                         <div className="user-email">
                           <span className="label">Email: </span>

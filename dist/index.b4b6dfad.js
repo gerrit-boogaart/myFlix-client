@@ -21445,11 +21445,8 @@ var _actions = require("../../actions/actions");
 var _moviesList = require("../movies-list/movies-list");
 var _moviesListDefault = parcelHelpers.interopDefault(_moviesList);
 class MainView extends _reactDefault.default.Component {
-    constructor(){
-        super();
-        this.state = {
-            user: null
-        };
+    constructor(props){
+        super(props);
     }
     getMovies(token) {
         _axiosDefault.default.get('https://fredsflix.herokuapp.com/movies', {
@@ -21475,29 +21472,24 @@ class MainView extends _reactDefault.default.Component {
         });
     }
     onLoggedIn(authData) {
-        this.setState({
-            user: authData.user.Username
-        });
+        this.props.setUser(authData.user.Username);
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
+        console.log(this.props.setUser);
     }
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
-            this.setState({
-                user: localStorage.getItem('user')
-            });
             this.getMovies(accessToken);
             this.getUser(accessToken);
         }
     }
     render() {
-        let { movies , userData  } = this.props;
-        const { user: user1  } = this.state;
+        let { movies , userData , user: user1  } = this.props;
         return /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 82,
+                lineNumber: 78,
                 columnNumber: 7
             },
             __self: this
@@ -21505,7 +21497,7 @@ class MainView extends _reactDefault.default.Component {
             user: user1,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 83,
+                lineNumber: 79,
                 columnNumber: 8
             },
             __self: this
@@ -21513,7 +21505,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view justify-content-md-center",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 84,
+                lineNumber: 80,
                 columnNumber: 9
             },
             __self: this
@@ -21524,16 +21516,18 @@ class MainView extends _reactDefault.default.Component {
                 /* If there is no user, the LoginView is rendered.*/ if (!user1) return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
                     md: 6
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
+                    user: user1,
                     onLoggedIn: (user)=>this.onLoggedIn(user)
                 }));
                 return /*#__PURE__*/ _reactDefault.default.createElement(_moviesListDefault.default, {
+                    setMovies: this.props?.setMovies,
                     movies: movies,
                     userData: userData
                 });
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 86,
+                lineNumber: 82,
                 columnNumber: 10
             },
             __self: this
@@ -21550,7 +21544,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 96,
+                lineNumber: 93,
                 columnNumber: 11
             },
             __self: this
@@ -21574,7 +21568,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 103,
+                lineNumber: 100,
                 columnNumber: 11
             },
             __self: this
@@ -21600,7 +21594,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 119,
+                lineNumber: 116,
                 columnNumber: 11
             },
             __self: this
@@ -21623,7 +21617,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 135,
+                lineNumber: 132,
                 columnNumber: 9
             },
             __self: this
@@ -21634,15 +21628,15 @@ class MainView extends _reactDefault.default.Component {
                     to: "/"
                 });
                 return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, null, /*#__PURE__*/ _reactDefault.default.createElement(_userViewDefault.default, {
+                    user: this.props.user,
                     movies: movies,
-                    user: user1,
                     userData: userData,
                     onBackClick: ()=>history.goBack()
                 }));
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 149,
+                lineNumber: 146,
                 columnNumber: 9
             },
             __self: this
@@ -21659,7 +21653,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 159,
+                lineNumber: 156,
                 columnNumber: 9
             },
             __self: this
@@ -23258,14 +23252,14 @@ function Menubar({ user  }) {
         variant: "dark",
         __source: {
             fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 27,
+            lineNumber: 25,
             columnNumber: 5
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Container, {
         __source: {
             fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 28,
+            lineNumber: 26,
             columnNumber: 7
         },
         __self: this
@@ -23274,7 +23268,7 @@ function Menubar({ user  }) {
         href: "/",
         __source: {
             fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 29,
+            lineNumber: 27,
             columnNumber: 9
         },
         __self: this
@@ -23282,7 +23276,7 @@ function Menubar({ user  }) {
         "aria-controls": "responsive-navbar-nav",
         __source: {
             fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 31,
+            lineNumber: 29,
             columnNumber: 9
         },
         __self: this
@@ -23290,7 +23284,7 @@ function Menubar({ user  }) {
         id: "responsive-navbar-nav",
         __source: {
             fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 32,
+            lineNumber: 30,
             columnNumber: 9
         },
         __self: this
@@ -23298,7 +23292,7 @@ function Menubar({ user  }) {
         className: "ml-auto",
         __source: {
             fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 33,
+            lineNumber: 31,
             columnNumber: 11
         },
         __self: this
@@ -23307,7 +23301,7 @@ function Menubar({ user  }) {
         href: `/users/${user}`,
         __source: {
             fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 35,
+            lineNumber: 33,
             columnNumber: 15
         },
         __self: this
@@ -23318,7 +23312,7 @@ function Menubar({ user  }) {
         },
         __source: {
             fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 38,
+            lineNumber: 36,
             columnNumber: 15
         },
         __self: this
@@ -23326,7 +23320,7 @@ function Menubar({ user  }) {
         href: "/",
         __source: {
             fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 40,
+            lineNumber: 38,
             columnNumber: 28
         },
         __self: this
@@ -23334,7 +23328,7 @@ function Menubar({ user  }) {
         href: "/register",
         __source: {
             fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 41,
+            lineNumber: 39,
             columnNumber: 28
         },
         __self: this
@@ -33446,28 +33440,25 @@ class MovieView extends _reactDefault.default.Component {
     };
     render() {
         const { movie , onBackClick  } = this.props;
-        //    TO BE USED LATER FOR FAVORITES:
-        const selectHeart = '\♡';
-        const favorite = '\💓';
         return /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "movie-view",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 44,
+                lineNumber: 37,
                 columnNumber: 5
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 46,
+                lineNumber: 39,
                 columnNumber: 1
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 47,
+                lineNumber: 40,
                 columnNumber: 9
             },
             __self: this
@@ -33475,21 +33466,21 @@ class MovieView extends _reactDefault.default.Component {
             className: "page_title",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 47,
+                lineNumber: 40,
                 columnNumber: 14
             },
             __self: this
         }, "Movie Info"))), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 49,
+                lineNumber: 42,
                 columnNumber: 9
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 50,
+                lineNumber: 43,
                 columnNumber: 13
             },
             __self: this
@@ -33497,7 +33488,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "movie-poster",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 51,
+                lineNumber: 44,
                 columnNumber: 18
             },
             __self: this
@@ -33505,14 +33496,14 @@ class MovieView extends _reactDefault.default.Component {
             src: movie.ImagePath,
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 51,
+                lineNumber: 44,
                 columnNumber: 48
             },
             __self: this
         }))), /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 53,
+                lineNumber: 46,
                 columnNumber: 14
             },
             __self: this
@@ -33520,7 +33511,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "movie-info",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 54,
+                lineNumber: 47,
                 columnNumber: 13
             },
             __self: this
@@ -33528,7 +33519,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "movie-title",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 55,
+                lineNumber: 48,
                 columnNumber: 18
             },
             __self: this
@@ -33536,7 +33527,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "label",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 56,
+                lineNumber: 49,
                 columnNumber: 22
             },
             __self: this
@@ -33544,7 +33535,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "value",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 57,
+                lineNumber: 50,
                 columnNumber: 22
             },
             __self: this
@@ -33552,7 +33543,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "movie-director",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 59,
+                lineNumber: 52,
                 columnNumber: 17
             },
             __self: this
@@ -33560,7 +33551,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "label",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 60,
+                lineNumber: 53,
                 columnNumber: 21
             },
             __self: this
@@ -33568,7 +33559,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "value",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 61,
+                lineNumber: 54,
                 columnNumber: 21
             },
             __self: this
@@ -33576,7 +33567,7 @@ class MovieView extends _reactDefault.default.Component {
             to: `/directors/${movie.Director.Name}`,
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 62,
+                lineNumber: 55,
                 columnNumber: 25
             },
             __self: this
@@ -33584,7 +33575,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "movie-genre",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 65,
+                lineNumber: 58,
                 columnNumber: 18
             },
             __self: this
@@ -33592,7 +33583,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "label",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 66,
+                lineNumber: 59,
                 columnNumber: 22
             },
             __self: this
@@ -33600,7 +33591,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "value",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 67,
+                lineNumber: 60,
                 columnNumber: 22
             },
             __self: this
@@ -33608,7 +33599,7 @@ class MovieView extends _reactDefault.default.Component {
             to: `/genres/${movie.Genre.Name}`,
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 68,
+                lineNumber: 61,
                 columnNumber: 26
             },
             __self: this
@@ -33616,7 +33607,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "justify-content-center",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 75,
+                lineNumber: 68,
                 columnNumber: 9
             },
             __self: this
@@ -33624,7 +33615,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "movie-description",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 76,
+                lineNumber: 69,
                 columnNumber: 9
             },
             __self: this
@@ -33632,7 +33623,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "label",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 77,
+                lineNumber: 70,
                 columnNumber: 13
             },
             __self: this
@@ -33640,7 +33631,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "value",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 78,
+                lineNumber: 71,
                 columnNumber: 13
             },
             __self: this
@@ -33652,21 +33643,11 @@ class MovieView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 79,
+                lineNumber: 72,
                 columnNumber: 15
             },
             __self: this
-        }, "Back")), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
-            value: movie._id,
-            onClick: (e)=>this.AddFavorite(e, movie._id)
-            ,
-            __source: {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 82,
-                columnNumber: 9
-            },
-            __self: this
-        }, "Add To Favorites"));
+        }, "Back")));
     }
 }
 
@@ -33707,17 +33688,17 @@ class DirectorView extends _reactDefault.default.Component {
         console.log({
             movies
         });
-        return /*#__PURE__*/ _reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
+        if (movies) return /*#__PURE__*/ _reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 19,
+                lineNumber: 21,
                 columnNumber: 5
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 20,
+                lineNumber: 22,
                 columnNumber: 9
             },
             __self: this
@@ -33725,35 +33706,35 @@ class DirectorView extends _reactDefault.default.Component {
             className: "page_title",
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 20,
+                lineNumber: 22,
                 columnNumber: 14
             },
             __self: this
         }, "Director Info"))), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 23,
+                lineNumber: 25,
                 columnNumber: 5
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 24,
+                lineNumber: 26,
                 columnNumber: 9
             },
             __self: this
         }, "  ", /*#__PURE__*/ _reactDefault.default.createElement("h2", {
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 24,
+                lineNumber: 26,
                 columnNumber: 16
             },
             __self: this
         }, director.Name), /*#__PURE__*/ _reactDefault.default.createElement("p", {
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 25,
+                lineNumber: 27,
                 columnNumber: 18
             },
             __self: this
@@ -33761,36 +33742,36 @@ class DirectorView extends _reactDefault.default.Component {
             className: "title",
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 26,
+                lineNumber: 28,
                 columnNumber: 18
             },
             __self: this
         }, director.Bio))), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 30,
+                lineNumber: 32,
                 columnNumber: 5
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 31,
+                lineNumber: 33,
                 columnNumber: 9
             },
             __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement("h1", {
-            className: "page_title",
+        }, /*#__PURE__*/ _reactDefault.default.createElement("h2", {
+            className: "page_title2",
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 31,
+                lineNumber: 33,
                 columnNumber: 14
             },
             __self: this
         }, "Movies by ", director.Name))), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 33,
+                lineNumber: 35,
                 columnNumber: 5
             },
             __self: this
@@ -33798,61 +33779,34 @@ class DirectorView extends _reactDefault.default.Component {
             md: 12,
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 34,
+                lineNumber: 36,
                 columnNumber: 10
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.CardGroup, {
+            className: "dirMovies",
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 35,
+                lineNumber: 37,
                 columnNumber: 17
             },
             __self: this
-        }, movies.map((movie)=>/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card, {
-                md: 4,
-                className: "favorite-movie card-content",
-                key: movie._id,
-                __source: {
-                    fileName: "src/components/director-view/director-view.jsx",
-                    lineNumber: 37,
-                    columnNumber: 25
-                },
-                __self: this
-            }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Img, {
+        }, movies.map((movie)=>/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Img, {
                 className: "fav-poster",
                 variant: "top",
                 src: movie.ImagePath,
                 __source: {
                     fileName: "src/components/director-view/director-view.jsx",
-                    lineNumber: 38,
+                    lineNumber: 40,
                     columnNumber: 29
                 },
                 __self: this
-            }), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Body, {
-                style: {
-                    backgroundColor: "white"
-                },
-                __source: {
-                    fileName: "src/components/director-view/director-view.jsx",
-                    lineNumber: 43,
-                    columnNumber: 31
-                },
-                __self: this
-            }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Title, {
-                className: "movie_title",
-                __source: {
-                    fileName: "src/components/director-view/director-view.jsx",
-                    lineNumber: 44,
-                    columnNumber: 37
-                },
-                __self: this
-            }, movie.Title)))
+            })
         )))), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             className: "button",
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 54,
+                lineNumber: 49,
                 columnNumber: 5
             },
             __self: this
@@ -33863,7 +33817,7 @@ class DirectorView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
-                lineNumber: 55,
+                lineNumber: 50,
                 columnNumber: 5
             },
             __self: this
@@ -34122,6 +34076,7 @@ class ProfileView extends _reactDefault.default.Component {
     };
     render() {
         const { Username , Email , Birthday , movies , FavoriteMoviesIDs , onBackClick  } = this.state;
+        const { user  } = this.props;
         return /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Container, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
@@ -34206,7 +34161,7 @@ class ProfileView extends _reactDefault.default.Component {
                 columnNumber: 27
             },
             __self: this
-        }, Username)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+        }, user)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "user-email",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
@@ -36344,6 +36299,7 @@ function MoviesList(props) {
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_movieCard.MovieCard, {
+            setMovies: this.props?.setMovies,
             movie: m,
             favorites: props.userData.FavoriteMovies,
             __source: {
@@ -36424,6 +36380,9 @@ var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactRouterDom = require("react-router-dom");
 class MovieCard extends _reactDefault.default.Component {
+    state = {
+        favs: this.props.favorites
+    };
     onRemoveFavorite = (e, id)=>{
         const movie = this.props.movie;
         const Username = localStorage.getItem('user');
@@ -36434,11 +36393,16 @@ class MovieCard extends _reactDefault.default.Component {
             }
         }).then((response)=>{
             alert(movie.Title + " was removed from favorites.");
+            const favs = this.state.favs.filter((m)=>m !== id
+            );
+            this.setState({
+                favs
+            });
         }).catch(function(error) {
             console.log(error);
         });
     };
-    AddFavorite = (e, id)=>{
+    addFavorite = (e, id)=>{
         const movie = this.props.movie;
         const Username = localStorage.getItem('user');
         const token = localStorage.getItem('token');
@@ -36450,42 +36414,47 @@ class MovieCard extends _reactDefault.default.Component {
             }
         }).then((response)=>{
             alert(movie.Title + " was added to favorites.");
+            this.setState({
+                favs: [
+                    ...this.state.favs,
+                    id
+                ]
+            });
         }).catch(function(error) {});
     };
     isFav(favorites, movie) {
-        if (favorites.includes(movie._id)) return /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
-            variant: "outline-info",
+        if (this.state.favs.includes(movie._id)) return /*#__PURE__*/ _reactDefault.default.createElement("a", {
+            className: "heart-red",
             value: movie._id,
             onClick: (e)=>this.onRemoveFavorite(e, movie._id)
             ,
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 49,
+                lineNumber: 53,
                 columnNumber: 16
             },
             __self: this
         }, "\u2665");
-        else return /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
-            variant: "outline-info",
+        else return /*#__PURE__*/ _reactDefault.default.createElement("a", {
+            className: "heart",
             value: movie._id,
-            onClick: (e)=>this.AddFavorite(e, movie._id)
+            onClick: (e)=>this.addFavorite(e, movie._id)
             ,
-            variant: "outline-info",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 54,
+                lineNumber: 58,
                 columnNumber: 17
             },
             __self: this
         }, "\u2661");
     }
     render() {
-        const { favorites , movie , user ,  } = this.props;
-        if (favorites) return /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default, {
+        const { favorites , movie , user  } = this.props;
+        if (movie) return /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default, {
             className: "card",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 65,
+                lineNumber: 69,
                 columnNumber: 7
             },
             __self: this
@@ -36494,14 +36463,14 @@ class MovieCard extends _reactDefault.default.Component {
             src: movie.ImagePath,
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 67,
+                lineNumber: 71,
                 columnNumber: 9
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 68,
+                lineNumber: 72,
                 columnNumber: 9
             },
             __self: this
@@ -36509,14 +36478,14 @@ class MovieCard extends _reactDefault.default.Component {
             className: "card_title",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 69,
+                lineNumber: 73,
                 columnNumber: 11
             },
             __self: this
         }, movie.Title), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 70,
+                lineNumber: 74,
                 columnNumber: 11
             },
             __self: this
@@ -36524,7 +36493,7 @@ class MovieCard extends _reactDefault.default.Component {
             to: `/movies/${movie._id}`,
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 73,
+                lineNumber: 77,
                 columnNumber: 11
             },
             __self: this
@@ -36532,14 +36501,14 @@ class MovieCard extends _reactDefault.default.Component {
             variant: "link",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 74,
+                lineNumber: 78,
                 columnNumber: 13
             },
             __self: this
         }, "OPEN")), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 77,
+                lineNumber: 81,
                 columnNumber: 11
             },
             __self: this
@@ -37155,7 +37124,7 @@ function userData(state = {}, action) {
             return state;
     }
 }
-function user(state = " ", action) {
+function user(state = null, action) {
     switch(action.type){
         case _actions.SET_USER:
             return action.value;

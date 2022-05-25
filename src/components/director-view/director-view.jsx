@@ -13,6 +13,8 @@ export class DirectorView extends React.Component {
     render() {
         const { director, onBackClick, movies } = this.props;
         console.log({movies});
+
+        if(movies)
     return (
        
     <>
@@ -28,25 +30,18 @@ export class DirectorView extends React.Component {
         </Col>
     </Row> 
     <Row> 
-        <Col><h1 className='page_title'>Movies by {director.Name}</h1></Col>
+        <Col><h2 className='page_title2'>Movies by {director.Name}</h2></Col>
     </Row>
     <Row>
          <Col md={12}>
-                <CardGroup>
+                <CardGroup className="dirMovies">
                     {movies.map(movie => (
-                        <Card md={4} className="favorite-movie card-content" key={movie._id} >
+                     
                             <Card.Img
                                 className="fav-poster"
                                 variant="top"
                                 src={movie.ImagePath} />
-                            
-                              <Card.Body style={{ backgroundColor: "white" }}>
-                                    <Card.Title className="movie_title">
-                                        {movie.Title}
-                                    </Card.Title>
-                                       
-                              </Card.Body> 
-                        </Card>
+                       
                             ))}
                 </CardGroup>
             </Col>
@@ -57,7 +52,7 @@ export class DirectorView extends React.Component {
     </>
         )
     }
-
+    
 
 }
   

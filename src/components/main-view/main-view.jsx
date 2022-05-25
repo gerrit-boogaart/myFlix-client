@@ -17,12 +17,9 @@ import MoviesList from '../movies-list/movies-list';
 
  class MainView extends React.Component {
 
-  constructor(){
-    super();
-    
-    this.state = {
-      user: null
-    };
+  constructor(props){
+    super(props);
+  
   }
 
   getMovies(token) {
@@ -55,18 +52,19 @@ import MoviesList from '../movies-list/movies-list';
   };
 
   onLoggedIn(authData) {
-    this.setState(
-    {user: authData.user.Username}
+    this.props.setUser(
+    authData.user.Username
     );
-  
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username); 
+    console.log(this.props.setUser);
+    
+
   }
 
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
-      this.setState({ user: localStorage.getItem('user') });
       this.getMovies(accessToken);
       this.getUser(accessToken);
     }
@@ -75,24 +73,23 @@ import MoviesList from '../movies-list/movies-list';
      
   render() {
 
-    let { movies, userData } = this.props;
-   const { user } = this.state;
-  
+    let { movies, userData, user } = this.props;
     return (   
       <Router>
-       <Menubar user={user} />
+       <Menubar user={user}  />
         <Row className="main-view justify-content-md-center">
            
          <Route exact path="/" render={() => {
    /* If there is no user, the LoginView is rendered.*/
     if (!user) return (   
       <Col md={6}>
-        <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+        <LoginView user={user} onLoggedIn={user => this.onLoggedIn(user)} />
       </Col>
     )
-           return <MoviesList movies={movies} userData={userData}/>;
-          }} />
-
+           return <MoviesList setMovies={this.props?.setMovies} movies={movies} userData={userData}/>
+           }}
+          />
+        
           <Route path="/register" render={() => {
             if (user) return <Redirect to="/" />
             return <Col lg={8} md={8}>
@@ -146,12 +143,12 @@ import MoviesList from '../movies-list/movies-list';
           }}
           } />
 
-        <Route path={`/users/${user}`} render={({match, history}) => {
+        <Route path={`/users/${user}`} render={({ match, history }) => {
         if (!user) return <Redirect to="/" />
         
         return <Col>
-        <ProfileView movies={movies} user={user} userData={userData} onBackClick={() => history.goBack()
-        }/>
+            <ProfileView  user={this.props.user} movies={movies} userData={userData} onBackClick={() => history.goBack()
+            }/>
         </Col>
 
         }} />

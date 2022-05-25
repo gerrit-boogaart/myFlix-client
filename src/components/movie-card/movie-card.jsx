@@ -1,13 +1,14 @@
 import React from 'react';
-
 import './movie-card.scss';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import { Link } from "react-router-dom";
-export class MovieCard extends React.Component {
 
+
+export class MovieCard extends React.Component {
+  state = { favs: this.props.favorites }
   onRemoveFavorite = (e, id) => {
     const movie = this.props.movie
     const Username = localStorage.getItem('user');
@@ -19,13 +20,15 @@ export class MovieCard extends React.Component {
     )
         .then(response => {
           alert ( movie.Title + " was removed from favorites.")
+          const favs = this.state.favs.filter((m) => m !== id)
+          this.setState({ favs });
         })
         .catch(function (error) {
             console.log(error);
         });
 }
 
-  AddFavorite = (e, id)  => {
+  addFavorite = (e, id)  => {
     const movie = this.props.movie
     const Username = localStorage.getItem('user');
     const token = localStorage.getItem('token');
@@ -37,30 +40,31 @@ export class MovieCard extends React.Component {
     )
         .then(response => {
           alert ( movie.Title + " was added to favorites.") 
+          this.setState({ favs: [...this.state.favs, id]})
         })
         .catch(function (error) { 
         });
 }
 
- isFav(favorites, movie) {    
+ isFav( favorites, movie) {    
  
-    if (favorites.includes(movie._id)) {
+    if (this.state.favs.includes(movie._id)) {
      
-      return ( <Button variant="outline-info" value={movie._id} onClick={(e) => this.onRemoveFavorite(e, movie._id)}>&hearts;</Button>);
+      return ( <a className="heart-red" value={movie._id} onClick={(e) => this.onRemoveFavorite(e, movie._id)}>&hearts;</a>);
       
     }
       else {
       
-       return ( <Button variant="outline-info" value={movie._id} onClick={(e) => this.AddFavorite(e, movie._id)}variant="outline-info">&#9825;</Button>);
+       return ( <a className="heart" value={movie._id} onClick={(e) => this.addFavorite(e, movie._id)}>&#9825;</a>);
        
       }
  };
 
 
   render() {
-    const {  favorites, movie, user, } = this.props;
+    const {  favorites, movie, user } = this.props;
 
- if (favorites)
+ if (movie)
    return (
       <Card className= 'card'>
            
