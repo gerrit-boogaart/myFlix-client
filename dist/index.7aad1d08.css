@@ -82,7 +82,13 @@ p.title {
   max-width: 200px;
 }
 
+.image {
+  max-width: 200px;
+}
 
+.button {
+  align-self: center;
+}
 
 .user-info {
   padding: 10px;

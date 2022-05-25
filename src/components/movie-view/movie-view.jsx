@@ -11,24 +11,6 @@ import axios from 'axios';
 export class MovieView extends React.Component {
     constructor() {
         super();}
-
-  AddFavorite = (e, id)  => {
-        e.preventDefault();
-        const Username = localStorage.getItem('user');
-        const token = localStorage.getItem('token');
-       
-        axios.post(`https://fredsflix.herokuapp.com/users/${Username}/movies/${id}`,{key: 'value'},
-            {
-                headers: { Authorization: `Bearer ${token}` }   
-            }
-        )
-            .then(response => {
-                alert("Movie added to favorites");  
-            })
-            .catch(function (error) { 
-            });
-    }
-
   
     render() {
         const { movie, onBackClick } = this.props;

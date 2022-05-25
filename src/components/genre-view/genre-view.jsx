@@ -6,27 +6,46 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import { Link } from "react-router-dom";
 import icon from './masks.png'
+import { CardGroup, Card} from 'react-bootstrap';
 
 export class GenreView extends React.Component {
 
     render() {
-        const { genre, onBackClick } = this.props;
+        const { genre, onBackClick, movies } = this.props;
     
     return (
        
     <>
-    <Row> 
-        <Col><h1 className='page_title'>Genre Info</h1></Col>
-    </Row>
-            <Row>
+            <Row className="justify-content-center">
                  <Col> <div><img className='image' src={icon} /></div></Col> 
                  <Col>  <h2>{genre.Name}</h2>
                  <p>{genre.Description}</p>
-                    
-                    <Button className="button" variant="info" onClick={() => { onBackClick(); }}>Back</Button>
-                </Col>
+                 </Col>
+                 </Row>   
+                
                
-            </Row>             
+ 
+
+    <Row> 
+        <Col><h2 className='page_title2'>{genre.Name} Movies</h2></Col>
+    </Row>
+    <Row>
+         <Col md={12}>
+                <CardGroup className="dirMovies">
+                    {movies.map(movie => (
+                     
+                            <Card.Img
+                                className="fav-poster"
+                                variant="top"
+                                src={movie.ImagePath} />
+                       
+                            ))}
+                </CardGroup>
+            </Col>
+    </Row>
+    <Row className="button">
+    <Button  variant="info" onClick={() => { onBackClick(); }}>Back</Button>
+    </Row>         
     </>
         )
     }

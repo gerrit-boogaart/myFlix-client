@@ -138,7 +138,7 @@ import MoviesList from '../movies-list/movies-list';
                )
                if (movies.length > 0) {
                   return <Col md={8}>
-                        <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre}
+                        <GenreView movies={movies.filter(m => m.Genre.Name === match.params.name)} genre={movies.find(m => m.Genre.Name === match.params.name).Genre}
                         onBackClick={() => history.goBack()} />
                         </Col>
           }}

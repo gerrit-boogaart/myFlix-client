@@ -21609,6 +21609,8 @@ class MainView extends _reactDefault.default.Component {
                 if (movies.length > 0) return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
                     md: 8
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_genreView.GenreView, {
+                    movies: movies.filter((m)=>m.Genre.Name === match.params.name
+                    ),
                     genre: movies.find((m)=>m.Genre.Name === match.params.name
                     ).Genre,
                     onBackClick: ()=>history.goBack()
@@ -33403,41 +33405,27 @@ class MovieView extends _reactDefault.default.Component {
     constructor(){
         super();
     }
-    AddFavorite = (e, id)=>{
-        e.preventDefault();
-        const Username = localStorage.getItem('user');
-        const token = localStorage.getItem('token');
-        _axiosDefault.default.post(`https://fredsflix.herokuapp.com/users/${Username}/movies/${id}`, {
-            key: 'value'
-        }, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>{
-            alert("Movie added to favorites");
-        }).catch(function(error) {});
-    };
     render() {
         const { movie , onBackClick  } = this.props;
         return /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "movie-view",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 37,
+                lineNumber: 19,
                 columnNumber: 5
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 39,
+                lineNumber: 21,
                 columnNumber: 1
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 40,
+                lineNumber: 22,
                 columnNumber: 9
             },
             __self: this
@@ -33445,21 +33433,21 @@ class MovieView extends _reactDefault.default.Component {
             className: "page_title",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 40,
+                lineNumber: 22,
                 columnNumber: 14
             },
             __self: this
         }, "Movie Info"))), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 42,
+                lineNumber: 24,
                 columnNumber: 9
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 43,
+                lineNumber: 25,
                 columnNumber: 13
             },
             __self: this
@@ -33467,7 +33455,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "movie-poster",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 44,
+                lineNumber: 26,
                 columnNumber: 18
             },
             __self: this
@@ -33475,14 +33463,14 @@ class MovieView extends _reactDefault.default.Component {
             src: movie.ImagePath,
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 44,
+                lineNumber: 26,
                 columnNumber: 48
             },
             __self: this
         }))), /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 46,
+                lineNumber: 28,
                 columnNumber: 14
             },
             __self: this
@@ -33490,7 +33478,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "movie-info",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 47,
+                lineNumber: 29,
                 columnNumber: 13
             },
             __self: this
@@ -33498,7 +33486,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "movie-title",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 48,
+                lineNumber: 30,
                 columnNumber: 18
             },
             __self: this
@@ -33506,7 +33494,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "label",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 49,
+                lineNumber: 31,
                 columnNumber: 22
             },
             __self: this
@@ -33514,7 +33502,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "value",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 50,
+                lineNumber: 32,
                 columnNumber: 22
             },
             __self: this
@@ -33522,7 +33510,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "movie-director",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 52,
+                lineNumber: 34,
                 columnNumber: 17
             },
             __self: this
@@ -33530,7 +33518,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "label",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 53,
+                lineNumber: 35,
                 columnNumber: 21
             },
             __self: this
@@ -33538,7 +33526,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "value",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 54,
+                lineNumber: 36,
                 columnNumber: 21
             },
             __self: this
@@ -33546,7 +33534,7 @@ class MovieView extends _reactDefault.default.Component {
             to: `/directors/${movie.Director.Name}`,
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 55,
+                lineNumber: 37,
                 columnNumber: 25
             },
             __self: this
@@ -33554,7 +33542,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "movie-genre",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 58,
+                lineNumber: 40,
                 columnNumber: 18
             },
             __self: this
@@ -33562,7 +33550,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "label",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 59,
+                lineNumber: 41,
                 columnNumber: 22
             },
             __self: this
@@ -33570,7 +33558,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "value",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 60,
+                lineNumber: 42,
                 columnNumber: 22
             },
             __self: this
@@ -33578,7 +33566,7 @@ class MovieView extends _reactDefault.default.Component {
             to: `/genres/${movie.Genre.Name}`,
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 61,
+                lineNumber: 43,
                 columnNumber: 26
             },
             __self: this
@@ -33586,7 +33574,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "justify-content-center",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 68,
+                lineNumber: 50,
                 columnNumber: 9
             },
             __self: this
@@ -33594,7 +33582,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "movie-description",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 69,
+                lineNumber: 51,
                 columnNumber: 9
             },
             __self: this
@@ -33602,7 +33590,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "label",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 70,
+                lineNumber: 52,
                 columnNumber: 13
             },
             __self: this
@@ -33610,7 +33598,7 @@ class MovieView extends _reactDefault.default.Component {
             className: "value",
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 71,
+                lineNumber: 53,
                 columnNumber: 13
             },
             __self: this
@@ -33622,7 +33610,7 @@ class MovieView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 72,
+                lineNumber: 54,
                 columnNumber: 15
             },
             __self: this
@@ -33871,49 +33859,29 @@ var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _reactRouterDom = require("react-router-dom");
 var _masksPng = require("./masks.png");
 var _masksPngDefault = parcelHelpers.interopDefault(_masksPng);
+var _reactBootstrap = require("react-bootstrap");
 class GenreView extends _reactDefault.default.Component {
     render() {
-        const { genre , onBackClick  } = this.props;
+        const { genre , onBackClick , movies  } = this.props;
         return /*#__PURE__*/ _reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
-            __source: {
-                fileName: "src/components/genre-view/genre-view.jsx",
-                lineNumber: 18,
-                columnNumber: 5
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+            className: "justify-content-center",
             __source: {
                 fileName: "src/components/genre-view/genre-view.jsx",
                 lineNumber: 19,
-                columnNumber: 9
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement("h1", {
-            className: "page_title",
-            __source: {
-                fileName: "src/components/genre-view/genre-view.jsx",
-                lineNumber: 19,
-                columnNumber: 14
-            },
-            __self: this
-        }, "Genre Info"))), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
-            __source: {
-                fileName: "src/components/genre-view/genre-view.jsx",
-                lineNumber: 21,
                 columnNumber: 13
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             __source: {
                 fileName: "src/components/genre-view/genre-view.jsx",
-                lineNumber: 22,
+                lineNumber: 20,
                 columnNumber: 18
             },
             __self: this
         }, " ", /*#__PURE__*/ _reactDefault.default.createElement("div", {
             __source: {
                 fileName: "src/components/genre-view/genre-view.jsx",
-                lineNumber: 22,
+                lineNumber: 20,
                 columnNumber: 24
             },
             __self: this
@@ -33922,44 +33890,107 @@ class GenreView extends _reactDefault.default.Component {
             src: _masksPngDefault.default,
             __source: {
                 fileName: "src/components/genre-view/genre-view.jsx",
-                lineNumber: 22,
+                lineNumber: 20,
                 columnNumber: 29
             },
             __self: this
         }))), /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             __source: {
                 fileName: "src/components/genre-view/genre-view.jsx",
-                lineNumber: 23,
+                lineNumber: 21,
                 columnNumber: 18
             },
             __self: this
         }, "  ", /*#__PURE__*/ _reactDefault.default.createElement("h2", {
             __source: {
                 fileName: "src/components/genre-view/genre-view.jsx",
-                lineNumber: 23,
+                lineNumber: 21,
                 columnNumber: 25
             },
             __self: this
         }, genre.Name), /*#__PURE__*/ _reactDefault.default.createElement("p", {
             __source: {
                 fileName: "src/components/genre-view/genre-view.jsx",
-                lineNumber: 24,
+                lineNumber: 22,
                 columnNumber: 18
             },
             __self: this
-        }, genre.Description), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+        }, genre.Description))), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
+            __source: {
+                fileName: "src/components/genre-view/genre-view.jsx",
+                lineNumber: 29,
+                columnNumber: 5
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+            __source: {
+                fileName: "src/components/genre-view/genre-view.jsx",
+                lineNumber: 30,
+                columnNumber: 9
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement("h2", {
+            className: "page_title2",
+            __source: {
+                fileName: "src/components/genre-view/genre-view.jsx",
+                lineNumber: 30,
+                columnNumber: 14
+            },
+            __self: this
+        }, genre.Name, " Movies"))), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
+            __source: {
+                fileName: "src/components/genre-view/genre-view.jsx",
+                lineNumber: 32,
+                columnNumber: 5
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+            md: 12,
+            __source: {
+                fileName: "src/components/genre-view/genre-view.jsx",
+                lineNumber: 33,
+                columnNumber: 10
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.CardGroup, {
+            className: "dirMovies",
+            __source: {
+                fileName: "src/components/genre-view/genre-view.jsx",
+                lineNumber: 34,
+                columnNumber: 17
+            },
+            __self: this
+        }, movies.map((movie)=>/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Img, {
+                className: "fav-poster",
+                variant: "top",
+                src: movie.ImagePath,
+                __source: {
+                    fileName: "src/components/genre-view/genre-view.jsx",
+                    lineNumber: 37,
+                    columnNumber: 29
+                },
+                __self: this
+            })
+        )))), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             className: "button",
+            __source: {
+                fileName: "src/components/genre-view/genre-view.jsx",
+                lineNumber: 46,
+                columnNumber: 5
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
             variant: "info",
             onClick: ()=>{
                 onBackClick();
             },
             __source: {
                 fileName: "src/components/genre-view/genre-view.jsx",
-                lineNumber: 26,
-                columnNumber: 21
+                lineNumber: 47,
+                columnNumber: 5
             },
             __self: this
-        }, "Back"))));
+        }, "Back")));
     }
 }
 
@@ -33968,7 +33999,7 @@ class GenreView extends _reactDefault.default.Component {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","prop-types":"7wKI2","./genre-view.scss":"bk3gk","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","react-bootstrap/Button":"aPzUt","react-router-dom":"cHIiW","./masks.png":"c9Z77","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bk3gk":[function() {},{}],"c9Z77":[function(require,module,exports) {
+},{"react":"21dqq","prop-types":"7wKI2","./genre-view.scss":"bk3gk","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","react-bootstrap/Button":"aPzUt","react-router-dom":"cHIiW","./masks.png":"c9Z77","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A"}],"bk3gk":[function() {},{}],"c9Z77":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('byUka') + "masks.bdabc058.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"7daVh":[function(require,module,exports) {
