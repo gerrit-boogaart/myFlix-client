@@ -72,7 +72,6 @@ getUser = (token) => {
         }
     )
         .then(response => {
-            alert("Movie removed");
             this.componentDidMount();
         })
         .catch(function (error) {

@@ -19,7 +19,6 @@ export class MovieCard extends React.Component {
         }
     )
         .then(response => {
-          alert ( movie.Title + " was removed from favorites.")
           const favs = this.state.favs.filter((m) => m !== id)
           this.setState({ favs });
         })
@@ -39,7 +38,6 @@ export class MovieCard extends React.Component {
         }
     )
         .then(response => {
-          alert ( movie.Title + " was added to favorites.") 
           this.setState({ favs: [...this.state.favs, id]})
         })
         .catch(function (error) { 
