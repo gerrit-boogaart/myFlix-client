@@ -27,14 +27,14 @@ export class GenreView extends React.Component {
  
 
     <Row> 
-        <Col><h2 className='page_title2'>{genre.Name} Movies</h2></Col>
+        <Col><p className='page_title2'>{genre.Name} Movies</p></Col>
     </Row>
     <Row>
          <Col md={12}>
-                <CardGroup className="dirMovies">
+                <CardGroup className="genreMovies">
                     {movies.map(movie => (
                      
-                            <Card.Img
+                            <Card.Img 
                                 className="fav-poster"
                                 variant="top"
                                 src={movie.ImagePath} />
@@ -43,6 +43,8 @@ export class GenreView extends React.Component {
                 </CardGroup>
             </Col>
     </Row>
+
+    
     <Row className="button">
     <Button  variant="info" onClick={() => { onBackClick(); }}>Back</Button>
     </Row>         

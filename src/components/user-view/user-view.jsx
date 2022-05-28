@@ -82,7 +82,6 @@ getUser = (token) => {
   render() {
     const { movies, FavoriteMoviesIDs } = this.state;
    const {user} = this.props;
-   console.log('profile', user)
    if (!user || !movies) {
      return <p>No soup for you</p>
    }
@@ -158,35 +157,9 @@ getUser = (token) => {
     </Container>
  
   )
-  
-  
-  }
+ }
 }
 let mapStateToProps = state => {
   return { movies: state.movies, UserData: state.UserData, user: state.user }
 }
 export default connect(mapStateToProps, null)(ProfileView);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -33926,7 +33926,7 @@ class GenreView extends _reactDefault.default.Component {
                 columnNumber: 9
             },
             __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement("h2", {
+        }, /*#__PURE__*/ _reactDefault.default.createElement("p", {
             className: "page_title2",
             __source: {
                 fileName: "src/components/genre-view/genre-view.jsx",
@@ -33950,7 +33950,7 @@ class GenreView extends _reactDefault.default.Component {
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.CardGroup, {
-            className: "dirMovies",
+            className: "genreMovies",
             __source: {
                 fileName: "src/components/genre-view/genre-view.jsx",
                 lineNumber: 34,
@@ -33972,7 +33972,7 @@ class GenreView extends _reactDefault.default.Component {
             className: "button",
             __source: {
                 fileName: "src/components/genre-view/genre-view.jsx",
-                lineNumber: 46,
+                lineNumber: 48,
                 columnNumber: 5
             },
             __self: this
@@ -33983,7 +33983,7 @@ class GenreView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/genre-view/genre-view.jsx",
-                lineNumber: 47,
+                lineNumber: 49,
                 columnNumber: 5
             },
             __self: this
@@ -34088,11 +34088,10 @@ class ProfileView extends _reactDefault.default.Component {
     render() {
         const { movies , FavoriteMoviesIDs  } = this.state;
         const { user  } = this.props;
-        console.log('profile', user);
         if (!user || !movies) return /*#__PURE__*/ _reactDefault.default.createElement("p", {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 87,
+                lineNumber: 86,
                 columnNumber: 13
             },
             __self: this
@@ -34100,7 +34099,7 @@ class ProfileView extends _reactDefault.default.Component {
         return /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Container, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 91,
+                lineNumber: 90,
                 columnNumber: 5
             },
             __self: this
@@ -34111,21 +34110,21 @@ class ProfileView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 92,
+                lineNumber: 91,
                 columnNumber: 9
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 94,
+                lineNumber: 93,
                 columnNumber: 13
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.CardGroup, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 95,
+                lineNumber: 94,
                 columnNumber: 14
             },
             __self: this
@@ -34137,7 +34136,7 @@ class ProfileView extends _reactDefault.default.Component {
             border: "info",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 96,
+                lineNumber: 95,
                 columnNumber: 17
             },
             __self: this
@@ -34145,7 +34144,7 @@ class ProfileView extends _reactDefault.default.Component {
             as: "h2",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 97,
+                lineNumber: 96,
                 columnNumber: 20
             },
             __self: this
@@ -34153,7 +34152,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "user-info",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 98,
+                lineNumber: 97,
                 columnNumber: 23
             },
             __self: this
@@ -34161,7 +34160,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "user-name",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 99,
+                lineNumber: 98,
                 columnNumber: 25
             },
             __self: this
@@ -34169,7 +34168,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "label",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 100,
+                lineNumber: 99,
                 columnNumber: 27
             },
             __self: this
@@ -34177,7 +34176,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "value",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 101,
+                lineNumber: 100,
                 columnNumber: 27
             },
             __self: this
@@ -34185,7 +34184,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "user-email",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 103,
+                lineNumber: 102,
                 columnNumber: 25
             },
             __self: this
@@ -34193,7 +34192,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "label",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 104,
+                lineNumber: 103,
                 columnNumber: 27
             },
             __self: this
@@ -34201,7 +34200,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "value",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 105,
+                lineNumber: 104,
                 columnNumber: 27
             },
             __self: this
@@ -34209,7 +34208,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "user-birthday",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 107,
+                lineNumber: 106,
                 columnNumber: 25
             },
             __self: this
@@ -34217,7 +34216,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "label",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 108,
+                lineNumber: 107,
                 columnNumber: 26
             },
             __self: this
@@ -34225,21 +34224,21 @@ class ProfileView extends _reactDefault.default.Component {
             className: "value",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 109,
+                lineNumber: 108,
                 columnNumber: 26
             },
             __self: this
         }, " dssdfdffsd", user?.Birthday))))))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 117,
+                lineNumber: 116,
                 columnNumber: 9
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 118,
+                lineNumber: 117,
                 columnNumber: 13
             },
             __self: this
@@ -34247,42 +34246,42 @@ class ProfileView extends _reactDefault.default.Component {
             className: "favorite-movies",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 121,
+                lineNumber: 120,
                 columnNumber: 19
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("h2", {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 122,
+                lineNumber: 121,
                 columnNumber: 21
             },
             __self: this
         }, "My Favorite Movies (Click to remove)"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 123,
+                lineNumber: 122,
                 columnNumber: 21
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 124,
+                lineNumber: 123,
                 columnNumber: 21
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 125,
+                lineNumber: 124,
                 columnNumber: 25
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Body, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 126,
+                lineNumber: 125,
                 columnNumber: 29
             },
             __self: this
@@ -34290,7 +34289,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "text-center",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 128,
+                lineNumber: 127,
                 columnNumber: 37
             },
             __self: this
@@ -34298,7 +34297,7 @@ class ProfileView extends _reactDefault.default.Component {
             className: "favorite-movies-container",
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 130,
+                lineNumber: 129,
                 columnNumber: 33
             },
             __self: this
@@ -34308,7 +34307,7 @@ class ProfileView extends _reactDefault.default.Component {
                 md: 2,
                 __source: {
                     fileName: "src/components/user-view/user-view.jsx",
-                    lineNumber: 135,
+                    lineNumber: 134,
                     columnNumber: 48
                 },
                 __self: this
@@ -34317,7 +34316,7 @@ class ProfileView extends _reactDefault.default.Component {
                 key: movie._id,
                 __source: {
                     fileName: "src/components/user-view/user-view.jsx",
-                    lineNumber: 135,
+                    lineNumber: 134,
                     columnNumber: 62
                 },
                 __self: this
@@ -34328,7 +34327,7 @@ class ProfileView extends _reactDefault.default.Component {
                 ,
                 __source: {
                     fileName: "src/components/user-view/user-view.jsx",
-                    lineNumber: 136,
+                    lineNumber: 135,
                     columnNumber: 53
                 },
                 __self: this
@@ -34338,7 +34337,7 @@ class ProfileView extends _reactDefault.default.Component {
                 src: movie?.ImagePath,
                 __source: {
                     fileName: "src/components/user-view/user-view.jsx",
-                    lineNumber: 137,
+                    lineNumber: 136,
                     columnNumber: 53
                 },
                 __self: this
@@ -34347,7 +34346,7 @@ class ProfileView extends _reactDefault.default.Component {
             user: this.state,
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
-                lineNumber: 157,
+                lineNumber: 156,
                 columnNumber: 9
             },
             __self: this
@@ -36449,7 +36448,7 @@ class MovieCard extends _reactDefault.default.Component {
     };
     isFav(favorites, movie) {
         if (this.state.favs.includes(movie._id)) return /*#__PURE__*/ _reactDefault.default.createElement("a", {
-            className: "heart-red",
+            className: "heart",
             value: movie._id,
             onClick: (e)=>this.onRemoveFavorite(e, movie._id)
             ,
