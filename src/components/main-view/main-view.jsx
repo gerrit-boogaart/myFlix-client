@@ -144,7 +144,7 @@ import MoviesList from '../movies-list/movies-list';
 
         <Route path={`/users/:user`} render={({ match, history }) => {
         return <Col>
-            <ProfileView  movies={movies} onBackClick={() => history.goBack()}/>
+            <ProfileView  movies={movies} user={user} onBackClick={() => history.goBack()}/>
         </Col>
 
         }} />

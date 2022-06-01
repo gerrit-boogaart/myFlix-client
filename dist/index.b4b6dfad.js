@@ -21626,6 +21626,7 @@ class MainView extends _reactDefault.default.Component {
             render: ({ match , history  })=>{
                 return /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, null, /*#__PURE__*/ _reactDefault.default.createElement(_userViewDefault.default, {
                     movies: movies,
+                    user: user1,
                     onBackClick: ()=>history.goBack()
                 }));
             },
@@ -34031,14 +34032,11 @@ class ProfileView extends _reactDefault.default.Component {
         };
     }
     componentDidMount() {
-        console.log('profile view');
         const accessToken = localStorage.getItem('token');
         this.getMovies(accessToken);
         this.getUser(accessToken);
     }
-    componentDidUpdate() {
-        console.log('updating');
-    }
+    componentDidUpdate() {}
     getMovies(token) {
         _axiosDefault.default.get('https://fredsflix.herokuapp.com/movies', {
             headers: {
@@ -34086,7 +34084,7 @@ class ProfileView extends _reactDefault.default.Component {
         });
     };
     render() {
-        const { movies , FavoriteMoviesIDs  } = this.state;
+        const { movies , FavoriteMoviesIDs , Birthday  } = this.state;
         const { user  } = this.props;
         if (!user || !movies) return /*#__PURE__*/ _reactDefault.default.createElement("p", {
             __source: {
@@ -34228,7 +34226,7 @@ class ProfileView extends _reactDefault.default.Component {
                 columnNumber: 26
             },
             __self: this
-        }, " dssdfdffsd", user?.Birthday))))))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
+        }, " ", Birthday))))))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
                 lineNumber: 116,

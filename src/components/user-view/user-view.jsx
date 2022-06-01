@@ -20,13 +20,12 @@ class ProfileView extends React.Component {
     };
   }
 componentDidMount() {
-  console.log('profile view')
   const accessToken = localStorage.getItem('token');
   this.getMovies(accessToken);
   this.getUser(accessToken); 
 }
 componentDidUpdate() {
-  console.log('updating')
+  
 }
 getMovies(token) {
   axios.get('https://fredsflix.herokuapp.com/movies', {
@@ -80,7 +79,8 @@ getUser = (token) => {
  
 }
   render() {
-    const { movies, FavoriteMoviesIDs } = this.state;
+    const { movies, FavoriteMoviesIDs, Birthday } = this.state;
+    
    const {user} = this.props;
    if (!user || !movies) {
      return <p>No soup for you</p>
@@ -105,7 +105,7 @@ getUser = (token) => {
                         </div>
                         <div className="user-birthday">
                          <span className="label">Birthday: </span>
-                         <span className="value"> dssdfdffsd{user?.Birthday}</span>
+                         <span className="value"> {Birthday}</span>
                        </div>
                      </div>
                      
