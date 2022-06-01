@@ -105,7 +105,7 @@ getUser = (token) => {
                         </div>
                         <div className="user-birthday">
                          <span className="label">Birthday: </span>
-                         <span className="value"> {Birthday}</span>
+                         <span className="value"> {new Date(Birthday).toLocaleDateString()}</span>
                        </div>
                      </div>
                      

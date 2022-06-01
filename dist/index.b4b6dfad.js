@@ -34226,7 +34226,7 @@ class ProfileView extends _reactDefault.default.Component {
                 columnNumber: 26
             },
             __self: this
-        }, " ", Birthday))))))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
+        }, " ", new Date(Birthday).toLocaleDateString()))))))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
             __source: {
                 fileName: "src/components/user-view/user-view.jsx",
                 lineNumber: 116,
