@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { Menubar } from '../nav-bar/nav-bar';
+import { NavBar } from '../nav-bar/nav-bar';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
@@ -70,12 +70,12 @@ import MoviesList from '../movies-list/movies-list';
   
      
   render() {
-
+    
     let { movies, user } = this.props;
     
     return (   
       <Router>
-       <Menubar user={user}  />
+       <NavBar user={user}  />
         <Row className="main-view justify-content-md-center">
            
          <Route exact path="/" render={() => {

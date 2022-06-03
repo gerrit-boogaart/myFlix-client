@@ -21492,7 +21492,7 @@ class MainView extends _reactDefault.default.Component {
                 columnNumber: 7
             },
             __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_navBar.Menubar, {
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_navBar.NavBar, {
             user: user1,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
@@ -23207,13 +23207,13 @@ $parcel$ReactRefreshHelpers$9119.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Menubar", ()=>Menubar
+parcelHelpers.export(exports, "NavBar", ()=>NavBar
 );
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _navBarScss = require("./nav-bar.scss");
 var _reactBootstrap = require("react-bootstrap");
-function Menubar({ user  }) {
+function NavBar({ user  }) {
     function onLoggedOut() {
         localStorage.clear();
         window.open("/", "_self");
@@ -32885,6 +32885,7 @@ function LoginView(props) {
             Password: password
         }).then((response)=>{
             const data = response.data;
+            console.log(data);
             props.onLoggedIn(data);
         }).catch((e)=>{
             console.log(e);
@@ -32894,14 +32895,14 @@ function LoginView(props) {
     return /*#__PURE__*/ _reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Container, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 64,
+            lineNumber: 65,
             columnNumber: 1
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 65,
+            lineNumber: 66,
             columnNumber: 3
         },
         __self: this
@@ -32909,14 +32910,14 @@ function LoginView(props) {
         lg: 8,
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 66,
+            lineNumber: 67,
             columnNumber: 5
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.CardGroup, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 67,
+            lineNumber: 68,
             columnNumber: 7
         },
         __self: this
@@ -32928,7 +32929,7 @@ function LoginView(props) {
         },
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 68,
+            lineNumber: 69,
             columnNumber: 9
         },
         __self: this
@@ -32936,14 +32937,14 @@ function LoginView(props) {
         className: "login_container",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 69,
+            lineNumber: 70,
             columnNumber: 11
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Title, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 70,
+            lineNumber: 71,
             columnNumber: 11
         },
         __self: this
@@ -32951,14 +32952,14 @@ function LoginView(props) {
         to: `/register`,
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 70,
+            lineNumber: 71,
             columnNumber: 39
         },
         __self: this
     }, "Register ")), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 71,
+            lineNumber: 72,
             columnNumber: 13
         },
         __self: this
@@ -32966,14 +32967,14 @@ function LoginView(props) {
         controlId: "formUsername",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 72,
+            lineNumber: 73,
             columnNumber: 15
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 73,
+            lineNumber: 74,
             columnNumber: 17
         },
         __self: this
@@ -32984,7 +32985,7 @@ function LoginView(props) {
         placeholder: "Enter a username",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 74,
+            lineNumber: 75,
             columnNumber: 17
         },
         __self: this
@@ -32995,7 +32996,7 @@ function LoginView(props) {
         className: "font-italic",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 76,
+            lineNumber: 77,
             columnNumber: 34
         },
         __self: this
@@ -33003,14 +33004,14 @@ function LoginView(props) {
         controlId: "formPassword",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 79,
+            lineNumber: 80,
             columnNumber: 15
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 80,
+            lineNumber: 81,
             columnNumber: 17
         },
         __self: this
@@ -33021,7 +33022,7 @@ function LoginView(props) {
         placeholder: "password",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 81,
+            lineNumber: 82,
             columnNumber: 17
         },
         __self: this
@@ -33032,7 +33033,7 @@ function LoginView(props) {
         className: "font-italic",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 83,
+            lineNumber: 84,
             columnNumber: 33
         },
         __self: this
@@ -33043,7 +33044,7 @@ function LoginView(props) {
         onClick: handleSubmit,
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 85,
+            lineNumber: 86,
             columnNumber: 15
         },
         __self: this
