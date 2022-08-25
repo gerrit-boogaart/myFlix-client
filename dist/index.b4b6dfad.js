@@ -21475,6 +21475,7 @@ class MainView extends _reactDefault.default.Component {
         this.props.setUser(authData.user.Username);
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
+        this.componentDidMount();
     }
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
@@ -21488,7 +21489,7 @@ class MainView extends _reactDefault.default.Component {
         return /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 77,
+                lineNumber: 78,
                 columnNumber: 7
             },
             __self: this
@@ -21496,7 +21497,7 @@ class MainView extends _reactDefault.default.Component {
             user: user1,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 78,
+                lineNumber: 79,
                 columnNumber: 8
             },
             __self: this
@@ -21504,7 +21505,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view justify-content-md-center",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 79,
+                lineNumber: 80,
                 columnNumber: 9
             },
             __self: this
@@ -21518,14 +21519,14 @@ class MainView extends _reactDefault.default.Component {
                     user: user1,
                     onLoggedIn: (user)=>this.onLoggedIn(user)
                 }));
-                return /*#__PURE__*/ _reactDefault.default.createElement(_moviesListDefault.default, {
+                if (movies.length > 0) return /*#__PURE__*/ _reactDefault.default.createElement(_moviesListDefault.default, {
                     movies: movies,
                     user: user1
                 });
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 81,
+                lineNumber: 82,
                 columnNumber: 10
             },
             __self: this
@@ -21542,7 +21543,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 92,
+                lineNumber: 94,
                 columnNumber: 11
             },
             __self: this
@@ -21566,7 +21567,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 99,
+                lineNumber: 101,
                 columnNumber: 11
             },
             __self: this
@@ -21592,7 +21593,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 115,
+                lineNumber: 117,
                 columnNumber: 11
             },
             __self: this
@@ -21617,7 +21618,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 131,
+                lineNumber: 133,
                 columnNumber: 9
             },
             __self: this
@@ -21632,7 +21633,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 145,
+                lineNumber: 147,
                 columnNumber: 9
             },
             __self: this

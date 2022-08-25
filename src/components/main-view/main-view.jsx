@@ -57,6 +57,7 @@ import MoviesList from '../movies-list/movies-list';
       );
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username); 
+    this.componentDidMount();
   }
 
   componentDidMount() {
@@ -84,7 +85,8 @@ import MoviesList from '../movies-list/movies-list';
       <Col md={6}>
         <LoginView user={user} onLoggedIn={user => this.onLoggedIn(user)} />
       </Col>
-    )
+    ) 
+    if (movies.length > 0)
            return <MoviesList movies={movies} user={user}/>
            }}
           />
