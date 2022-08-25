@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 export class MovieCard extends React.Component {
   state = { favs: this.props.favorites || [] }
+  
   onRemoveFavorite = (e, id) => {
     const movie = this.props.movie
     const Username = localStorage.getItem('user');

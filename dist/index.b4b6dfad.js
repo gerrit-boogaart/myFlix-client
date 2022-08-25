@@ -36454,7 +36454,7 @@ class MovieCard extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 51,
+                lineNumber: 52,
                 columnNumber: 16
             },
             __self: this
@@ -36466,7 +36466,7 @@ class MovieCard extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 56,
+                lineNumber: 57,
                 columnNumber: 17
             },
             __self: this
@@ -36478,7 +36478,7 @@ class MovieCard extends _reactDefault.default.Component {
             className: "card",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 67,
+                lineNumber: 68,
                 columnNumber: 7
             },
             __self: this
@@ -36487,14 +36487,14 @@ class MovieCard extends _reactDefault.default.Component {
             src: movie.ImagePath,
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 69,
+                lineNumber: 70,
                 columnNumber: 9
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 70,
+                lineNumber: 71,
                 columnNumber: 9
             },
             __self: this
@@ -36502,14 +36502,14 @@ class MovieCard extends _reactDefault.default.Component {
             className: "card_title",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 71,
+                lineNumber: 72,
                 columnNumber: 11
             },
             __self: this
         }, movie.Title), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 72,
+                lineNumber: 73,
                 columnNumber: 11
             },
             __self: this
@@ -36517,7 +36517,7 @@ class MovieCard extends _reactDefault.default.Component {
             to: `/movies/${movie._id}`,
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 75,
+                lineNumber: 76,
                 columnNumber: 11
             },
             __self: this
@@ -36525,14 +36525,14 @@ class MovieCard extends _reactDefault.default.Component {
             variant: "link",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 76,
+                lineNumber: 77,
                 columnNumber: 13
             },
             __self: this
         }, "OPEN")), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 79,
+                lineNumber: 80,
                 columnNumber: 11
             },
             __self: this
