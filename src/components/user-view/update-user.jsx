@@ -1,20 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import {Row, Col, Button, Container, Form, Card, CardGroup} from 'react-bootstrap';
 import axios from 'axios';
 import Link from 'react-router-dom';
-import './registration-view.scss';
+import './update-user.scss';
 
-export function RegistrationView(props) {
+export function UserUpdate({user}) {
     const [ username, setUsername ] = useState('');
-    const [ password, setPassword ] = useState('');
     const [ email, setEmail ] = useState('');
     const [ birthday, setBirthday ] = useState('');
+    const [ password, setPassword ] = useState('');
     //Declare hook for each input
     const [ usernameErr, setUsernameErr ] = useState('');
-    const [ passwordErr, setPasswordErr ] = useState('');
     const [ emailErr, setEmailErr ] = useState('');
    
+    useEffect(() => {
+      if (user) {
+       setUsername(user.Username)
+       setEmail(user.Email)
+       setBirthday(user.Birthday)
+      }
+    }, [user]);
   
 
     const validate = () => {
@@ -24,12 +30,6 @@ export function RegistrationView(props) {
           isReq = false;
         } else if(username.length < 5) {
           setUsernameErr('Username must be 5 characters long.'); 
-          isReq = false;
-        } if(!password){
-          setPasswordErr('Password Required');
-          isReq = false;
-        } else if(password.length < 6){
-          setPasswordErr('Password must be 6 characters long');
           isReq = false;
         }
         if(!email) {
@@ -46,32 +46,62 @@ export function RegistrationView(props) {
     const handleSubmit = (e) => {
     e.preventDefault(); 
     isReq = validate();
-    console.log(username, password, email, birthday);
-    if(isReq) {
-      /* Send a request to the server for authentication */
-      axios.post('https://fredsflix.herokuapp.com/users', {
-        Username: username, 
-        Password: password, 
-        Email: email, 
-        Birthday: birthday
-      })
-      .then(response => {
-        const data = response.data;
-        console.log(data);
-        alert('Registration successful, please login!');
-        window.open('/', '_self'); 
-      })
-      .catch(response => {
-        console.error(response);
-        alert('unable to register');
-      });
+    const token = localStorage.getItem('token');
+      const user = localStorage.getItem('user');
+     
+      if(isReq) {
+        axios.put(`https://fredsflix.herokuapp.com/users/${user}`,  {
+          Username: username, 
+          Email: email, 
+          Birthday: birthday
+        },{
+          headers: { Authorization: `Bearer ${token}`}
+      }
+       )
+        
+        .then(response => {
+          console.log({
+            Username: response.data.Username,
+            Password: response.data.Password,
+            Email: response.data.Email,
+            Birthday: response.data.Birthday,
+          
+        });
+          alert('User info successfully updated, please log back in');
+          localStorage.removeItem('user');
+          localStorage.removeItem('token');
+          window.open('/', '_self'); 
+        })
+        .catch(response => {
+          alert('unable to UPDATE');
+        });
+      };
     };
 
-    
-    /* then call props.Registration(username) */
-    props.onRegistration(username);
-  };
+    const handleRemoveUser = (e) => {
+      e.preventDefault();
+      const token = localStorage.getItem('token');
+      const user = localStorage.getItem('user');
+      alert('Are you sure you want to remove your account?')
+      
+      axios.delete(`https://fredsflix.herokuapp.com/users/${user}`, {
+      headers: { Authorization: `Bearer ${token}`}})
 
+      .then(response =>  { 
+        alert("Your account has been removed, please register to use FredsFlix again");
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+      window.open('/', '_self');
+    })
+      .catch(response => {
+        alert('unable to remove user');
+      });
+      };
+  
+  
+  
+  
+  
   return (
     <Row className="mt-5">
      
@@ -80,18 +110,12 @@ export function RegistrationView(props) {
         <Card Card border="light" style={{ width: '18rem' }}> 
       <Card.Body className="register_container">
         <Form>
-          <h3>Sign Up</h3>
+          <h3>Update User Information</h3>
           <p></p>
           <Form.Group controlId="formUsername" className="reg-form-inputs">
             <Form.Label>Username:</Form.Label>
             <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} />
             {usernameErr && <p style={{color: "red"}} className="font-italic">{usernameErr}</p>}
-         </Form.Group>
-
-         <Form.Group controlId="formPassword" className="reg-form-inputs">
-            <Form.Label>Password:</Form.Label>
-            <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} />
-            {passwordErr && <p style={{color: "red"}} className="font-italic">{passwordErr}</p>}
          </Form.Group>
         
          <Form.Group controlId="Email" className="reg-form-inputs">
@@ -104,7 +128,10 @@ export function RegistrationView(props) {
             <Form.Label>Birthday:</Form.Label>
             <Form.Control type="date" name="birthday" onChange={e => setBirthday(e.target.value)} />
          </Form.Group>
-          <Button variant="info" type="submit" onClick={handleSubmit}>Submit</Button>
+         <div className = "userInfoButtons">
+          <Button variant="info" type="submit" onClick={handleSubmit}>Upate User Info</Button>
+          <Button variant="info" className='removeUser' type="submit" onClick={handleRemoveUser}>Remove Your Account</Button>
+          </div>
           <p></p>
       </Form>
       </Card.Body>
@@ -113,7 +140,7 @@ export function RegistrationView(props) {
      </Col>
     </Row>
   );
-}
+};
 
 // RegistrationView.propTypes = {
 //   register: PropTypes.shape({
