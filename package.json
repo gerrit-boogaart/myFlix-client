@@ -5,8 +5,10 @@
 
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel src/index.html",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html", 
+    "start": "parcel ./*.html",
+    "predeploy": "rm -rf dist && parcel build ./*.html --public-url 'https://github.com/fredpasqua/myFlix-client'", 
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
