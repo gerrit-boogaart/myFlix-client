@@ -26418,7 +26418,7 @@ exports.default = _inheritsLoose;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function _setPrototypeOf(o1, p1) {
-    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
         o.__proto__ = p;
         return o;
     };
@@ -27613,7 +27613,7 @@ exports.default = useUncontrolled;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function _extends() {
-    _extends = Object.assign || function(target) {
+    _extends = Object.assign ? Object.assign.bind() : function(target) {
         for(var i = 1; i < arguments.length; i++){
             var source = arguments[i];
             for(var key in source)if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
